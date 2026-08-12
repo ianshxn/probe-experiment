@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cue_balanced_development_augmentation.schema.json",
+  "title": "Cue-balanced development augmentation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol_version",
+    "status",
+    "description",
+    "trigger_result",
+    "source_banks",
+    "rendering"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol_version": {"type": "string", "const": "3.0.0"},
+    "status": {"const": "development_only_spent_inputs"},
+    "description": {"type": "string", "minLength": 40},
+    "trigger_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "required_selected_recipe"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "required_selected_recipe": {"type": "null"}
+      }
+    },
+    "source_banks": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_bank", "path", "sha256"],
+        "properties": {
+          "source_bank": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "rendering": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["separator", "source_field_order", "templates"],
+      "properties": {
+        "separator": {"const": "\n\n"},
+        "source_field_order": {
+          "const": ["purpose", "cue_line", "payload"]
+        },
+        "templates": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["cue_template_id", "field_order", "cue_line_templates"],
+            "properties": {
+              "cue_template_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+              "field_order": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "uniqueItems": true,
+                "items": {"enum": ["purpose", "cue_line", "payload"]}
+              },
+              "cue_line_templates": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["en", "ja"],
+                "properties": {
+                  "en": {"type": "string", "pattern": "\\{cue_term\\}"},
+                  "ja": {"type": "string", "pattern": "\\{cue_term\\}"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

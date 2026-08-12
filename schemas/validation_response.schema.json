@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eval_format_mvp_validation_response.schema.json",
+  "title": "Canonical-payload semantic validation",
+  "type": "object",
+  "required": [
+    "verdict",
+    "checks",
+    "normalized_answer",
+    "invalid_distractor_indices",
+    "issues",
+    "confidence"
+  ],
+  "properties": {
+    "verdict": {"enum": ["pass", "fail", "uncertain"]},
+    "checks": {
+      "type": "object",
+      "required": [
+        "self_contained",
+        "correct_answer",
+        "unique_answer",
+        "all_distractors_wrong",
+        "distractors_plausible",
+        "short_answer_suitable",
+        "cross_format_equivalent",
+        "purpose_neutral",
+        "format_neutral",
+        "temporally_stable"
+      ],
+      "properties": {
+        "self_contained": {"type": "boolean"},
+        "correct_answer": {"type": "boolean"},
+        "unique_answer": {"type": "boolean"},
+        "all_distractors_wrong": {"type": "boolean"},
+        "distractors_plausible": {"type": "boolean"},
+        "short_answer_suitable": {"type": "boolean"},
+        "cross_format_equivalent": {"type": "boolean"},
+        "purpose_neutral": {"type": "boolean"},
+        "format_neutral": {"type": "boolean"},
+        "temporally_stable": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "normalized_answer": {"type": "string", "minLength": 1},
+    "invalid_distractor_indices": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "integer", "minimum": 0, "maximum": 2}
+    },
+    "issues": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "enum": [
+              "not_self_contained",
+              "incorrect_answer",
+              "ambiguous_answer",
+              "invalid_distractor",
+              "implausible_distractor",
+              "short_answer_unsuitable",
+              "cross_format_mismatch",
+              "purpose_leakage",
+              "format_leakage",
+              "temporally_unstable",
+              "other"
+            ]
+          },
+          "message": {"type": "string", "minLength": 1, "maxLength": 400}
+        },
+        "additionalProperties": false
+      }
+    },
+    "confidence": {"enum": ["high", "medium", "low"]}
+  },
+  "additionalProperties": false
+}
+

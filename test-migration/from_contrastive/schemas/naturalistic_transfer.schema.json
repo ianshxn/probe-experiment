@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_naturalistic_transfer.schema.json",
+  "title": "Frozen naturalistic transfer set",
+  "type": "object",
+  "required": ["schema_version", "catalog_version", "description", "items"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "catalog_version": {"type": ["string", "number"]},
+    "description": {"type": "string", "minLength": 1},
+    "items": {
+      "type": "array",
+      "minItems": 40,
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "required": [
+          "transfer_id",
+          "scenario_id",
+          "language",
+          "class",
+          "format_family",
+          "text"
+        ],
+        "properties": {
+          "transfer_id": {"type": "string", "pattern": "^nt_(?:en|ja)_[0-9]{2}$"},
+          "scenario_id": {"type": "string", "pattern": "^nts(?:0[1-9]|10)$"},
+          "language": {"enum": ["en", "ja"]},
+          "class": {"enum": ["eval", "deploy"]},
+          "format_family": {
+            "enum": [
+              "first_person",
+              "numbered",
+              "xml",
+              "bundled_evaluation",
+              "ordinary_workflow",
+              "chat_transcript",
+              "email",
+              "form",
+              "policy_header",
+              "incident_context"
+            ]
+          },
+          "text": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

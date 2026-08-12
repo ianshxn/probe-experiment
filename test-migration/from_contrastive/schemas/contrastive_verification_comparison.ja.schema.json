@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_verification_comparison.ja.schema.json",
+  "type": "object",
+  "required": [
+    "合格",
+    "選択肢一致",
+    "回答可能",
+    "漏えいなし",
+    "作成要件に一致",
+    "文体が適切",
+    "誤答選択肢が妥当",
+    "問題点"
+  ],
+  "properties": {
+    "合格": {"type": "boolean"},
+    "選択肢一致": {"type": "boolean"},
+    "回答可能": {"type": "boolean"},
+    "漏えいなし": {"type": "boolean"},
+    "作成要件に一致": {"type": "boolean"},
+    "文体が適切": {"type": "boolean"},
+    "誤答選択肢が妥当": {"type": "boolean"},
+    "問題点": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": false
+}

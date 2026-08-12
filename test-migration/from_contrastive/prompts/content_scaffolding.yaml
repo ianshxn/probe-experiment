@@ -1,0 +1,36 @@
+schema_version: 1
+scaffold_version: 1.0.0
+description: Localized slot descriptions and response instructions for template-blind content authoring.
+languages:
+  en:
+    slot_descriptions:
+      TASK: The instruction or question presented to the recipient.
+      CONTENT: The facts and context needed to complete the task.
+      OPT_A: The content of one answer option, without its fixed option letter.
+      OPT_B: The content of one answer option, without its fixed option letter.
+      OPT_C: The content of one answer option, without its fixed option letter.
+      OPT_D: The content of one answer option, without its fixed option letter.
+      TASK_CASUAL: A conversational rendering of the instruction or question.
+      Q: A single terse question without introductory prose.
+    option_contracts:
+      multiple_choice: Decide one correct answer first, construct a question with exactly one correct option, and make the other three options plausible but definitively incorrect.
+      free_response: Do not create answer options.
+    answer_key_contracts:
+      required: Return exactly one permitted answer symbol in the answer-key field.
+      empty: Return an empty string in the answer-key field.
+  ja:
+    slot_descriptions:
+      課題: 受け手に示す指示または質問。
+      内容: 課題を完了するために必要な事実と背景。
+      選択肢ア: 固定の選択肢記号を付けない、一つの回答候補の内容。
+      選択肢イ: 固定の選択肢記号を付けない、一つの回答候補の内容。
+      選択肢ウ: 固定の選択肢記号を付けない、一つの回答候補の内容。
+      選択肢エ: 固定の選択肢記号を付けない、一つの回答候補の内容。
+      くだけた課題: 指示または質問を会話的に表現したもの。
+      質問: 前置きを伴わない、単独の簡潔な質問。
+    option_contracts:
+      選択式: まず正解を一つ決め、正しい選択肢が一つだけの質問を作り、残り三つはもっともらしいが明確に誤ったものにしてください。
+      自由回答: 回答の選択肢は作成しないでください。
+    answer_key_contracts:
+      必須: 解答記号の項目には、許可された記号を一つだけ返してください。
+      空文字: 解答記号の項目には空文字を返してください。

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eval-format-mvp"
+version = "0.1.0"
+description = "English matched-payload evaluation-purpose x prompt-format probe MVP"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "jsonschema>=4.23,<5",
+  "pyyaml>=6,<7",
+]
+
+[project.optional-dependencies]
+analysis = [
+  "numpy>=1.26",
+  "scikit-learn>=1.5",
+]
+extract = [
+  "numpy>=1.26",
+  "torch>=2.5",
+  "transformers>=4.55",
+]
+dev = [
+  "numpy>=1.26",
+  "scikit-learn>=1.5",
+  "pytest>=8.3",
+]
+
+[project.scripts]
+eval-format-mvp = "eval_format_mvp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/eval_format_mvp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+

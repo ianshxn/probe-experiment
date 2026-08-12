@@ -1,0 +1,29 @@
+# contrastive/containers.yaml
+# Shared container-catalog metadata. One file per container lives in
+# containers/, named for its container_id.
+#
+# Identifiers run c01-c40. Every adjacent pair is an eval/deploy purpose-frame
+# twin; every content spec is reused by two distinct wrapper pairs.
+schema_version: 1
+catalog_version: 2.3.2
+description: Matched purpose-attribution container catalog for contrastive prompt generation.
+model_view:
+  visible_fields:
+  - register
+  - role_structure
+  - slots
+  - model_guidance
+  - response_contract
+  hidden_fields:
+  - container_id
+  - pair_id
+  - content_spec_id
+  - display_name
+  - class
+  - purpose_frame
+  - body_template
+  - nuisance_profile
+  - design_notes
+  - i18n
+container_dir: containers
+purpose_frame_catalog: purpose_frames.yaml

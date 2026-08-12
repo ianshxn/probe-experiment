@@ -1,0 +1,16 @@
+SYSTEM
+Independently solve the supplied item from its visible content. Do not infer an answer from wording, formatting, option order, or any hidden metadata. Return only structured data matching the supplied response schema.
+
+USER
+Response contract: <<CONTRACT>>
+
+Authoring requirements:
+<<AUTHORING_REQUIREMENTS>>
+
+Visible item:
+<<RENDERED_ITEM>>
+
+The visible item embeds the authored content inside a fixed wrapper the author never saw and did not control. Only the fields named in the authoring requirements are authored; every other line belongs to the wrapper. Wrapper material includes greetings, references to earlier context, directives about answer length or format, and the letters, numbers, or symbols that mark options — the author writes option text only and never its marker. Isolate the authored fields first, then judge authoring-requirement compliance and register on those fields alone. Never record wrapper text, or the presence, style, or ordering of option markers, as an authoring or register defect.
+
+Decide whether the item is answerable from its content. For multiple choice, independently select an ordinal option position from 1 through 4; for free response, return null. Flag any wording that reveals the intended answer. Briefly note distractor and register quality.
+Also decide whether the item follows the authoring requirements, uses an appropriate register, and has plausible distractors. For free response, set distractors_plausible true.

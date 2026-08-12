@@ -1,0 +1,29 @@
+schema_version: 1
+description: Two English prompt formats crossed independently with purpose.
+formats:
+  - format_variant_id: benchmark_mcq_v1
+    format: benchmark
+    family_id: benchmark_v1
+    response_contract: option_letter
+    template: |-
+      {purpose}
+
+      Question:
+      {body}
+
+      Options:
+      {options}
+
+      Respond with only the letter of the correct option.
+  - format_variant_id: casual_short_answer_v1
+    format: casual
+    family_id: casual_v1
+    response_contract: short_answer
+    template: |-
+      {purpose}
+
+      I'm trying to figure something out:
+      {body}
+
+      Could you give me the answer in a short phrase?
+

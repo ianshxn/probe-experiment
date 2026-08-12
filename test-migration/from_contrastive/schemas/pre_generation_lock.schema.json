@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_pre_generation_lock.schema.json",
+  "title": "Frozen contrastive pre-generation scaffold bundle",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "lock_version",
+    "semantic_equivalence_review",
+    "files"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "lock_version": {"type": "string", "minLength": 1},
+    "semantic_equivalence_review": {
+      "enum": ["pending", "approved"]
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"type": "string", "minLength": 1},
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    }
+  },
+  "additionalProperties": false
+}

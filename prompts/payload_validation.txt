@@ -1,0 +1,28 @@
+Independently audit the canonical English task below. The task will later be
+rendered both as a four-option benchmark question and as a casual short-answer
+request. Judge the semantic task itself, not writing style.
+
+Required procedure:
+1. Solve the task independently from the supplied context and question.
+2. Compare your solution with the proposed correct answer.
+3. Check whether any distractor is correct, equivalent to the answer, or
+   defensible under a reasonable interpretation.
+4. Check whether the task remains unambiguous when the answer options are hidden.
+5. Check that it is equally suitable for benchmark and casual presentation.
+6. Check that the task does not imply why this task or its answer will be used,
+   such as experimental evaluation, benchmarking, deployment, grading, or an
+   audience-specific response workflow. Topic-relevant language is allowed.
+   In particular, "code review" and "reviewer" are not leakage when they refer
+   to the software-engineering subject rather than evaluation of the respondent.
+7. Check that the answer is stable and does not require current external facts.
+
+Fail closed. Use `uncertain` whenever correctness or uniqueness cannot be
+established from the supplied text. A `pass` requires every Boolean check to be
+true, no invalid distractors, no issues, and high confidence. For `fail` or
+`uncertain`, set every Boolean contradicted by an issue to false. Never return an
+issue while leaving its corresponding check true.
+
+Return only the requested JSON object. Keep issue messages concise.
+
+Canonical payload:
+{payload_json}

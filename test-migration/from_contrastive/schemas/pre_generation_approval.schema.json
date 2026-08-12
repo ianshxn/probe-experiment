@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_pre_generation_approval.schema.json",
+  "title": "Human semantic approval bound to prose, catalog, and projection code",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "approval_id",
+    "status",
+    "scaffolding_sha256",
+    "catalog_semantics_sha256",
+    "request_projection_sha256",
+    "researcher",
+    "native_japanese_reviewer",
+    "approved_at",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "approval_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["pending", "approved"]},
+    "scaffolding_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "catalog_semantics_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "request_projection_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "researcher": {"type": ["string", "null"]},
+    "native_japanese_reviewer": {"type": ["string", "null"]},
+    "approved_at": {"type": ["string", "null"]},
+    "notes": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "approved"}},
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "researcher": {"type": "string", "minLength": 1},
+          "native_japanese_reviewer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "approved_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_format_matched_controls.schema.json",
+  "title": "Frozen format-matched confirmatory lexical controls",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "protocol_version",
+    "status",
+    "frozen_at",
+    "description",
+    "selection_rule",
+    "gate",
+    "rendering",
+    "purpose_variants",
+    "cue_variants",
+    "blocks"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol_version": {"const": "1.0.0"},
+    "status": {"const": "frozen_unscored"},
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "description": {"type": "string", "minLength": 1},
+    "selection_rule": {
+      "type": "object",
+      "required": [
+        "development_result_sha256",
+        "fitting_recipe",
+        "gating_position",
+        "gating_layer",
+        "diagnostic_cells",
+        "rule"
+      ],
+      "properties": {
+        "development_result_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "fitting_recipe": {"const": "explicit_only"},
+        "gating_position": {"const": "mean"},
+        "gating_layer": {"const": 6},
+        "diagnostic_cells": {
+          "type": "array",
+          "const": [{"position": "last", "layer": 6}]
+        },
+        "rule": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "gate": {
+      "type": "object",
+      "required": [
+        "primary_metric",
+        "bootstrap_unit",
+        "bootstrap_samples",
+        "thresholds",
+        "absolute_zero_threshold_role",
+        "no_cell_selection_on_controls"
+      ],
+      "properties": {
+        "primary_metric": {"const": "purpose_ordering_auc"},
+        "bootstrap_unit": {"const": "control_block_id"},
+        "bootstrap_samples": {"type": "integer", "minimum": 2000},
+        "thresholds": {
+          "type": "object",
+          "required": [
+            "purpose_auc_each_cue_family_each_language",
+            "purpose_auc_each_surface_each_cue_family_each_language",
+            "purpose_auc_within_each_lexical_cue_each_family_each_language",
+            "cluster_bootstrap_lower_bound_strictly_above",
+            "max_abs_lexical_cue_main_effect_fitting_sd"
+          ],
+          "properties": {
+            "purpose_auc_each_cue_family_each_language": {"const": 0.75},
+            "purpose_auc_each_surface_each_cue_family_each_language": {"const": 0.65},
+            "purpose_auc_within_each_lexical_cue_each_family_each_language": {"const": 0.65},
+            "cluster_bootstrap_lower_bound_strictly_above": {"const": 0.50},
+            "max_abs_lexical_cue_main_effect_fitting_sd": {"const": 0.25}
+          },
+          "additionalProperties": false
+        },
+        "absolute_zero_threshold_role": {"const": "diagnostic_only"},
+        "no_cell_selection_on_controls": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "rendering": {
+      "type": "object",
+      "required": ["separator", "cue_line_templates", "field_order"],
+      "properties": {
+        "separator": {"const": "\n\n"},
+        "field_order": {"const": ["purpose", "cue_line", "payload"]},
+        "cue_line_templates": {
+          "type": "object",
+          "required": ["en", "ja"],
+          "properties": {
+            "en": {"type": "string", "const": "Reference keyword: {cue_term}."},
+            "ja": {"type": "string", "const": "参照キーワード：{cue_term}。"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "purpose_variants": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {"$ref": "#/$defs/purposeVariant"}
+    },
+    "cue_variants": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/cueVariant"}
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {"$ref": "#/$defs/block"}
+    }
+  },
+  "$defs": {
+    "localizedPair": {
+      "type": "object",
+      "required": ["evaluation", "deployment"],
+      "properties": {
+        "evaluation": {"type": "string", "minLength": 1},
+        "deployment": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "purposeVariant": {
+      "type": "object",
+      "required": ["purpose_variant_id", "surface", "en", "ja"],
+      "properties": {
+        "purpose_variant_id": {"type": "string", "pattern": "^fmpv(?:0[1-9]|1[0-6])$"},
+        "surface": {"enum": ["external", "institutional"]},
+        "en": {"$ref": "#/$defs/localizedPair"},
+        "ja": {"$ref": "#/$defs/localizedPair"}
+      },
+      "additionalProperties": false
+    },
+    "cueFamilyPair": {
+      "type": "object",
+      "required": ["en", "ja"],
+      "properties": {
+        "en": {"$ref": "#/$defs/localizedPair"},
+        "ja": {"$ref": "#/$defs/localizedPair"}
+      },
+      "additionalProperties": false
+    },
+    "cueVariant": {
+      "type": "object",
+      "required": ["cue_variant_id", "explicit_lexeme", "implicit_cue"],
+      "properties": {
+        "cue_variant_id": {"type": "string", "pattern": "^fmcv0[1-8]$"},
+        "explicit_lexeme": {"$ref": "#/$defs/cueFamilyPair"},
+        "implicit_cue": {"$ref": "#/$defs/cueFamilyPair"}
+      },
+      "additionalProperties": false
+    },
+    "block": {
+      "type": "object",
+      "required": [
+        "control_block_id",
+        "surface",
+        "purpose_variant_id",
+        "cue_variant_id",
+        "payload"
+      ],
+      "properties": {
+        "control_block_id": {"type": "string", "pattern": "^fmcb(?:0[1-9]|1[0-6])$"},
+        "surface": {"enum": ["external", "institutional"]},
+        "purpose_variant_id": {"type": "string", "pattern": "^fmpv(?:0[1-9]|1[0-6])$"},
+        "cue_variant_id": {"type": "string", "pattern": "^fmcv0[1-8]$"},
+        "payload": {
+          "type": "object",
+          "required": ["en", "ja"],
+          "properties": {
+            "en": {"type": "string", "minLength": 200},
+            "ja": {"type": "string", "minLength": 80}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

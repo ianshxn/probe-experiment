@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_containers.schema.json",
+  "title": "Contrastive container catalog index",
+  "description": "Shared container-catalog metadata. Each container is a separate file in container_dir, validated against container.schema.json.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "catalog_version",
+    "model_view",
+    "container_dir",
+    "purpose_frame_catalog"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "catalog_version": {"type": ["string", "number"]},
+    "description": {"type": "string"},
+    "model_view": {
+      "type": "object",
+      "required": ["visible_fields", "hidden_fields"],
+      "properties": {
+        "visible_fields": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "hidden_fields": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "container_dir": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Directory of per-container files, relative to this index file."
+    },
+    "purpose_frame_catalog": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Authoritative bilingual frame-family catalog, relative to this index file."
+    }
+  },
+  "additionalProperties": false
+}

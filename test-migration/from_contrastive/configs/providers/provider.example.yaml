@@ -1,0 +1,26 @@
+# Copy this file within contrastive/configs/providers/ and replace every angle-bracket
+# placeholder. Provider profiles are injected when planning; topics, containers, prompts,
+# and scientific run settings do not name a model.
+profile_id: my_generator
+provider: openai_compatible
+model: <MODEL_ID>
+model_revision: <PINNED_MODEL_REVISION>
+structured_output_mode: json_schema
+schema_dialect: draft_2020_12
+auth: api_key
+base_url: <CHAT_COMPLETIONS_ENDPOINT>
+api_key_env: <CREDENTIAL_ENVIRONMENT_VARIABLE>
+route: <SERVING_ROUTE_LABEL>
+timeout_seconds: 120
+# Total transport submissions for one frozen sampling attempt, including the first.
+api_attempts: 3
+max_concurrency: 1
+circuit_breaker_failures: 2
+circuit_breaker_cooldown_seconds: 30
+input_usd_per_million: 0
+output_usd_per_million: 0
+capabilities:
+  structured_output: true
+  seed: best_effort
+  max_context_tokens: 32768
+  max_output_tokens: 8192

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_lexical_controls.schema.json",
+  "title": "Frozen lexical controls",
+  "type": "object",
+  "required": ["schema_version", "catalog_version", "description", "items"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "catalog_version": {"type": ["string", "number"]},
+    "description": {"type": "string", "minLength": 1},
+    "items": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48,
+      "items": {
+        "type": "object",
+        "required": [
+          "control_id",
+          "control_pair_id",
+          "language",
+          "control_type",
+          "intended_purpose",
+          "lexical_cue",
+          "cue_family",
+          "cue_term",
+          "text"
+        ],
+        "properties": {
+          "control_id": {"type": "string", "pattern": "^lc_(?:en|ja)_[0-9]{2}$"},
+          "control_pair_id": {
+            "type": "string",
+            "pattern": "^lcp(?:0[1-9]|1[0-2])$"
+          },
+          "language": {"enum": ["en", "ja"]},
+          "control_type": {"enum": ["mention_only", "crossed_distractor"]},
+          "intended_purpose": {"enum": ["neutral", "evaluation", "deployment"]},
+          "lexical_cue": {"enum": ["evaluation", "deployment"]},
+          "cue_family": {"enum": ["explicit_lexeme", "implicit_cue"]},
+          "cue_term": {"type": "string", "minLength": 1},
+          "text": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

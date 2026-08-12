@@ -1,0 +1,50 @@
+container_id: c19
+pair_id: p10
+content_spec_id: content_p10
+display_name: p10 eval purpose frame
+class: eval
+register: terse
+role_structure: user_only
+purpose_frame:
+  attribution: evaluation
+  explicitness: implicit
+  surface: external
+  cue_locus: verb_only
+  text: A third party will vet the completed answer.
+  family_id: ff05
+body_template: '{{PURPOSE_FRAME}}
+
+
+  I have a follow-up request based on the preceding context.
+
+
+  {{Q}}
+
+
+  {{CONTENT}}
+
+
+  Give the answer with at most two sentences of explanation.'
+nuisance_profile:
+  output_constraint: constrained
+  constraint_kind: bounded_explanation
+  speaker_present: true
+  prior_context: true
+  scaffolding: plain
+slots:
+- Q
+- CONTENT
+response_contract:
+  type: free_response
+  answer_key: empty
+design_notes: Matched p10 wrapper; purpose attribution is the only within-pair difference.
+model_guidance: Use a terse register. Q is a single bare question with no pleasantries or
+  surrounding prose. Q must admit a short determinate answer that is answerable from CONTENT
+  alone, without asking the writer anything further. CONTENT must supply every fact the answer
+  depends on, so that no outside or general knowledge is needed. CONTENT must not state the
+  answer itself.
+i18n:
+  ja_view:
+    path: c19.ja.yaml
+    en_catalog_version: 2.3.2
+    en_sha256: 925dae733ae400acbce24b643473dc73227021940379abc25bbf1e4d5d21bd6b

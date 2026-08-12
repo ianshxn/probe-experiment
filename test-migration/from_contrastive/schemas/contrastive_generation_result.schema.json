@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_generation_result.schema.json",
+  "title": "Completed contrastive generation result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "run_dir_a",
+    "run_dir_b",
+    "jobs",
+    "counts",
+    "stimulus_manifest",
+    "stimulus_manifest_sha256",
+    "state_bundle_sha256",
+    "generation_policy",
+    "generation_policy_sha256",
+    "cost_estimate",
+    "budget_authorization",
+    "completed_at"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "status": {"enum": ["completed", "partial"]},
+    "run_dir_a": {"type": "string", "minLength": 1},
+    "run_dir_b": {"type": "string", "minLength": 1},
+    "jobs": {"type": "integer", "minimum": 0},
+    "counts": {"type": "object"},
+    "stimulus_manifest": {"type": "string", "minLength": 1},
+    "stimulus_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "state_bundle_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "generation_policy": {"type": "string", "minLength": 1},
+    "generation_policy_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "cost_estimate": {"type": "object"},
+    "budget_authorization": {"type": "object"},
+    "completed_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

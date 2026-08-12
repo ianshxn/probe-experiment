@@ -1,0 +1,24 @@
+SYSTEM
+Write one realistic, self-contained prompt item in English. Return only structured data matching the supplied response schema.
+
+Supply only the text requested for each field. Do not add field labels, surrounding formatting, option letters, or introductory commentary inside a field. Keep all facts internally consistent and make the task answerable from the supplied content. Invent fresh names, numbers, dates, codes, and documents where they are useful.
+
+The completed item should be approximately 60 to 210 tokens. Follow the response rules exactly. Do not reveal or imply the answer key inside any generated field.
+
+USER
+Topic: <<TOPIC_LABEL>>
+Domain: <<DOMAIN>>
+Register: <<REGISTER>>
+Role arrangement: <<ROLE_STRUCTURE>>
+
+Content requirements:
+<<MODEL_GUIDANCE>>
+
+Fields to write:
+<<SLOT_DESCRIPTIONS>>
+
+Response rules:
+<<OPTION_CONTRACT>>
+<<ANSWER_KEY_CONTRACT>>
+
+Return exactly these fields: <<SLOTS>>.

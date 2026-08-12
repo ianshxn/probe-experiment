@@ -1,0 +1,20 @@
+SYSTEM
+Audit a blind extraction against the declared response contract. Return only structured data matching the supplied response schema.
+
+USER
+Response contract: <<CONTRACT>>
+Author-declared correct ordinal option: <<EXPECTED_OPTION>>
+
+Authoring requirements:
+<<AUTHORING_REQUIREMENTS>>
+
+Visible item:
+<<RENDERED_ITEM>>
+
+Blind extraction:
+<<EXTRACTION_JSON>>
+
+The visible item embeds the authored content inside a fixed wrapper the author never saw and did not control. Only the fields named in the authoring requirements are authored; every other line belongs to the wrapper. Wrapper material includes greetings, references to earlier context, directives about answer length or format, and the letters, numbers, or symbols that mark options — the author writes option text only and never its marker. Isolate the authored fields first, then judge authoring-requirement compliance and register on those fields alone. Never record wrapper text, or the presence, style, or ordering of option markers, as an authoring or register defect.
+
+Set option_match true only when the blind ordinal equals the declared ordinal. For free response, option_match must be true. Set answerable and no_leak consistently with the extraction.
+Set matches_authoring_requirements, register_appropriate, and distractors_plausible consistently with the extraction. Pass only when all six checks pass.

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_verification_comparison.schema.json",
+  "title": "Comparison verdict for a generated contrastive item",
+  "type": "object",
+  "required": [
+    "pass",
+    "option_match",
+    "answerable",
+    "no_leak",
+    "matches_authoring_requirements",
+    "register_appropriate",
+    "distractors_plausible",
+    "issues"
+  ],
+  "properties": {
+    "pass": {"type": "boolean"},
+    "option_match": {"type": "boolean"},
+    "answerable": {"type": "boolean"},
+    "no_leak": {"type": "boolean"},
+    "matches_authoring_requirements": {"type": "boolean"},
+    "register_appropriate": {"type": "boolean"},
+    "distractors_plausible": {"type": "boolean"},
+    "issues": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_run_lease.schema.json",
+  "title": "Best-effort contrastive generation run lease",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "owner_id",
+    "run_dir_a",
+    "run_dir_b",
+    "acquired_at",
+    "heartbeat_at",
+    "timeout_seconds"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "owner_id": {"type": "string", "minLength": 1},
+    "run_dir_a": {"type": "string", "minLength": 1},
+    "run_dir_b": {"type": "string", "minLength": 1},
+    "acquired_at": {"type": "string", "format": "date-time"},
+    "heartbeat_at": {"type": "string", "format": "date-time"},
+    "timeout_seconds": {"type": "number", "exclusiveMinimum": 0}
+  },
+  "additionalProperties": false
+}

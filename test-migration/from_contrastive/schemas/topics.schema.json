@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_topics.schema.json",
+  "title": "Contrastive topic catalog",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "catalog_version",
+    "description",
+    "legacy_source",
+    "legacy_design",
+    "domain_display_names",
+    "topics",
+    "i18n"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "catalog_version": {"type": ["string", "number"]},
+    "description": {"type": "string"},
+    "legacy_source": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "legacy_design": {
+      "type": "object",
+      "required": ["classes", "languages", "items_per_cell"],
+      "properties": {
+        "classes": {
+          "type": "array",
+          "items": {"enum": ["eval", "deploy"]},
+          "minItems": 2,
+          "uniqueItems": true
+        },
+        "languages": {
+          "type": "array",
+          "items": {"enum": ["en", "ja"]},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "items_per_cell": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "domain_display_names": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^[a-z][a-z0-9_]*$"},
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "topics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["topic_id", "topic_label", "topic_display_name", "domain"],
+        "properties": {
+          "topic_id": {"type": "string", "pattern": "^t[0-9]{3}$"},
+          "topic_label": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "topic_display_name": {"type": "string", "minLength": 1},
+          "domain": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "generation_guidance": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "i18n": {
+      "type": "object",
+      "required": ["ja_view"],
+      "properties": {
+        "ja_view": {
+          "type": "object",
+          "required": ["path", "en_catalog_version", "en_sha256"],
+          "properties": {
+            "path": {"const": "topics.ja.yaml"},
+            "en_catalog_version": {"type": ["string", "number"]},
+            "en_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

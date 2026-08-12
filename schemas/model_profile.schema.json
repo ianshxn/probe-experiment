@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eval_format_mvp_model_profile.schema.json",
+  "title": "OpenRouter model profile",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "profile_id",
+    "role",
+    "provider",
+    "model",
+    "canonical_slug",
+    "base_url",
+    "api_key_env",
+    "timeout_seconds",
+    "transport_attempts",
+    "max_output_tokens",
+    "require_parameters",
+    "allow_fallbacks"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "profile_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+    "role": {"enum": ["generator", "validator"]},
+    "provider": {"const": "openrouter"},
+    "model": {"type": "string", "pattern": "^[a-z0-9_.~-]+/[a-zA-Z0-9_.:~-]+$"},
+    "canonical_slug": {"type": "string", "minLength": 3},
+    "base_url": {"const": "https://openrouter.ai/api/v1/chat/completions"},
+    "api_key_env": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+    "timeout_seconds": {"type": "number", "minimum": 1, "maximum": 600},
+    "transport_attempts": {"type": "integer", "minimum": 1, "maximum": 5},
+    "temperature": {"type": "number", "minimum": 0, "maximum": 2},
+    "top_p": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "max_output_tokens": {"type": "integer", "minimum": 64, "maximum": 8192},
+    "reasoning_enabled": {"type": "boolean"},
+    "reasoning_effort": {
+      "enum": ["none", "minimal", "low", "medium", "high", "xhigh", "max"]
+    },
+    "require_parameters": {"const": true},
+    "allow_fallbacks": {"const": false},
+    "data_collection": {"enum": ["allow", "deny"]},
+    "http_referer": {"type": "string", "format": "uri"},
+    "app_title": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "not": {
+        "required": ["reasoning_enabled", "reasoning_effort"]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

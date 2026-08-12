@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_model_request.schema.json",
+  "title": "Exact model-visible contrastive generation request",
+  "type": "object",
+  "required": ["system", "user", "response_schema", "generation"],
+  "properties": {
+    "system": {"type": "string", "minLength": 1},
+    "user": {"type": "string", "minLength": 1},
+    "response_schema": {
+      "type": "object",
+      "required": ["type", "properties", "required", "additionalProperties"],
+      "properties": {
+        "type": {"const": "object"},
+        "properties": {"type": "object", "minProperties": 1},
+        "required": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "additionalProperties": {"const": false}
+      },
+      "additionalProperties": true
+    },
+    "generation": {
+      "type": "object",
+      "required": [
+        "temperature",
+        "top_p",
+        "max_output_tokens",
+        "seed"
+      ],
+      "properties": {
+        "temperature": {"type": "number"},
+        "top_p": {"type": "number"},
+        "max_output_tokens": {"type": "integer", "minimum": 1},
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

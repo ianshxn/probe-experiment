@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling==1.31.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "contrastive-set-creation"
+version = "0.1.0"
+description = "Self-contained contrastive v2 pre-generation pipeline"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "jsonschema>=4.23,<5",
+  "pyyaml>=6,<7",
+]
+
+[project.scripts]
+contrastive-data = "contrastive_generation.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/contrastive_generation"]
+
+[tool.uv]
+package = true
+required-version = ">=0.11.29,<0.12"

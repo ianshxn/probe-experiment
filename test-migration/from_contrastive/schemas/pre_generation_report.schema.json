@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_pre_generation_report.schema.json",
+  "title": "Contrastive pre-generation gate report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "stage",
+    "mode",
+    "status",
+    "global_gates",
+    "job_audits",
+    "counts"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "stage": {"const": "contrastive_pre_generation"},
+    "mode": {"enum": ["development", "production"]},
+    "status": {"enum": ["passed", "passed_with_notices"]},
+    "global_gates": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "job_audits": {
+      "type": "object",
+      "required": [
+        "requests_checked",
+        "placeholder_audit",
+        "cue_audit",
+        "language_audit",
+        "leakage_audit",
+        "context_audit"
+      ],
+      "properties": {
+        "requests_checked": {"type": "integer", "minimum": 1},
+        "placeholder_audit": {"const": "passed"},
+        "cue_audit": {"const": "passed"},
+        "language_audit": {"const": "passed"},
+        "leakage_audit": {"const": "passed"},
+        "context_audit": {"const": "passed"},
+        "maximum_estimated_input_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum_context_input_token_upper_bound": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "generation_jobs",
+        "planned_generation_attempts",
+        "request_artifacts",
+        "derived_items"
+      ],
+      "properties": {
+        "generation_jobs": {"type": "integer", "minimum": 1},
+        "planned_generation_attempts": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "request_artifacts": {"type": "integer", "minimum": 1},
+        "derived_items": {"type": "integer", "minimum": 2}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

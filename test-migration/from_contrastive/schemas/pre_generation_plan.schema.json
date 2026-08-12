@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_pre_generation_plan.schema.json",
+  "title": "Immutable contrastive pre-generation plan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "stage",
+    "run_id",
+    "mode",
+    "created_at",
+    "resolved_config_sha256",
+    "manifest_sha256",
+    "request_bundle_sha256",
+    "preflight_report_sha256",
+    "notifications_sha256",
+    "approvals_sha256",
+    "generation_bundle_sha256",
+    "derivation_bundle_sha256",
+    "counts",
+    "selection",
+    "grid",
+    "provider_profile",
+    "runtime_environment",
+    "cost_estimate",
+    "budget_authorization",
+    "preflight",
+    "artifacts",
+    "plan_identity_sha256",
+    "plan_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "stage": {"const": "contrastive_pre_generation"},
+    "run_id": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["development", "production"]},
+    "created_at": {"type": "string", "minLength": 1},
+    "resolved_config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "request_bundle_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "preflight_report_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "notifications_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "approvals_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "generation_bundle_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "derivation_bundle_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "counts": {"type": "object", "minProperties": 1},
+    "selection": {"type": "object", "minProperties": 1},
+    "grid": {"type": "object", "minProperties": 1},
+    "provider_profile": {"type": "object", "minProperties": 1},
+    "runtime_environment": {
+      "type": "object",
+      "required": ["python", "platform", "packages"],
+      "properties": {
+        "python": {
+          "type": "object",
+          "required": [
+            "implementation",
+            "version",
+            "version_info",
+            "cache_tag",
+            "executable_sha256"
+          ],
+          "properties": {
+            "implementation": {"type": "string", "minLength": 1},
+            "version": {"type": "string", "minLength": 1},
+            "cache_tag": {"type": "string", "minLength": 1},
+            "executable_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "version_info": {
+              "type": "array",
+              "prefixItems": [
+                {"type": "integer", "minimum": 0},
+                {"type": "integer", "minimum": 0},
+                {"type": "integer", "minimum": 0}
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "additionalProperties": false
+        },
+        "platform": {
+          "type": "object",
+          "required": ["system", "release", "machine", "byteorder"],
+          "properties": {
+            "system": {"type": "string", "minLength": 1},
+            "release": {"type": "string", "minLength": 1},
+            "machine": {"type": "string", "minLength": 1},
+            "byteorder": {"enum": ["little", "big"]}
+          },
+          "additionalProperties": false
+        },
+        "packages": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "additionalProperties": {"type": "string", "minLength": 1}
+        }
+      },
+      "additionalProperties": false
+    },
+    "cost_estimate": {"type": "object", "minProperties": 1},
+    "budget_authorization": {"type": "object", "minProperties": 1},
+    "preflight": {"type": "object", "minProperties": 1},
+    "artifacts": {
+      "type": "object",
+      "required": ["frozen_files"],
+      "properties": {
+        "frozen_files": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {"type": "string", "minLength": 1},
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "plan_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "plan_identity_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

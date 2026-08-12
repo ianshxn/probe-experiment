@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_pre_generation_run.schema.json",
+  "title": "Contrastive pre-generation run configuration",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "stage",
+    "mode",
+    "selection",
+    "grid",
+    "generation",
+    "budget",
+    "randomization",
+    "paths"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "stage": {"const": "contrastive_pre_generation"},
+    "mode": {"enum": ["development", "production"]},
+    "selection": {
+      "type": "object",
+      "required": ["topics", "content_specs"],
+      "properties": {
+        "topics": {
+          "oneOf": [
+            {"const": "all"},
+            {
+              "type": "array",
+              "items": {"type": "string", "pattern": "^t[0-9]{3}$"},
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          ]
+        },
+        "content_specs": {
+          "oneOf": [
+            {"const": "all"},
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^content_p[0-9]{2}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "grid": {
+      "type": "object",
+      "required": ["languages", "samples_per_combination"],
+      "properties": {
+        "languages": {
+          "type": "array",
+          "items": {"enum": ["en", "ja"]},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "samples_per_combination": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "generation": {
+      "type": "object",
+      "required": [
+        "temperature",
+        "top_p",
+        "max_output_tokens",
+        "estimated_output_tokens",
+        "max_regenerations",
+        "max_workers",
+        "context_overhead_tokens"
+      ],
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "top_p": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "estimated_output_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_regenerations": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "max_workers": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "context_overhead_tokens": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "budget": {
+      "type": "object",
+      "required": ["max_usd", "cost_basis", "allow_zero_pricing"],
+      "properties": {
+        "max_usd": {"type": "number", "minimum": 0},
+        "cost_basis": {
+          "enum": [
+            "maximum_output_retry_scenario",
+            "transport_retry_risk_scenario"
+          ]
+        },
+        "allow_zero_pricing": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "provider_profile": {"type": "object"},
+    "waived_gates": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "enum": [
+          "semantic_approval",
+          "frame_only",
+          "heldout_comprehension"
+        ]
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["waived_by", "waived_at", "rationale"],
+        "properties": {
+          "waived_by": {"type": "string", "minLength": 1},
+          "waived_at": {"type": "string", "minLength": 1},
+          "rationale": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "randomization": {
+      "type": "object",
+      "required": ["seed"],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "paths": {
+      "type": "object",
+      "required": [
+        "topics",
+        "containers",
+        "prompts",
+        "scaffolding",
+        "cue_lexicon",
+        "semantic_approval",
+        "frame_calibration_report",
+        "heldout_comprehension_report",
+        "scaffolding_lock",
+        "runs",
+        "output"
+      ],
+      "properties": {
+        "topics": {
+          "type": "object",
+          "required": ["en", "ja"],
+          "properties": {
+            "en": {"type": "string", "minLength": 1},
+            "ja": {"type": "string", "minLength": 1}
+          },
+          "additionalProperties": false
+        },
+        "containers": {"type": "string", "minLength": 1},
+        "prompts": {
+          "type": "object",
+          "required": ["en", "ja"],
+          "properties": {
+            "en": {"type": "string", "minLength": 1},
+            "ja": {"type": "string", "minLength": 1}
+          },
+          "additionalProperties": false
+        },
+        "scaffolding": {"type": "string", "minLength": 1},
+        "cue_lexicon": {"type": "string", "minLength": 1},
+        "semantic_approval": {"type": "string", "minLength": 1},
+        "frame_calibration_report": {
+          "type": "string",
+          "minLength": 1
+        },
+        "heldout_comprehension_report": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scaffolding_lock": {"type": "string", "minLength": 1},
+        "runs": {"type": "string", "minLength": 1},
+        "output": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_pre_generation_job.schema.json",
+  "title": "Planned template-blind contrastive content-generation job",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "stage",
+    "job_id",
+    "topic_id",
+    "topic_label",
+    "domain",
+    "content_spec_id",
+    "language",
+    "sample_index",
+    "derivation_seed",
+    "provider_profile_id",
+    "provider_profile_sha256",
+    "provider_execution_sha256",
+    "provider",
+    "model",
+    "topic_catalog_sha256",
+    "topic_view_sha256",
+    "container_catalog_sha256",
+    "content_spec_sha256",
+    "prompt_template",
+    "prompt_template_sha256",
+    "scaffolding_sha256",
+    "scaffolding_lock_sha256",
+    "cue_lexicon_sha256",
+    "renderer_sha256",
+    "response_schema_sha256",
+    "generation_attempts",
+    "derivation_sha256",
+    "content_output_path",
+    "derived_containers"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "stage": {"const": "contrastive_content_generation"},
+    "job_id": {
+      "type": "string",
+      "pattern": "^contrastive_content_[0-9a-f]{20}$"
+    },
+    "topic_id": {"type": "string", "pattern": "^t[0-9]{3}$"},
+    "topic_label": {"type": "string", "minLength": 1},
+    "domain": {"type": "string", "minLength": 1},
+    "content_spec_id": {
+      "type": "string",
+      "pattern": "^content_p[0-9]{2}$"
+    },
+    "language": {"enum": ["en", "ja"]},
+    "sample_index": {"type": "integer", "minimum": 0},
+    "derivation_seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2147483647
+    },
+    "provider_profile_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "provider_profile_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "provider_execution_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "provider": {"type": "string", "minLength": 1},
+    "model": {"type": "string", "minLength": 1},
+    "topic_catalog_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "topic_view_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "container_catalog_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "content_spec_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "prompt_template": {"type": "string", "minLength": 1},
+    "prompt_template_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scaffolding_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scaffolding_lock_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "cue_lexicon_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "renderer_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "response_schema_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "generation_attempts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "attempt_id",
+          "attempt_index",
+          "seed",
+          "request_path",
+          "candidate_output_path",
+          "request_sha256",
+          "generation_execution_sha256",
+          "preflight"
+        ],
+        "properties": {
+          "attempt_id": {
+            "type": "string",
+            "pattern": "^contrastive_content_[0-9a-f]{20}_a[0-9]{2}$"
+          },
+          "attempt_index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "request_path": {"type": "string", "minLength": 1},
+          "candidate_output_path": {"type": "string", "minLength": 1},
+          "request_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "generation_execution_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "preflight": {
+            "type": "object",
+            "required": [
+              "placeholder_audit",
+              "cue_audit",
+              "language_audit",
+              "leakage_audit",
+              "estimated_input_tokens",
+              "context_input_token_upper_bound"
+            ],
+            "properties": {
+              "placeholder_audit": {"const": "passed"},
+              "cue_audit": {"const": "passed"},
+              "language_audit": {"const": "passed"},
+              "leakage_audit": {"const": "passed"},
+              "estimated_input_tokens": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "context_input_token_upper_bound": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "derivation_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "content_output_path": {"type": "string", "minLength": 1},
+    "derived_containers": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "container_id",
+          "pair_id",
+          "frame_family_id",
+          "explicitness",
+          "surface",
+          "class",
+          "body_template_sha256",
+          "purpose_frame_sha256",
+          "rendered_template_sha256",
+          "output_path"
+        ],
+        "properties": {
+          "container_id": {
+            "type": "string",
+            "pattern": "^c[0-9]{2}$"
+          },
+          "pair_id": {
+            "type": "string",
+            "pattern": "^p(?:0[1-9]|1[0-9]|20)$"
+          },
+          "frame_family_id": {
+            "type": "string",
+            "pattern": "^ff0[1-5]$"
+          },
+          "explicitness": {"enum": ["explicit", "implicit"]},
+          "surface": {"enum": ["external", "institutional"]},
+          "class": {"enum": ["eval", "deploy"]},
+          "body_template_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "purpose_frame_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "rendered_template_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "output_path": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

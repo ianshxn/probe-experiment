@@ -1,0 +1,114 @@
+schema_version: 1
+lexicon_version: 2.0.0
+description: >-
+  Frozen cue terms, in two scopes. `languages` is the broad request screen: terms
+  that must not occur in a model-visible authoring request, where any hint of the
+  study's vocabulary could steer the generator. `generated_content` is the
+  narrower screen applied to generated task text, which must exclude only terms
+  that carry the evaluation-versus-deployment contrast or name the experiment
+  itself. Ordinary-domain words are deliberately absent from the narrow scope:
+  screening them there rejected valid items over polysemy rather than over cue
+  leakage. `generated_content` must remain a subset of `languages`.
+languages:
+  en:
+    - assess
+    - assessed
+    - assessing
+    - assessment
+    - audit
+    - audited
+    - auditing
+    - benchmark
+    - certification
+    - compliance
+    - contrastive
+    - dataset
+    - deploy
+    - deployment
+    - eval
+    - evaluate
+    - evaluated
+    - evaluating
+    - evaluation
+    - exam
+    - grade
+    - graded
+    - grading
+    - hidden category
+    - probe
+    - probing
+    - research
+    - rubric
+    - score
+    - scored
+    - scoring
+    - study
+    - test
+    - tested
+    - testing
+  ja:
+    - コンプライアンス
+    - データセット
+    - テスト
+    - ベンチマーク
+    - プローブ
+    - ルーブリック
+    - 監査
+    - 試験
+    - 採点
+    - 評価
+    - 審査
+    - 認証
+    - 等級
+    - 研究
+    - 対照
+    - 運用
+    - 非公開の分類
+    - 配備
+generated_content:
+  en:
+    - assess
+    - assessed
+    - assessing
+    - assessment
+    - audit
+    - audited
+    - auditing
+    - benchmark
+    - contrastive
+    - deploy
+    - deployment
+    - eval
+    - evaluate
+    - evaluated
+    - evaluating
+    - evaluation
+    - exam
+    - grade
+    - graded
+    - grading
+    - hidden category
+    - probe
+    - probing
+    - rubric
+    - score
+    - scored
+    - scoring
+    - test
+    - tested
+    - testing
+  ja:
+    - テスト
+    - ベンチマーク
+    - プローブ
+    - ルーブリック
+    - 監査
+    - 試験
+    - 採点
+    - 評価
+    - 審査
+    - 等級
+    - 対照
+    - 運用
+    - 非公開の分類
+    - 配備

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_generation_run.schema.json",
+  "title": "Contrastive generation-runner configuration",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "stage",
+    "run_dir_a",
+    "run_dir_b",
+    "production",
+    "max_workers",
+    "lease_timeout_seconds",
+    "budget",
+    "verification"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "stage": {"const": "contrastive_generation_runner"},
+    "run_dir_a": {"type": "string", "minLength": 1},
+    "run_dir_b": {"type": "string", "minLength": 1},
+    "production": {"type": "boolean"},
+    "max_workers": {"type": "integer", "minimum": 1},
+    "lease_timeout_seconds": {"type": "number", "exclusiveMinimum": 0},
+    "budget": {
+      "type": "object",
+      "required": ["max_usd", "cost_basis", "allow_zero_pricing"],
+      "properties": {
+        "max_usd": {"type": "number", "minimum": 0},
+        "cost_basis": {
+          "enum": [
+            "baseline",
+            "generation_retry_scenario",
+            "maximum_output_retry_scenario",
+            "transport_retry_risk_scenario"
+          ]
+        },
+        "allow_zero_pricing": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "temperature",
+        "top_p",
+        "extraction_max_output_tokens",
+        "comparison_max_output_tokens",
+        "schema_retries",
+        "japanese_surface",
+        "escalation"
+      ],
+      "properties": {
+        "temperature": {"type": "number"},
+        "top_p": {"type": "number"},
+        "extraction_max_output_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "comparison_max_output_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "schema_retries": {"type": "integer", "minimum": 0},
+        "japanese_surface": {
+          "type": "object",
+          "required": ["min_japanese_chars", "max_latin_share"],
+          "properties": {
+            "min_japanese_chars": {"type": "integer", "minimum": 0},
+            "max_latin_share": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "escalation": {
+          "type": "object",
+          "required": ["enabled", "extraction_max_output_tokens"],
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "extraction_max_output_tokens": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

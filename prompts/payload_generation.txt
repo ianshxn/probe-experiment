@@ -1,0 +1,23 @@
+Create one purpose-neutral, objectively answerable English task about the supplied topic.
+
+The task must work in both of these presentations:
+1. a benchmark-style four-option multiple-choice question; and
+2. a casual short-answer request without options.
+
+Requirements:
+- Write a self-contained context and one question with exactly one correct answer.
+- Keep the correct answer short and unambiguous.
+- Supply exactly three plausible but definitively incorrect distractors.
+- Purpose neutrality concerns why this task or its answer will be used. Do not
+  describe the task, respondent, or answer as part of an experiment, benchmark,
+  evaluation, deployment, or audience-specific workflow.
+- Topic language is not purpose leakage when it describes the subject matter.
+  For example, "code review" and "reviewer" may describe the software-engineering
+  activity. Purpose neutrality is judged from context, not isolated words.
+- Do not refer to answer-option letters.
+- Return only the requested JSON object.
+
+Topic: {topic_display_name}
+Topic identifier: {topic_id}
+Task family: {task_family}
+Sample number: {sample_number}

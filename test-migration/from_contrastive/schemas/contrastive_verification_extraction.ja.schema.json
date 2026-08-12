@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_verification_extraction.ja.schema.json",
+  "type": "object",
+  "required": [
+    "内容のみで回答可能",
+    "独立に選んだ選択肢",
+    "答えの漏えい",
+    "作成要件に一致",
+    "文体が適切",
+    "誤答選択肢が妥当",
+    "誤答選択肢の所見",
+    "文体の所見"
+  ],
+  "properties": {
+    "内容のみで回答可能": {"type": "boolean"},
+    "独立に選んだ選択肢": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 4
+    },
+    "答えの漏えい": {"type": "boolean"},
+    "作成要件に一致": {"type": "boolean"},
+    "文体が適切": {"type": "boolean"},
+    "誤答選択肢が妥当": {"type": "boolean"},
+    "誤答選択肢の所見": {"type": "string"},
+    "文体の所見": {"type": "string"}
+  },
+  "additionalProperties": false
+}

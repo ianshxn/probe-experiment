@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_container.schema.json",
+  "title": "Contrastive container",
+  "description": "One renderer-owned matched-purpose container.",
+  "type": "object",
+  "required": [
+    "container_id",
+    "pair_id",
+    "content_spec_id",
+    "display_name",
+    "class",
+    "register",
+    "role_structure",
+    "purpose_frame",
+    "body_template",
+    "nuisance_profile",
+    "slots",
+    "response_contract",
+    "design_notes",
+    "model_guidance",
+    "i18n"
+  ],
+  "properties": {
+    "container_id": {"type": "string", "pattern": "^c[0-9]{2}$"},
+    "pair_id": {"type": "string", "pattern": "^p(?:0[1-9]|1[0-9]|20)$"},
+    "content_spec_id": {"type": "string", "pattern": "^content_p(?:0[1-9]|10)$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "class": {"enum": ["eval", "deploy"]},
+    "register": {
+      "enum": [
+        "neutral_professional",
+        "casual",
+        "terse",
+        "中立的で職業的",
+        "くだけた",
+        "簡潔"
+      ]
+    },
+    "role_structure": {
+      "enum": ["user_only", "system_user", "ユーザーのみ", "システムとユーザー"]
+    },
+    "purpose_frame": {
+      "type": "object",
+      "required": [
+        "attribution",
+        "explicitness",
+        "surface",
+        "cue_locus",
+        "family_id",
+        "text"
+      ],
+      "properties": {
+        "attribution": {"enum": ["evaluation", "deployment"]},
+        "explicitness": {"enum": ["explicit", "implicit"]},
+        "surface": {"enum": ["external", "institutional"]},
+        "cue_locus": {"enum": ["noun_only", "verb_only", "both"]},
+        "family_id": {"type": "string", "pattern": "^ff0[1-5]$"},
+        "text": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "body_template": {"type": "string", "minLength": 1},
+    "nuisance_profile": {
+      "type": "object",
+      "required": [
+        "output_constraint",
+        "constraint_kind",
+        "speaker_present",
+        "prior_context",
+        "scaffolding"
+      ],
+      "properties": {
+        "output_constraint": {"enum": ["constrained", "unconstrained"]},
+        "constraint_kind": {
+          "enum": ["bare_answer", "bounded_explanation", "none"]
+        },
+        "speaker_present": {"type": "boolean"},
+        "prior_context": {"type": "boolean"},
+        "scaffolding": {"const": "plain"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"output_constraint": {"const": "unconstrained"}},
+            "required": ["output_constraint"]
+          },
+          "then": {
+            "properties": {"constraint_kind": {"const": "none"}}
+          }
+        },
+        {
+          "if": {
+            "properties": {"output_constraint": {"const": "constrained"}},
+            "required": ["output_constraint"]
+          },
+          "then": {
+            "properties": {
+              "constraint_kind": {
+                "enum": ["bare_answer", "bounded_explanation"]
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "slots": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "pattern": "^[^{}]+$"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "response_contract": {
+      "type": "object",
+      "required": ["type", "answer_key"],
+      "properties": {
+        "type": {
+          "enum": ["multiple_choice", "free_response", "選択式", "自由回答"]
+        },
+        "answer_key": {"enum": ["required", "empty", "必須", "空文字"]},
+        "allowed_keys": {
+          "type": "array",
+          "items": {"enum": ["A", "B", "C", "D", "ア", "イ", "ウ", "エ"]},
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "design_notes": {"type": "string", "minLength": 1},
+    "model_guidance": {"type": "string", "minLength": 1},
+    "i18n": {
+      "type": "object",
+      "required": ["ja_view"],
+      "properties": {
+        "ja_view": {
+          "type": "object",
+          "required": ["path", "en_catalog_version", "en_sha256"],
+          "properties": {
+            "path": {"type": "string", "minLength": 1},
+            "en_catalog_version": {"type": ["string", "number"]},
+            "en_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

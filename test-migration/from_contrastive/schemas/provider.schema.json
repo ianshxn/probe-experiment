@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "provider.schema.json",
+  "title": "Contrastive generator provider profile",
+  "type": "object",
+  "required": ["profile_id", "provider", "model"],
+  "properties": {
+    "profile_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+    "provider": {
+      "enum": ["google", "openai_compatible", "openrouter", "nim", "mock"]
+    },
+    "model": {"type": "string", "minLength": 1},
+    "model_revision": {"type": "string", "minLength": 1},
+    "structured_output_mode": {
+      "enum": [
+        "native_json_schema",
+        "guided_json",
+        "json_schema",
+        "json_object",
+        "prompt_only"
+      ]
+    },
+    "schema_dialect": {"const": "draft_2020_12"},
+    "auth": {"enum": ["api_key", "gcloud", "auto"]},
+    "api_key_env": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+    },
+    "credential_env": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+    },
+    "project": {"type": ["string", "null"]},
+    "location": {"type": "string"},
+    "base_url": {"type": "string"},
+    "route": {"type": "string"},
+    "timeout_seconds": {"type": "number", "exclusiveMinimum": 0},
+    "api_attempts": {"type": "integer", "minimum": 1},
+    "max_concurrency": {"type": "integer", "minimum": 1},
+    "circuit_breaker_failures": {"type": "integer", "minimum": 1},
+    "circuit_breaker_cooldown_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "thinking_level": {"type": "string"},
+    "reasoning_effort": {"type": "string", "enum": ["none", "low", "medium", "high"]},
+    "input_usd_per_million": {"type": "number", "minimum": 0},
+    "output_usd_per_million": {"type": "number", "minimum": 0},
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "structured_output",
+        "seed",
+        "max_context_tokens",
+        "max_output_tokens"
+      ],
+      "properties": {
+        "structured_output": {"const": true},
+        "seed": {"enum": ["native", "best_effort", "none"]},
+        "max_context_tokens": {"type": "integer", "minimum": 1},
+        "max_output_tokens": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_purpose_frames.schema.json",
+  "title": "Bilingual purpose-frame family catalog",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "catalog_version",
+    "description",
+    "families",
+    "pairs"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "catalog_version": {"type": ["string", "number"]},
+    "description": {"type": "string", "minLength": 1},
+    "families": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["family_id", "holdout_fold", "description"],
+        "properties": {
+          "family_id": {"type": "string", "pattern": "^ff0[1-5]$"},
+          "holdout_fold": {"type": "integer", "minimum": 1, "maximum": 5},
+          "description": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "pairs": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "pair_id",
+          "family_id",
+          "explicitness",
+          "surface",
+          "cue_locus",
+          "en",
+          "ja"
+        ],
+        "properties": {
+          "pair_id": {
+            "type": "string",
+            "pattern": "^p(?:0[1-9]|1[0-9]|20)$"
+          },
+          "family_id": {"type": "string", "pattern": "^ff0[1-5]$"},
+          "explicitness": {"enum": ["explicit", "implicit"]},
+          "surface": {"enum": ["external", "institutional"]},
+          "cue_locus": {"enum": ["noun_only", "verb_only", "both"]},
+          "en": {"$ref": "#/$defs/languagePair"},
+          "ja": {"$ref": "#/$defs/languagePair"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "languagePair": {
+      "type": "object",
+      "required": ["eval", "deploy"],
+      "properties": {
+        "eval": {"type": "string", "minLength": 1},
+        "deploy": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

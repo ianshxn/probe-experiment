@@ -1,0 +1,66 @@
+schema_version: 1
+catalog_version: 1.1.0
+description: English-canonical topic catalog for contrastive prompt generation; stable identifiers and machine labels are invariant across localized views.
+legacy_source:
+  path: inputs/topic_grid.csv
+  sha256: 741a1f53cec96197e180c776e821707563c0a6b02697f5f508f9b585898d0d1a
+  role: Imported design grid retained as an immutable source snapshot.
+legacy_design:
+  classes: [eval, deploy]
+  languages: [en, ja]
+  items_per_cell: 10
+domain_display_names:
+  technical_work: Technical work
+  data_and_numbers: Data and numbers
+  language_and_text: Language and text
+  household: Household
+  admin_and_legal: Administration and legal
+  workplace: Workplace
+  knowledge: General knowledge
+  personal_logistics: Personal logistics
+topics:
+  - {topic_id: t001, topic_label: code_review, topic_display_name: Code review, domain: technical_work}
+  - {topic_id: t002, topic_label: sql_debugging, topic_display_name: SQL debugging, domain: technical_work}
+  - {topic_id: t003, topic_label: bug_triage, topic_display_name: Bug triage, domain: technical_work}
+  - {topic_id: t004, topic_label: regex_construction, topic_display_name: Regular expression construction, domain: technical_work}
+  - {topic_id: t005, topic_label: api_error_diagnosis, topic_display_name: API error diagnosis, domain: technical_work}
+  - {topic_id: t006, topic_label: spreadsheet_formula, topic_display_name: Spreadsheet formulas, domain: data_and_numbers}
+  - {topic_id: t007, topic_label: unit_conversion, topic_display_name: Unit conversion, domain: data_and_numbers}
+  - {topic_id: t008, topic_label: percentage_calculation, topic_display_name: Percentage calculation, domain: data_and_numbers}
+  - {topic_id: t009, topic_label: chart_interpretation, topic_display_name: Chart interpretation, domain: data_and_numbers}
+  - {topic_id: t010, topic_label: schedule_arithmetic, topic_display_name: Schedule arithmetic, domain: data_and_numbers}
+  - {topic_id: t011, topic_label: article_summarization, topic_display_name: Article summarization, domain: language_and_text}
+  - {topic_id: t012, topic_label: translation_request, topic_display_name: Translation request, domain: language_and_text}
+  - {topic_id: t013, topic_label: email_rewriting, topic_display_name: Email rewriting, domain: language_and_text}
+  - {topic_id: t014, topic_label: proofreading, topic_display_name: Proofreading, domain: language_and_text}
+  - {topic_id: t015, topic_label: headline_generation, topic_display_name: Headline generation, domain: language_and_text}
+  - {topic_id: t016, topic_label: recipe_scaling, topic_display_name: Recipe scaling, domain: household}
+  - {topic_id: t017, topic_label: plant_care, topic_display_name: Plant care, domain: household}
+  - {topic_id: t018, topic_label: appliance_troubleshoot, topic_display_name: Appliance troubleshooting, domain: household}
+  - {topic_id: t019, topic_label: stain_removal, topic_display_name: Stain removal, domain: household}
+  - {topic_id: t020, topic_label: furniture_assembly, topic_display_name: Furniture assembly, domain: household}
+  - {topic_id: t021, topic_label: tax_deduction, topic_display_name: Tax deductions, domain: admin_and_legal}
+  - {topic_id: t022, topic_label: lease_terms, topic_display_name: Lease terms, domain: admin_and_legal}
+  - {topic_id: t023, topic_label: refund_request, topic_display_name: Refund requests, domain: admin_and_legal}
+  - {topic_id: t024, topic_label: insurance_claim, topic_display_name: Insurance claims, domain: admin_and_legal}
+  - {topic_id: t025, topic_label: visa_paperwork, topic_display_name: Visa paperwork, domain: admin_and_legal}
+  - {topic_id: t026, topic_label: meeting_notes, topic_display_name: Meeting notes, domain: workplace}
+  - {topic_id: t027, topic_label: resume_feedback, topic_display_name: Résumé feedback, domain: workplace}
+  - {topic_id: t028, topic_label: project_timeline, topic_display_name: Project timelines, domain: workplace}
+  - {topic_id: t029, topic_label: expense_report, topic_display_name: Expense reports, domain: workplace}
+  - {topic_id: t030, topic_label: onboarding_docs, topic_display_name: Onboarding documents, domain: workplace}
+  - {topic_id: t031, topic_label: historical_question, topic_display_name: History questions, domain: knowledge}
+  - {topic_id: t032, topic_label: geography_question, topic_display_name: Geography questions, domain: knowledge}
+  - {topic_id: t033, topic_label: science_explanation, topic_display_name: Science explanations, domain: knowledge}
+  - {topic_id: t034, topic_label: etymology_question, topic_display_name: Etymology questions, domain: knowledge}
+  - {topic_id: t035, topic_label: music_theory, topic_display_name: Music theory, domain: knowledge}
+  - {topic_id: t036, topic_label: trip_planning, topic_display_name: Trip planning, domain: personal_logistics}
+  - {topic_id: t037, topic_label: medication_schedule, topic_display_name: Medication schedules, domain: personal_logistics}
+  - {topic_id: t038, topic_label: moving_checklist, topic_display_name: Moving checklists, domain: personal_logistics}
+  - {topic_id: t039, topic_label: gift_selection, topic_display_name: Gift selection, domain: personal_logistics}
+  - {topic_id: t040, topic_label: public_transit_route, topic_display_name: Public transit routes, domain: personal_logistics}
+i18n:
+  ja_view:
+    path: topics.ja.yaml
+    en_catalog_version: 1.1.0
+    en_sha256: 09977eb2f09707c9a23d4ead3daf0dea5c0167e3d4e3aa4806fbdad50092b2df

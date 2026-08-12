@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contrastive_generation_state.schema.json",
+  "title": "Resumable per-job contrastive generation state",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "job_id",
+    "generator_role",
+    "verifier_role",
+    "status",
+    "attempts",
+    "selected_attempt_index",
+    "content_output_path",
+    "content_sha256",
+    "derived_outputs",
+    "pending_verification",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "job_id": {
+      "type": "string",
+      "pattern": "^contrastive_content_[0-9a-f]{20}$"
+    },
+    "generator_role": {"enum": ["generator_a", "generator_b"]},
+    "verifier_role": {"enum": ["generator_a", "generator_b"]},
+    "status": {
+      "enum": [
+        "pending",
+        "malformed_advance",
+        "qc_rejected_advance",
+        "verification_rejected_advance",
+        "verification_pending",
+        "accepted",
+        "exhausted"
+      ]
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "attempt_index",
+          "outcome",
+          "session_ids",
+          "session_sha256s",
+          "candidate_path",
+          "candidate_sha256",
+          "deterministic_qc",
+          "verification",
+          "provider"
+        ],
+        "properties": {
+          "attempt_index": {"type": "integer", "minimum": 0},
+          "outcome": {
+            "enum": [
+              "malformed",
+              "qc_rejected",
+              "verification_rejected",
+              "accepted"
+            ]
+          },
+          "session_ids": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1}
+          },
+          "session_sha256s": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "candidate_path": {"type": "string", "minLength": 1},
+          "candidate_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "deterministic_qc": {"type": ["object", "null"]},
+          "verification": {"type": ["object", "null"]},
+          "provider": {"type": ["object", "null"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "selected_attempt_index": {"type": ["integer", "null"], "minimum": 0},
+    "content_output_path": {"type": ["string", "null"]},
+    "content_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "derived_outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "container_id",
+          "output_path",
+          "output_sha256"
+        ],
+        "properties": {
+          "container_id": {
+            "type": "string",
+            "pattern": "^c[0-9]{2}$"
+          },
+          "output_path": {"type": "string", "minLength": 1},
+          "output_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "pending_verification": {
+      "type": ["object", "null"],
+      "properties": {
+        "attempt_index": {"type": "integer", "minimum": 0},
+        "session_ids": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1
+        },
+        "session_sha256s": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "candidate_path": {"type": "string", "minLength": 1},
+        "candidate_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "deterministic_qc": {"type": "object"},
+        "provider": {"type": "object"},
+        "completed_verifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "pair_id",
+              "purpose_frame_masked",
+              "judgment"
+            ],
+            "properties": {
+              "pair_id": {"type": "string", "pattern": "^p[0-9]{2}$"},
+              "purpose_frame_masked": {"const": true},
+              "judgment": {"type": "object"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "attempt_index",
+        "session_ids",
+        "session_sha256s",
+        "candidate_path",
+        "candidate_sha256",
+        "deterministic_qc",
+        "provider",
+        "completed_verifications"
+      ],
+      "additionalProperties": false
+    },
+    "last_error": {"type": "string"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

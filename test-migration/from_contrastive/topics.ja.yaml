@@ -1,0 +1,67 @@
+# 意味同等性の確認および日本語母語話者による確認前のレビュー用草案。凍結済みカタログではない。
+schema_version: 1
+catalog_version: 1.1.0
+description: 対照プロンプト生成用トピックカタログの日本語表示版。安定識別子と機械処理用ラベルは、言語別ビュー間で不変とする。
+legacy_source:
+  path: inputs/topic_grid.csv
+  sha256: 741a1f53cec96197e180c776e821707563c0a6b02697f5f508f9b585898d0d1a
+  role: Imported design grid retained as an immutable source snapshot.
+legacy_design:
+  classes: [eval, deploy]
+  languages: [en, ja]
+  items_per_cell: 10
+domain_display_names:
+  technical_work: 技術業務
+  data_and_numbers: データ・数値
+  language_and_text: 言語・文章
+  household: 家庭・暮らし
+  admin_and_legal: 行政・法務
+  workplace: 職場業務
+  knowledge: 一般知識
+  personal_logistics: 個人の予定・手配
+topics:
+  - {topic_id: t001, topic_label: code_review, topic_display_name: コードレビュー, domain: technical_work}
+  - {topic_id: t002, topic_label: sql_debugging, topic_display_name: データベース問い合わせのデバッグ, domain: technical_work}
+  - {topic_id: t003, topic_label: bug_triage, topic_display_name: バグの切り分け, domain: technical_work}
+  - {topic_id: t004, topic_label: regex_construction, topic_display_name: 正規表現の作成, domain: technical_work}
+  - {topic_id: t005, topic_label: api_error_diagnosis, topic_display_name: アプリケーション連携エラーの診断, domain: technical_work}
+  - {topic_id: t006, topic_label: spreadsheet_formula, topic_display_name: 表計算の数式, domain: data_and_numbers}
+  - {topic_id: t007, topic_label: unit_conversion, topic_display_name: 単位換算, domain: data_and_numbers}
+  - {topic_id: t008, topic_label: percentage_calculation, topic_display_name: 割合の計算, domain: data_and_numbers}
+  - {topic_id: t009, topic_label: chart_interpretation, topic_display_name: グラフの読み取り, domain: data_and_numbers}
+  - {topic_id: t010, topic_label: schedule_arithmetic, topic_display_name: スケジュール計算, domain: data_and_numbers}
+  - {topic_id: t011, topic_label: article_summarization, topic_display_name: 記事の要約, domain: language_and_text}
+  - {topic_id: t012, topic_label: translation_request, topic_display_name: 翻訳依頼, domain: language_and_text}
+  - {topic_id: t013, topic_label: email_rewriting, topic_display_name: メールの書き換え, domain: language_and_text}
+  - {topic_id: t014, topic_label: proofreading, topic_display_name: 文章校正, domain: language_and_text}
+  - {topic_id: t015, topic_label: headline_generation, topic_display_name: 見出しの作成, domain: language_and_text}
+  - {topic_id: t016, topic_label: recipe_scaling, topic_display_name: レシピの分量調整, domain: household}
+  - {topic_id: t017, topic_label: plant_care, topic_display_name: 植物の手入れ, domain: household}
+  - {topic_id: t018, topic_label: appliance_troubleshoot, topic_display_name: 家電製品のトラブルシューティング, domain: household}
+  - {topic_id: t019, topic_label: stain_removal, topic_display_name: 染み抜き, domain: household}
+  - {topic_id: t020, topic_label: furniture_assembly, topic_display_name: 家具の組み立て, domain: household}
+  - {topic_id: t021, topic_label: tax_deduction, topic_display_name: 税控除, domain: admin_and_legal}
+  - {topic_id: t022, topic_label: lease_terms, topic_display_name: 賃貸借契約の条項, domain: admin_and_legal}
+  - {topic_id: t023, topic_label: refund_request, topic_display_name: 返金依頼, domain: admin_and_legal}
+  - {topic_id: t024, topic_label: insurance_claim, topic_display_name: 保険金請求, domain: admin_and_legal}
+  - {topic_id: t025, topic_label: visa_paperwork, topic_display_name: ビザ申請書類, domain: admin_and_legal}
+  - {topic_id: t026, topic_label: meeting_notes, topic_display_name: 会議メモ, domain: workplace}
+  - {topic_id: t027, topic_label: resume_feedback, topic_display_name: 履歴書へのフィードバック, domain: workplace}
+  - {topic_id: t028, topic_label: project_timeline, topic_display_name: プロジェクトのスケジュール, domain: workplace}
+  - {topic_id: t029, topic_label: expense_report, topic_display_name: 経費精算, domain: workplace}
+  - {topic_id: t030, topic_label: onboarding_docs, topic_display_name: 入社手続き資料, domain: workplace}
+  - {topic_id: t031, topic_label: historical_question, topic_display_name: 歴史に関する質問, domain: knowledge}
+  - {topic_id: t032, topic_label: geography_question, topic_display_name: 地理に関する質問, domain: knowledge}
+  - {topic_id: t033, topic_label: science_explanation, topic_display_name: 科学の解説, domain: knowledge}
+  - {topic_id: t034, topic_label: etymology_question, topic_display_name: 語源に関する質問, domain: knowledge}
+  - {topic_id: t035, topic_label: music_theory, topic_display_name: 音楽理論, domain: knowledge}
+  - {topic_id: t036, topic_label: trip_planning, topic_display_name: 旅行計画, domain: personal_logistics}
+  - {topic_id: t037, topic_label: medication_schedule, topic_display_name: 服薬スケジュール, domain: personal_logistics}
+  - {topic_id: t038, topic_label: moving_checklist, topic_display_name: 引っ越しチェックリスト, domain: personal_logistics}
+  - {topic_id: t039, topic_label: gift_selection, topic_display_name: 贈り物選び, domain: personal_logistics}
+  - {topic_id: t040, topic_label: public_transit_route, topic_display_name: 公共交通機関の経路, domain: personal_logistics}
+i18n:
+  ja_view:
+    path: topics.ja.yaml
+    en_catalog_version: 1.1.0
+    en_sha256: 09977eb2f09707c9a23d4ead3daf0dea5c0167e3d4e3aa4806fbdad50092b2df

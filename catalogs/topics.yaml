@@ -1,0 +1,20 @@
+schema_version: 1
+description: English MVP topics selected for objectively answerable, dual-format tasks.
+topics:
+  - {topic_id: t001, label: code_review, display_name: Code review, domain: technical_work, task_family: classification}
+  - {topic_id: t002, label: sql_debugging, display_name: SQL debugging, domain: technical_work, task_family: rule_application}
+  - {topic_id: t004, label: regex_construction, display_name: Regular expression construction, domain: technical_work, task_family: rule_application}
+  - {topic_id: t006, label: spreadsheet_formula, display_name: Spreadsheet formulas, domain: data_and_numbers, task_family: rule_application}
+  - {topic_id: t007, label: unit_conversion, display_name: Unit conversion, domain: data_and_numbers, task_family: numeric_reasoning}
+  - {topic_id: t008, label: percentage_calculation, display_name: Percentage calculation, domain: data_and_numbers, task_family: numeric_reasoning}
+  - {topic_id: t009, label: chart_interpretation, display_name: Chart interpretation, domain: data_and_numbers, task_family: fact_retrieval}
+  - {topic_id: t010, label: schedule_arithmetic, display_name: Schedule arithmetic, domain: data_and_numbers, task_family: numeric_reasoning}
+  - {topic_id: t016, label: recipe_scaling, display_name: Recipe scaling, domain: household, task_family: numeric_reasoning}
+  - {topic_id: t018, label: appliance_troubleshoot, display_name: Appliance troubleshooting, domain: household, task_family: classification}
+  - {topic_id: t023, label: refund_request, display_name: Refund requests, domain: admin_and_legal, task_family: rule_application}
+  - {topic_id: t029, label: expense_report, display_name: Expense reports, domain: workplace, task_family: rule_application}
+  - {topic_id: t031, label: historical_question, display_name: History questions, domain: knowledge, task_family: fact_retrieval}
+  - {topic_id: t032, label: geography_question, display_name: Geography questions, domain: knowledge, task_family: fact_retrieval}
+  - {topic_id: t035, label: music_theory, display_name: Music theory, domain: knowledge, task_family: classification}
+  - {topic_id: t040, label: public_transit_route, display_name: Public transit routes, domain: personal_logistics, task_family: rule_application}
+
