@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import unicodedata
 from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
@@ -52,6 +53,20 @@ def _error_context(exc: Exception) -> dict[str, Any]:
         context["openrouter_provenance"] = exc.provenance
         context["openrouter_raw_response"] = exc.raw_response
     return context
+
+
+def _is_truncated_response(exc: Exception) -> bool:
+    """Return whether OpenRouter stopped structured output at its token ceiling."""
+
+    if not isinstance(exc, OpenRouterResponseError):
+        return False
+    try:
+        choice = exc.raw_response["choices"][0]
+    except (KeyError, IndexError, TypeError):
+        return False
+    return choice.get("finish_reason") == "length" or choice.get(
+        "native_finish_reason"
+    ) == "max_output_tokens"
 
 
 def _persist_attempt_error(
@@ -115,7 +130,9 @@ def _candidate(
 
 
 def _validation_user(
-    payload: dict[str, Any], consistency_feedback: list[str] | None = None
+    payload: dict[str, Any],
+    consistency_feedback: list[str] | None = None,
+    prior_semantic_concerns: list[str] | None = None,
 ) -> str:
     prompt = VALIDATION_PROMPT.read_text(encoding="utf-8")
     visible = {
@@ -132,6 +149,16 @@ def _validation_user(
     rendered = prompt.format(
         payload_json=json.dumps(visible, ensure_ascii=False, indent=2)
     ).strip()
+    if prior_semantic_concerns:
+        rendered += (
+            "\n\nEarlier candidates for this same payload slot raised the semantic "
+            "concerns below. Treat them as audit leads, not as presumed facts. For "
+            "each concern, determine whether the current candidate explicitly and "
+            "unambiguously resolves it. If a concern still applies, return `fail` or "
+            "`uncertain` and report it again. Do not pass merely because the wording "
+            "changed:\n- "
+            + "\n- ".join(prior_semantic_concerns)
+        )
     if consistency_feedback:
         rendered += (
             "\n\nYour previous judgment was internally inconsistent. Re-evaluate the "
@@ -141,18 +168,63 @@ def _validation_user(
     return rendered
 
 
+def _prior_semantic_concerns(
+    attempts: list[dict[str, Any]], payload_id: str
+) -> list[str]:
+    """Return de-duplicated concerns from all earlier semantic rejections."""
+
+    concerns: list[str] = []
+    for row in attempts:
+        if (
+            row.get("payload_block_id") != payload_id
+            or row.get("status") != "semantic_rejection"
+        ):
+            continue
+        validation = row.get("validation")
+        if not isinstance(validation, dict):
+            continue
+        issues = validation.get("issues", [])
+        for issue in issues if isinstance(issues, list) else []:
+            if not isinstance(issue, dict):
+                continue
+            code = issue.get("code")
+            message = issue.get("message")
+            if isinstance(code, str) and isinstance(message, str):
+                concern = f"{code}: {message}"
+                if concern not in concerns:
+                    concerns.append(concern)
+        if not issues:
+            checks = validation.get("checks", {})
+            if isinstance(checks, dict):
+                for name, passed in checks.items():
+                    concern = f"failed_check: {name}"
+                    if not passed and concern not in concerns:
+                        concerns.append(concern)
+    return concerns
+
+
 ISSUE_CHECKS = {
     "not_self_contained": "self_contained",
     "incorrect_answer": "correct_answer",
     "ambiguous_answer": "unique_answer",
     "invalid_distractor": "all_distractors_wrong",
     "implausible_distractor": "distractors_plausible",
+    "equivalent_distractors": "distractors_mutually_distinct",
+    "unstated_assumption": "self_contained",
+    "alternative_answer": "unique_answer",
+    "option_dependent": "option_independent",
     "short_answer_unsuitable": "short_answer_suitable",
     "cross_format_mismatch": "cross_format_equivalent",
     "purpose_leakage": "purpose_neutral",
     "format_leakage": "format_neutral",
     "temporally_unstable": "temporally_stable",
 }
+
+
+def _normalized_semantic_label(value: str) -> str:
+    """Normalize a validator-supplied direct answer for exact comparisons."""
+
+    return " ".join(unicodedata.normalize("NFKC", value).casefold().split())
 
 
 def validation_consistency_errors(value: dict[str, Any]) -> list[str]:
@@ -163,7 +235,20 @@ def validation_consistency_errors(value: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     checks = value["checks"]
     all_true = all(bool(result) for result in checks.values())
-    clean = not value["invalid_distractor_indices"] and not value["issues"]
+    equivalent_pairs = value["equivalent_distractor_pairs"]
+    normalized_distractors = [
+        _normalized_semantic_label(answer)
+        for answer in value["normalized_distractor_answers"]
+    ]
+    unstated_assumptions = value["unstated_assumptions"]
+    alternative_answers = value["reasonable_alternative_answers"]
+    clean = (
+        not value["invalid_distractor_indices"]
+        and not equivalent_pairs
+        and not unstated_assumptions
+        and not alternative_answers
+        and not value["issues"]
+    )
     if value["verdict"] == "pass":
         if not all_true:
             errors.append("verdict is pass but at least one check is false")
@@ -176,6 +261,92 @@ def validation_consistency_errors(value: dict[str, Any]) -> list[str]:
 
     if value["invalid_distractor_indices"] and checks["all_distractors_wrong"]:
         errors.append("invalid distractors are listed but all_distractors_wrong is true")
+    if equivalent_pairs and checks["distractors_mutually_distinct"]:
+        errors.append(
+            "equivalent distractor pairs are listed but "
+            "distractors_mutually_distinct is true"
+        )
+    if not equivalent_pairs and not checks["distractors_mutually_distinct"]:
+        errors.append(
+            "distractors_mutually_distinct is false but no equivalent pairs are listed"
+        )
+    seen_pairs: set[tuple[int, int]] = set()
+    for pair in equivalent_pairs:
+        indices = (pair["first_index"], pair["second_index"])
+        if indices[0] >= indices[1]:
+            errors.append(
+                "equivalent distractor pair indices must be ordered and distinct"
+            )
+        if indices in seen_pairs:
+            errors.append("equivalent distractor pairs contain a duplicate")
+        seen_pairs.add(indices)
+    normalized_duplicate_pairs = {
+        (first, second)
+        for first in range(len(normalized_distractors))
+        for second in range(first + 1, len(normalized_distractors))
+        if normalized_distractors[first] == normalized_distractors[second]
+    }
+    for pair in sorted(normalized_duplicate_pairs - seen_pairs):
+        errors.append(
+            "normalized distractor answers are duplicated but equivalent pair "
+            f"{pair[0]}-{pair[1]} is not listed"
+        )
+    if normalized_duplicate_pairs and checks["distractors_mutually_distinct"]:
+        errors.append(
+            "normalized distractor answers are duplicated but "
+            "distractors_mutually_distinct is true"
+        )
+    normalized_answer = _normalized_semantic_label(value["normalized_answer"])
+    invalid_indices = set(value["invalid_distractor_indices"])
+    for index, answer in enumerate(normalized_distractors):
+        if answer == normalized_answer and index not in invalid_indices:
+            errors.append(
+                "normalized distractor answer matches normalized_answer but "
+                f"distractor {index} is not listed as invalid"
+            )
+    has_equivalence_issue = any(
+        issue["code"] == "equivalent_distractors" for issue in value["issues"]
+    )
+    if equivalent_pairs and not has_equivalence_issue:
+        errors.append(
+            "equivalent distractor pairs are listed without an "
+            "equivalent_distractors issue"
+        )
+    if has_equivalence_issue and not equivalent_pairs:
+        errors.append(
+            "an equivalent_distractors issue is present without an equivalent pair"
+        )
+    has_assumption_issue = any(
+        issue["code"] == "unstated_assumption" for issue in value["issues"]
+    )
+    if unstated_assumptions and checks["self_contained"]:
+        errors.append("unstated assumptions are listed but self_contained is true")
+    if unstated_assumptions and not has_assumption_issue:
+        errors.append(
+            "unstated assumptions are listed without an unstated_assumption issue"
+        )
+    if has_assumption_issue and not unstated_assumptions:
+        errors.append(
+            "an unstated_assumption issue is present without a listed assumption"
+        )
+    has_alternative_issue = any(
+        issue["code"] == "alternative_answer" for issue in value["issues"]
+    )
+    if alternative_answers and checks["unique_answer"]:
+        errors.append("alternative answers are listed but unique_answer is true")
+    if alternative_answers and not has_alternative_issue:
+        errors.append(
+            "alternative answers are listed without an alternative_answer issue"
+        )
+    if has_alternative_issue and not alternative_answers:
+        errors.append(
+            "an alternative_answer issue is present without a listed alternative"
+        )
+    has_option_issue = any(
+        issue["code"] == "option_dependent" for issue in value["issues"]
+    )
+    if not checks["option_independent"] and not has_option_issue:
+        errors.append("option_independent is false without an option_dependent issue")
     for issue in value["issues"]:
         check = ISSUE_CHECKS.get(issue["code"])
         if check and checks[check]:
@@ -194,6 +365,9 @@ def validation_passes(value: dict[str, Any]) -> bool:
         and value["confidence"] == "high"
         and all(bool(result) for result in value["checks"].values())
         and not value["invalid_distractor_indices"]
+        and not value["equivalent_distractor_pairs"]
+        and not value["unstated_assumptions"]
+        and not value["reasonable_alternative_answers"]
         and not value["issues"]
     )
 
@@ -258,6 +432,13 @@ def _run_configuration(
         "hash_policy": "observational_with_internal_consistency",
         "request_order_policy": "sample_round_robin_by_topic_v1",
         "validator_consistency_policy": "issue_check_alignment_v1",
+        "validator_rejection_memory_policy": "cumulative_semantic_concerns_v1",
+        "validator_distractor_equivalence_policy": "pairwise_contextual_v1",
+        "validator_option_normalization_policy": "direct_answer_nfkc_casefold_v1",
+        "validator_adversarial_audit_policy": (
+            "assumption_counterexample_option_removal_v1"
+        ),
+        "validator_truncation_retry_policy": "same_candidate_within_budget_v1",
         "generator": public_profile(generator),
         "validator": public_profile(validator),
         "per_topic": per_topic,
@@ -430,6 +611,8 @@ def generate_validated_payloads(
                 "status": "started",
             }
             feedback = _feedback(attempts, payload_id)
+            prior_semantic_concerns = _prior_semantic_concerns(attempts, payload_id)
+            attempt_record["prior_semantic_concerns"] = prior_semantic_concerns
             try:
                 author = caller(
                     generator,
@@ -499,11 +682,28 @@ def generate_validated_payloads(
                             "You are an independent scientific stimulus validator. "
                             "Return only schema-valid, internally consistent JSON and fail closed."
                         ),
-                        user=_validation_user(candidate, consistency_feedback),
+                        user=_validation_user(
+                            candidate,
+                            consistency_feedback,
+                            prior_semantic_concerns,
+                        ),
                         response_schema=validation_schema,
                         schema_name="canonical_payload_validation",
                     )
                 except (MVPError, KeyError, TypeError) as exc:
+                    if _is_truncated_response(exc):
+                        validator_trials.append(
+                            {
+                                "validator_attempt": validator_attempt,
+                                "provenance": exc.provenance,
+                                "parsed": None,
+                                "raw_response": exc.raw_response,
+                                "consistency_errors": [str(exc)],
+                                "response_error": "truncated_output",
+                            }
+                        )
+                        if validator_attempt < max_validator_attempts:
+                            continue
                     attempt_record["validator_attempts"] = validator_trials
                     attempt_record.update(
                         status="validator_api_error",

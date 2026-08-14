@@ -3,26 +3,150 @@ rendered both as a four-option benchmark question and as a casual short-answer
 request. Judge the semantic task itself, not writing style.
 
 Required procedure:
-1. Solve the task independently from the supplied context and question.
-2. Compare your solution with the proposed correct answer.
-3. Check whether any distractor is correct, equivalent to the answer, or
+1. Temporarily ignore the proposed answer and distractors. Solve the task using
+   only the supplied context and question, and record that solution as
+   `option_independent_answer`.
+2. Identify every environmental, procedural, causal, or interpretive assumption
+   required for correctness or uniqueness that is neither stated in the task nor
+   a universally stable definition. Record these in `unstated_assumptions`.
+3. Actively try to construct a reasonable interpretation or counterexample under
+   which the option-independent answer is wrong or a semantically different
+   answer is also valid. Record semantically distinct viable answers in
+   `reasonable_alternative_answers`; do not list mere paraphrases.
+4. Independently verify every embedded query, formula, code snippet, chart
+   description, schedule, rule set, or other artifact against every narrative
+   claim made about it. Recompute formulas, trace rules, inspect syntax, and
+   check stated data. Do not treat claims such as "the parser accepts", "the
+   query fails because", or "the chart shows" as authoritative; the artifact
+   itself must support the claim. For each artifact claim, identify the
+   interpretation or execution semantics required to make it true and test all
+   reasonable semantics allowed by the supplied context. If an unspecified
+   semantic choice changes whether a claim is true, record it as an unstated
+   assumption and fail `self_contained`.
+5. Compare the option-independent solution with the proposed correct answer.
+6. Check whether any distractor is correct, equivalent to the answer, or
    defensible under a reasonable interpretation.
-4. Check whether the task remains unambiguous when the answer options are hidden.
-5. Check that it is equally suitable for benchmark and casual presentation.
-6. Check that the task does not imply why this task or its answer will be used,
+7. Compare the distractors pairwise (0 versus 1, 0 versus 2, and 1 versus 2)
+   within the supplied context. Reject synonyms, paraphrases, logically
+   equivalent alternatives, and alternatives that collapse to the same direct
+   outcome. Judge equivalence at the semantic granularity requested by the
+   question; different explanations do not distinguish identical direct answers.
+   Record the shortest canonical direct answer for each distractor, in original
+   order and with all rationales removed, in `normalized_distractor_answers`.
+8. For each distractor, identify whether a recognizable mistake could produce it,
+   independently of verifying that correct reasoning rules it out.
+9. Apply the option-removal test: verify that the context and question alone
+   determine the same semantic answer without hints supplied by the options.
+10. Check that it is equally suitable for benchmark and casual presentation.
+11. Check that the task does not imply why this task or its answer will be used,
    such as experimental evaluation, benchmarking, deployment, grading, or an
    audience-specific response workflow. Topic-relevant language is allowed.
    In particular, "code review" and "reviewer" are not leakage when they refer
    to the software-engineering subject rather than evaluation of the respondent.
-7. Check that the answer is stable and does not require current external facts.
+12. Check that the answer is stable and does not require current external facts.
 
 Fail closed. Use `uncertain` whenever correctness or uniqueness cannot be
 established from the supplied text. A `pass` requires every Boolean check to be
-true, no invalid distractors, no issues, and high confidence. For `fail` or
+true, no unstated assumptions, no reasonable alternative answers, no invalid or
+equivalent distractors, no issues, and high confidence. For `fail` or
 `uncertain`, set every Boolean contradicted by an issue to false. Never return an
 issue while leaving its corresponding check true.
 
-Return only the requested JSON object. Keep issue messages concise.
+An invalid distractor is one that remains correct, equivalent to the answer, or
+defensible after correct reasoning under a reasonable interpretation. A
+plausible distractor is different: it is definitively wrong, but a person could
+reach it through a recognizable misconception, overlooked condition, rule
+misapplication, reversed relationship, category confusion, calculation error,
+or boundary error. Judge plausibility as an error model, not as continued
+correctness after solving the task. Do not mark a distractor implausible merely
+because the context rules it out; correct reasoning is supposed to rule every
+distractor out. Set `distractors_plausible` to false only for alternatives that
+are unrelated, nonsensical, answer-type incompatible, arbitrary, or lack any
+recognizable error pathway.
+
+If two distractors are semantically equivalent to each other, set
+`distractors_mutually_distinct` to false, list their zero-based indices in
+`equivalent_distractor_pairs`, and add an `equivalent_distractors` issue. This is
+separate from `invalid_distractor_indices`, which concerns a distractor's
+relationship to the correct answer.
+
+Every option must directly answer the question at the same semantic granularity.
+When the question asks for yes/no, approved/denied, a category, or another direct
+outcome, compare that outcome before considering any appended rationale. For
+example, "No, because X" and "No, because Y" are equivalent answers to a yes/no
+question even though their explanations differ. Report every such pair in
+`equivalent_distractor_pairs`; rationales do not make identical outcomes distinct.
+Their entries in `normalized_distractor_answers` must both be `No`. If a
+normalized distractor answer equals `normalized_answer`, list that distractor in
+`invalid_distractor_indices`.
+
+If an embedded artifact contradicts a narrative claim, set `self_contained` to
+false and add a `not_self_contained` issue. Also set `correct_answer` to false
+and add an `incorrect_answer` issue when the contradiction undermines the
+proposed answer. If it leaves multiple reasonable causes or answers, set
+`unique_answer` to false and add an `ambiguous_answer` issue. Never repair or
+silently reinterpret the artifact to make the narrative true. Apply this failure
+even when the proposed answer remains correct despite the false or underspecified
+artifact claim; a correct answer does not excuse an inconsistent context.
+
+For symbolic or textual construction questions, reject uniqueness unless the
+task defines a genuinely unique canonical representation, including the needed
+normalization and interpretation rules. Equivalent surface forms are reasonable
+alternative answers. A task may instead ask for a uniquely determined property
+of a supplied representation.
+
+If `unstated_assumptions` is nonempty, set `self_contained` to false and add an
+`unstated_assumption` issue. If `reasonable_alternative_answers` is nonempty, set
+`unique_answer` to false and add an `alternative_answer` issue. If the answer
+cannot be obtained without using the proposed answer or options as hints, set
+`option_independent` to false and add an `option_dependent` issue. Comparative
+claims such as "most likely" do not establish uniqueness unless the supplied
+evidence rules out or ranks reasonable alternatives.
+
+Use exactly the following object shape and key names. The values below illustrate
+a clean pass and are not presumptions about the payload. Replace
+`<independently solved answer>` with the normalized answer. For a `fail` or
+`uncertain` verdict, change every contradicted check to false, list the zero-based
+indices of invalid distractors, and add concise issue objects.
+
+{{
+  "verdict": "pass",
+  "checks": {{
+    "self_contained": true,
+    "correct_answer": true,
+    "unique_answer": true,
+    "all_distractors_wrong": true,
+    "distractors_plausible": true,
+    "distractors_mutually_distinct": true,
+    "option_independent": true,
+    "short_answer_suitable": true,
+    "cross_format_equivalent": true,
+    "purpose_neutral": true,
+    "format_neutral": true,
+    "temporally_stable": true
+  }},
+  "normalized_answer": "<independently solved answer>",
+  "option_independent_answer": "<answer obtained without options>",
+  "unstated_assumptions": [],
+  "reasonable_alternative_answers": [],
+  "normalized_distractor_answers": [
+    "<direct answer of distractor 0 without rationale>",
+    "<direct answer of distractor 1 without rationale>",
+    "<direct answer of distractor 2 without rationale>"
+  ],
+  "invalid_distractor_indices": [],
+  "equivalent_distractor_pairs": [],
+  "issues": [],
+  "confidence": "high"
+}}
+
+Allowed issue codes are `not_self_contained`, `incorrect_answer`,
+`ambiguous_answer`, `invalid_distractor`, `implausible_distractor`,
+`equivalent_distractors`, `unstated_assumption`, `alternative_answer`,
+`option_dependent`, `short_answer_unsuitable`, `cross_format_mismatch`, `purpose_leakage`,
+`format_leakage`, `temporally_unstable`, and `other`. Every issue object must
+contain exactly `code` and `message`. Return only the JSON object and keep issue
+messages concise.
 
 Canonical payload:
 {payload_json}

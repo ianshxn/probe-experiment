@@ -47,35 +47,63 @@ def extract_activations(
         low_cpu_mem_usage=True,
     ).to(device)
     model.eval()
+    if not hasattr(model, "model") or not hasattr(model.model, "layers"):
+        raise MVPError("Expected a causal-LM exposing transformer blocks at .model.layers")
     n_layers = int(model.config.num_hidden_layers)
     if not 0 <= layer < n_layers:
         raise MVPError(f"layer must be in [0, {n_layers - 1}], got {layer}")
 
+    # The chat template is rendered to text first, so it already carries the
+    # model's control tokens; add_special_tokens must stay False or the
+    # tokenizer prepends a duplicate begin-of-text.
+    prompts = [
+        tokenizer.apply_chat_template(
+            [{"role": "user", "content": str(row["text"])}],
+            tokenize=False,
+            add_generation_prompt=True,
+        )
+        for row in rows
+    ]
+    unpadded = tokenizer(
+        prompts, add_special_tokens=False, padding=False, truncation=False
+    )["input_ids"]
+    longest = max(len(ids) for ids in unpadded)
+    if longest > max_length:
+        raise MVPError(
+            f"Longest prompt has {longest} tokens, exceeding max_length={max_length}. "
+            "Raise --max-length intentionally; prompts are never truncated."
+        )
+
+    # A forward hook on the block reads its output residual stream directly,
+    # before the final model norm that hidden_states applies at the last layer.
+    captured: dict[str, Any] = {}
+
+    def capture_last_token(_module, _inputs, output) -> None:
+        hidden = output[0] if isinstance(output, (tuple, list)) else output
+        captured["hidden"] = hidden[:, -1, :].detach()
+
+    handle = model.model.layers[layer].register_forward_hook(capture_last_token)
     activations: list[Any] = []
-    with torch.inference_mode():
-        for start in range(0, len(rows), batch_size):
-            chunk = rows[start : start + batch_size]
-            prompts = [
-                tokenizer.apply_chat_template(
-                    [{"role": "user", "content": str(row["text"])}],
-                    tokenize=False,
-                    add_generation_prompt=True,
+    try:
+        with torch.inference_mode():
+            for start in range(0, len(prompts), batch_size):
+                captured.clear()
+                encoded = tokenizer(
+                    prompts[start : start + batch_size],
+                    add_special_tokens=False,
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=False,
                 )
-                for row in chunk
-            ]
-            encoded = tokenizer(
-                prompts,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-                max_length=max_length,
-            )
-            encoded = {key: value.to(device) for key, value in encoded.items()}
-            result = model(**encoded, output_hidden_states=True, use_cache=False)
-            # hidden_states[0] is the embedding output. A zero-based transformer
-            # block index L therefore maps to hidden_states[L + 1].
-            hidden = result.hidden_states[layer + 1][:, -1, :]
-            activations.append(hidden.float().cpu().numpy())
+                if not bool(torch.all(encoded["attention_mask"][:, -1] == 1)):
+                    raise MVPError("Last position must be a real prompt token, not padding")
+                encoded = {key: value.to(device) for key, value in encoded.items()}
+                model.model(**encoded, use_cache=False, return_dict=True)
+                if "hidden" not in captured:
+                    raise MVPError(f"Forward hook did not fire for layer {layer}")
+                activations.append(captured["hidden"].float().cpu().numpy())
+    finally:
+        handle.remove()
 
     matrix = np.concatenate(activations, axis=0)
     item_ids = np.asarray([str(row["item_id"]) for row in rows], dtype=str)
@@ -89,8 +117,12 @@ def extract_activations(
         "model_revision": model_revision or "default_resolved_by_hub",
         "n_transformer_layers": n_layers,
         "layer": layer,
-        "layer_semantics": "zero_based_transformer_block_output",
-        "position": "last_prompt_token_after_chat_template",
+        "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+        "position": "last_prompt_token_after_chat_template_before_generation",
+        "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
+        "add_special_tokens": False,
+        "max_length": max_length,
+        "max_prompt_tokens": longest,
         "dtype_stored": "float32",
         "n_items": len(rows),
         "hidden_size": int(matrix.shape[1]),

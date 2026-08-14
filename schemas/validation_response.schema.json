@@ -7,7 +7,12 @@
     "verdict",
     "checks",
     "normalized_answer",
+    "option_independent_answer",
+    "unstated_assumptions",
+    "reasonable_alternative_answers",
+    "normalized_distractor_answers",
     "invalid_distractor_indices",
+    "equivalent_distractor_pairs",
     "issues",
     "confidence"
   ],
@@ -21,6 +26,8 @@
         "unique_answer",
         "all_distractors_wrong",
         "distractors_plausible",
+        "distractors_mutually_distinct",
+        "option_independent",
         "short_answer_suitable",
         "cross_format_equivalent",
         "purpose_neutral",
@@ -33,6 +40,8 @@
         "unique_answer": {"type": "boolean"},
         "all_distractors_wrong": {"type": "boolean"},
         "distractors_plausible": {"type": "boolean"},
+        "distractors_mutually_distinct": {"type": "boolean"},
+        "option_independent": {"type": "boolean"},
         "short_answer_suitable": {"type": "boolean"},
         "cross_format_equivalent": {"type": "boolean"},
         "purpose_neutral": {"type": "boolean"},
@@ -42,10 +51,43 @@
       "additionalProperties": false
     },
     "normalized_answer": {"type": "string", "minLength": 1},
+    "option_independent_answer": {"type": "string", "minLength": 1},
+    "unstated_assumptions": {
+      "type": "array",
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 300}
+    },
+    "reasonable_alternative_answers": {
+      "type": "array",
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 300}
+    },
+    "normalized_distractor_answers": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "string", "minLength": 1, "maxLength": 200}
+    },
     "invalid_distractor_indices": {
       "type": "array",
       "uniqueItems": true,
       "items": {"type": "integer", "minimum": 0, "maximum": 2}
+    },
+    "equivalent_distractor_pairs": {
+      "type": "array",
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["first_index", "second_index"],
+        "properties": {
+          "first_index": {"type": "integer", "minimum": 0, "maximum": 2},
+          "second_index": {"type": "integer", "minimum": 0, "maximum": 2}
+        },
+        "additionalProperties": false
+      }
     },
     "issues": {
       "type": "array",
@@ -61,6 +103,10 @@
               "ambiguous_answer",
               "invalid_distractor",
               "implausible_distractor",
+              "equivalent_distractors",
+              "unstated_assumption",
+              "alternative_answer",
+              "option_dependent",
               "short_answer_unsuitable",
               "cross_format_mismatch",
               "purpose_leakage",

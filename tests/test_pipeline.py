@@ -22,6 +22,14 @@ def test_catalogs_and_request_grid() -> None:
     requests = build_generation_requests(catalogs, per_topic=5)
     assert len(requests) == 80
     assert len({row["payload_block_id"] for row in requests}) == 80
+    assert "distinct, recognizable error pathway" in requests[0]["user"]
+    assert "same semantic granularity" in requests[0]["user"]
+    assert "different explanation or rationale" in requests[0]["user"]
+    assert "symbolic or textual construction" in requests[0]["user"]
+    assert "embedded query, formula, code snippet" in requests[0]["user"]
+    assert "artifact itself supports that claim" in requests[0]["user"]
+    assert "interpretation or execution semantic" in requests[0]["user"]
+    assert "explicitly specify the governing semantics" in requests[0]["user"]
 
 
 def test_topical_words_are_not_rejected_by_structural_validation() -> None:

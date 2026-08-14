@@ -1,0 +1,16 @@
+schema_version: 1
+profile_id: gpt54_validator
+role: validator
+provider: openrouter
+model: openai/gpt-5.4
+canonical_slug: openai/gpt-5.4-20260305
+base_url: https://openrouter.ai/api/v1/chat/completions
+api_key_env: OPENROUTER_API_KEY
+timeout_seconds: 120
+transport_attempts: 3
+max_output_tokens: 4096
+reasoning_effort: medium
+require_parameters: true
+allow_fallbacks: false
+data_collection: deny
+app_title: eval-format-mvp

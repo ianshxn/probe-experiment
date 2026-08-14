@@ -21,8 +21,8 @@ Implemented:
 - one benchmark MCQ renderer and one casual short-answer renderer;
 - canonical-payload and rendered-item schemas;
 - offline generation-request construction;
-- OpenRouter generation with DeepSeek V4 Flash 0731;
-- independent semantic validation with Qwen3.5-397B;
+- OpenRouter generation with Grok 4.3;
+- independent semantic validation with GPT-5.4;
 - fail-closed acceptance, bounded regeneration, and complete attempt logs;
 - deterministic complete-block rendering;
 - structural validation by exact reconstruction;
@@ -115,8 +115,8 @@ The checked-in profiles are ready for the recommended OpenRouter pairing:
 
 | Role | Profile | Model |
 |---|---|---|
-| Generator | `configs/deepseek_v4_flash_generator.openrouter.yaml` | `deepseek/deepseek-v4-flash-0731` |
-| Validator | `configs/qwen35_397b_validator.openrouter.yaml` | `qwen/qwen3.5-397b-a17b` |
+| Generator | `configs/grok43_generator.openrouter.yaml` | `x-ai/grok-4.3` |
+| Validator | `configs/gpt54_validator.openrouter.yaml` | `openai/gpt-5.4` |
 
 Set the shared OpenRouter credential, then start with a small run:
 
@@ -124,38 +124,60 @@ Set the shared OpenRouter credential, then start with a small run:
 $env:OPENROUTER_API_KEY = "<your key>"
 
 uv run eval-format-mvp generate `
-  --generator-profile configs/deepseek_v4_flash_generator.openrouter.yaml `
-  --validator-profile configs/qwen35_397b_validator.openrouter.yaml `
+  --generator-profile configs/grok43_generator.openrouter.yaml `
+  --validator-profile configs/gpt54_validator.openrouter.yaml `
   --per-topic 5 `
   --max-generation-attempts 6 `
   --max-semantic-attempts 3 `
   --max-validator-attempts 2 `
   --limit 4 `
-  --out data/payloads.jsonl `
-  --run-dir runs/deepseek_qwen_smoke
+  --out data/payloads.grok43_gpt54.smoke.jsonl `
+  --run-dir runs/grok43_gpt54_smoke
 ```
 
 For the complete 80-payload MVP, use a new run directory and omit `--limit`:
 
 ```powershell
 uv run eval-format-mvp generate `
-  --generator-profile configs/deepseek_v4_flash_generator.openrouter.yaml `
-  --validator-profile configs/qwen35_397b_validator.openrouter.yaml `
+  --generator-profile configs/grok43_generator.openrouter.yaml `
+  --validator-profile configs/gpt54_validator.openrouter.yaml `
   --per-topic 5 `
   --max-generation-attempts 6 `
   --max-semantic-attempts 3 `
   --max-validator-attempts 2 `
-  --out data/payloads.full.jsonl `
-  --run-dir runs/deepseek_qwen_full
+  --out data/payloads.grok43_gpt54.full.jsonl `
+  --run-dir runs/grok43_gpt54_full
 ```
 
-Each DeepSeek payload must pass deterministic checks and a high-confidence Qwen
+Each Grok payload must pass deterministic checks and a high-confidence GPT
 semantic judgment before it reaches the accepted payload JSONL. Generator-local
 rejections and consistent semantic rejections have separate budgets. An internally
-contradictory Qwen judgment is retried against the same candidate and consumes
-neither semantic attempt nor a new DeepSeek generation. The validator never
-rewrites the payload. Reasoning is disabled for both Qwen and DeepSeek; Qwen has
-a 1,024-token ceiling for its structured judgment.
+contradictory GPT judgment is retried against the same candidate and consumes
+neither semantic attempt nor a new Grok generation. The validator never
+rewrites the payload. When validating a regenerated candidate, GPT also receives
+the cumulative concerns from earlier semantic rejections and must verify that the
+new candidate explicitly resolves them. Grok uses `medium` reasoning with a
+1,536-token output ceiling. GPT uses `medium` reasoning with a 4,096-token ceiling
+for its structured judgment. In the same validator call, GPT searches for unstated
+assumptions and reasonable counterexamples, solves the task without the options,
+compares all three distractor pairs, and independently audits embedded artifacts
+such as queries, formulas, code, charts, schedules, and rule sets against every
+narrative claim. It also tests the claim under every reasonable interpretation or
+execution semantic allowed by the context. An artifact contradiction or material
+unstated semantic fails the relevant self-containment, correctness, or uniqueness
+checks rather than being silently repaired, even when the proposed answer remains
+correct. Candidates with option-dependent answers or contextually equivalent
+alternatives are rejected.
+If a validator response is truncated at its token ceiling, the same candidate is
+retried within the existing validator-attempt budget. Distractor plausibility is
+judged as a recognizable error pathway, separately from whether correct reasoning
+definitively rules the distractor out. Symbolic construction tasks must define a
+unique canonical form or ask for a uniquely determined property instead. Option
+equivalence is judged
+at the semantic granularity requested by the question, so identical outcomes do
+not become distinct merely because they include different rationales. GPT records
+the normalized direct answer of every distractor, and local validation rejects
+duplicate normalized outcomes or distractors normalized to the correct answer.
 
 The run is resumable by `payload_block_id`. It records:
 
@@ -194,7 +216,7 @@ resume.
 Purpose neutrality is defined semantically as avoiding claims about experimental
 use, evaluation, deployment, grading, or the intended audience. Topic-relevant
 terms such as "code review" and "reviewer" are allowed. Deterministic payload
-validation enforces structure, catalog membership, and answer uniqueness; Qwen
+validation enforces structure, catalog membership, and answer uniqueness; GPT
 alone judges semantic purpose and format leakage from context. Its complete
 judgment and raw response remain in the attempt log for auditability.
 

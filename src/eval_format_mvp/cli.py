@@ -75,7 +75,12 @@ def build_parser() -> argparse.ArgumentParser:
     extract.add_argument("--revision")
     extract.add_argument("--layer", type=int, default=24)
     extract.add_argument("--batch-size", type=int, default=8)
-    extract.add_argument("--max-length", type=int, default=2048)
+    extract.add_argument(
+        "--max-length",
+        type=int,
+        default=2048,
+        help="maximum allowed prompt tokens; longer prompts fail rather than truncate",
+    )
 
     analyze = commands.add_parser("analyze", help="run grouped probe comparisons")
     analyze.add_argument("--items", type=_path, required=True)

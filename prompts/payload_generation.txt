@@ -6,8 +6,40 @@ The task must work in both of these presentations:
 
 Requirements:
 - Write a self-contained context and one question with exactly one correct answer.
+- State every environmental, procedural, causal, or interpretive assumption needed
+  to determine that answer, unless it is a universally stable definition.
+- Ensure the context and question determine the answer without help from the
+  answer options. Do not use comparative claims such as "most likely" or
+  "typically" unless the supplied evidence uniquely supports the ranking.
+- Verify every embedded query, formula, code snippet, chart description,
+  schedule, rule set, or other artifact against every narrative claim made
+  about it. Ensure the artifact is internally consistent with the proposed
+  answer. Do not assert that an artifact parses, executes, produces a result,
+  or has a particular property unless the artifact itself supports that claim.
+- State every interpretation or execution semantic needed to make a narrative
+  claim about an artifact true. If different reasonable semantics would change
+  whether the claim is true, explicitly specify the governing semantics. Do not
+  rely on an evaluator silently choosing the intended interpretation.
 - Keep the correct answer short and unambiguous.
 - Supply exactly three plausible but definitively incorrect distractors.
+- Base each distractor on a distinct, recognizable error pathway, such as
+  overlooking a stated condition, misapplying a rule, reversing a relationship,
+  confusing related categories, or making a calculation or boundary error.
+  Plausibility means that a person could reach the distractor through a credible
+  mistake; it does not mean the distractor remains defensible after the context
+  and question are correctly applied. Correct reasoning must rule it out.
+- Make the three distractors mutually distinct. No two distractors may be
+  synonyms, paraphrases, logically equivalent, or collapse to the same answer
+  under the supplied context.
+- Make every option answer the question at the same semantic granularity. A
+  different explanation or rationale does not make an identical direct outcome
+  a distinct answer. For yes/no or categorical-outcome questions, do not create
+  multiple distractors that share the same yes/no or category outcome and differ
+  only in their explanations.
+- Avoid asking for a symbolic or textual construction when multiple surface
+  forms can express the same semantic answer. Either define a genuinely unique
+  canonical representation, including all normalization and interpretation
+  rules, or ask for a uniquely determined property of a supplied representation.
 - Purpose neutrality concerns why this task or its answer will be used. Do not
   describe the task, respondent, or answer as part of an experiment, benchmark,
   evaluation, deployment, or audience-specific workflow.

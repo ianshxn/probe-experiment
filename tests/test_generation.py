@@ -7,6 +7,8 @@ import pytest
 from eval_format_mvp.catalogs import load_catalogs
 from eval_format_mvp.generation import (
     _interleave_requests,
+    _prior_semantic_concerns,
+    _validation_user,
     generate_validated_payloads,
     validation_consistency_errors,
 )
@@ -21,8 +23,8 @@ from eval_format_mvp.payloads import build_generation_requests
 
 
 ROOT = Path(__file__).resolve().parents[1]
-GENERATOR = ROOT / "configs" / "deepseek_v4_flash_generator.openrouter.yaml"
-VALIDATOR = ROOT / "configs" / "qwen35_397b_validator.openrouter.yaml"
+GENERATOR = ROOT / "configs" / "grok43_generator.openrouter.yaml"
+VALIDATOR = ROOT / "configs" / "gpt54_validator.openrouter.yaml"
 
 
 def _result(parsed: dict, profile: dict, call_number: int) -> dict:
@@ -66,6 +68,8 @@ def _judgment(*, passed: bool) -> dict:
         "unique_answer": True,
         "all_distractors_wrong": passed,
         "distractors_plausible": True,
+        "distractors_mutually_distinct": True,
+        "option_independent": True,
         "short_answer_suitable": True,
         "cross_format_equivalent": True,
         "purpose_neutral": True,
@@ -76,7 +80,12 @@ def _judgment(*, passed: bool) -> dict:
         "verdict": "pass" if passed else "fail",
         "checks": checks,
         "normalized_answer": "5",
+        "option_independent_answer": "5",
+        "unstated_assumptions": [],
+        "reasonable_alternative_answers": [],
+        "normalized_distractor_answers": ["2", "3", "6"],
         "invalid_distractor_indices": [] if passed else [2],
+        "equivalent_distractor_pairs": [],
         "issues": []
         if passed
         else [{"code": "invalid_distractor", "message": "Replace distractor 2."}],
@@ -84,7 +93,7 @@ def _judgment(*, passed: bool) -> dict:
     }
 
 
-def test_deepseek_qwen_rejection_retry_acceptance_and_resume(tmp_path: Path) -> None:
+def test_grok_gpt_rejection_retry_acceptance_and_resume(tmp_path: Path) -> None:
     catalogs = load_catalogs(ROOT)
     calls: list[dict] = []
     validation_number = 0
@@ -122,16 +131,23 @@ def test_deepseek_qwen_rejection_retry_acceptance_and_resume(tmp_path: Path) -> 
         "validator",
     ]
     assert "invalid_distractor" in calls[2]["user"]
+    assert "Earlier candidates for this same payload slot" not in calls[1]["user"]
+    assert "invalid_distractor: Replace distractor 2." in calls[3]["user"]
+    assert "Treat them as audit leads, not as presumed facts" in calls[3]["user"]
 
     accepted = load_jsonl(output)
     assert len(accepted) == 1
     provenance = accepted[0]["generation"]
     assert provenance["attempt"] == 2
-    assert provenance["generator_model"] == "deepseek/deepseek-v4-flash-0731"
-    assert provenance["validator_model"] == "qwen/qwen3.5-397b-a17b"
+    assert provenance["generator_model"] == "x-ai/grok-4.3"
+    assert provenance["validator_model"] == "openai/gpt-5.4"
     assert provenance["semantic_validation"]["verdict"] == "pass"
     attempts = load_jsonl(run_dir / "attempts.jsonl")
     assert [row["status"] for row in attempts] == ["semantic_rejection", "accepted"]
+    assert attempts[0]["prior_semantic_concerns"] == []
+    assert attempts[1]["prior_semantic_concerns"] == [
+        "invalid_distractor: Replace distractor 2."
+    ]
     assert load_json(run_dir / "run_report.json")["accepted_payloads"] == 1
 
     def no_more_calls(*args, **kwargs):  # pragma: no cover - called only on failure
@@ -195,7 +211,7 @@ def test_openrouter_profiles_enforce_structured_no_fallback_requests() -> None:
         response_schema={"type": "object"},
         schema_name="test_schema",
     )
-    assert body["model"] == "deepseek/deepseek-v4-flash-0731"
+    assert body["model"] == "x-ai/grok-4.3"
     assert body["response_format"]["type"] == "json_schema"
     assert body["response_format"]["json_schema"]["strict"] is True
     assert body["provider"] == {
@@ -203,7 +219,10 @@ def test_openrouter_profiles_enforce_structured_no_fallback_requests() -> None:
         "allow_fallbacks": False,
         "data_collection": "deny",
     }
-    assert body["reasoning"] == {"enabled": False}
+    assert body["reasoning"] == {"effort": "medium"}
+    assert body["temperature"] == 0.6
+    assert body["top_p"] == 0.9
+    assert body["max_tokens"] == 1536
     validator_body = build_request_body(
         validator,
         system="system",
@@ -211,18 +230,128 @@ def test_openrouter_profiles_enforce_structured_no_fallback_requests() -> None:
         response_schema={"type": "object"},
         schema_name="test_schema",
     )
-    assert validator_body["reasoning"] == {"enabled": False}
-    assert validator_body["max_tokens"] == 1024
+    assert validator_body["model"] == "openai/gpt-5.4"
+    assert validator_body["reasoning"] == {"effort": "medium"}
+    assert validator_body["max_tokens"] == 4096
+    assert "temperature" not in validator_body
+    assert "top_p" not in validator_body
     assert generator["model"].split("/", 1)[0] != validator["model"].split("/", 1)[0]
+
+
+def test_validation_prompt_includes_exact_output_shape() -> None:
+    payload = {
+        "topic_id": "t001",
+        "task_family": "classification",
+        **_payload(),
+    }
+    rendered = _validation_user(payload)
+    for key in (
+        "verdict",
+        "checks",
+        "self_contained",
+        "correct_answer",
+        "unique_answer",
+        "all_distractors_wrong",
+        "distractors_plausible",
+        "distractors_mutually_distinct",
+        "option_independent",
+        "short_answer_suitable",
+        "cross_format_equivalent",
+        "purpose_neutral",
+        "format_neutral",
+        "temporally_stable",
+        "normalized_answer",
+        "option_independent_answer",
+        "unstated_assumptions",
+        "reasonable_alternative_answers",
+        "normalized_distractor_answers",
+        "invalid_distractor_indices",
+        "equivalent_distractor_pairs",
+        "issues",
+        "confidence",
+    ):
+        assert f'"{key}"' in rendered
+    assert '"context": "A list contains three red tokens and two blue tokens."' in rendered
+    assert "0 versus 1, 0 versus 2, and 1 versus 2" in rendered
+    assert "reasonable interpretation or counterexample" in rendered
+    assert "Judge plausibility as an error model" in rendered
+    assert "Do not mark a distractor implausible merely" in rendered
+    assert "semantic granularity requested by the" in rendered
+    assert '"No, because X" and "No, because Y"' in rendered
+    assert "symbolic or textual construction" in rendered
+    assert "Apply the option-removal test" in rendered
+    assert "Independently verify every embedded query" in rendered
+    assert 'Do not treat claims such as "the parser accepts"' in rendered
+    assert "silently reinterpret the artifact" in rendered
+    assert "reasonable semantics allowed by the supplied context" in rendered
+    assert "a correct answer does not excuse an inconsistent context" in rendered
+
+
+def test_prior_semantic_concerns_are_cumulative_deduplicated_and_scoped() -> None:
+    issue = {
+        "code": "ambiguous_answer",
+        "message": "The SQL dialect is unspecified.",
+    }
+    attempts = [
+        {
+            "payload_block_id": "pb_t002_01",
+            "status": "semantic_rejection",
+            "validation": {"issues": [issue]},
+        },
+        {
+            "payload_block_id": "pb_t002_01",
+            "status": "semantic_rejection",
+            "validation": {
+                "issues": [
+                    issue,
+                    {
+                        "code": "not_self_contained",
+                        "message": "Required execution assumptions are missing.",
+                    },
+                ]
+            },
+        },
+        {
+            "payload_block_id": "pb_t002_01",
+            "status": "generator_output_rejection",
+            "validation": {
+                "issues": [{"code": "other", "message": "Ignore this."}]
+            },
+        },
+        {
+            "payload_block_id": "pb_t004_01",
+            "status": "semantic_rejection",
+            "validation": {
+                "issues": [{"code": "other", "message": "Different payload."}]
+            },
+        },
+    ]
+
+    assert _prior_semantic_concerns(attempts, "pb_t002_01") == [
+        "ambiguous_answer: The SQL dialect is unspecified.",
+        "not_self_contained: Required execution assumptions are missing.",
+    ]
 
 
 def test_provider_schema_removes_only_xgrammar_unsupported_constraints() -> None:
     schema = load_json(ROOT / "schemas" / "validation_response.schema.json")
     wire_schema = provider_response_schema(schema)
     indices = wire_schema["properties"]["invalid_distractor_indices"]
+    pairs = wire_schema["properties"]["equivalent_distractor_pairs"]
+    assumptions = wire_schema["properties"]["unstated_assumptions"]
+    alternatives = wire_schema["properties"]["reasonable_alternative_answers"]
     assert "uniqueItems" not in indices
+    assert "uniqueItems" not in pairs
+    assert "uniqueItems" not in assumptions
+    assert "uniqueItems" not in alternatives
     assert indices["items"] == {"type": "integer", "minimum": 0, "maximum": 2}
     assert schema["properties"]["invalid_distractor_indices"]["uniqueItems"] is True
+    assert schema["properties"]["equivalent_distractor_pairs"]["uniqueItems"] is True
+    assert schema["properties"]["unstated_assumptions"]["uniqueItems"] is True
+    assert (
+        schema["properties"]["reasonable_alternative_answers"]["uniqueItems"]
+        is True
+    )
 
 
 def test_api_failure_stops_and_does_not_consume_semantic_attempt(tmp_path: Path) -> None:
@@ -385,6 +514,99 @@ def test_validator_consistency_catches_issue_check_contradiction() -> None:
     assert "issue format_leakage is present but check format_neutral is true" in errors
 
 
+def test_validator_accepts_well_formed_equivalent_distractor_rejection() -> None:
+    value = _judgment(passed=True)
+    value["verdict"] = "fail"
+    value["checks"]["distractors_mutually_distinct"] = False
+    value["normalized_distractor_answers"] = ["nighttime", "all hours", "all hours"]
+    value["equivalent_distractor_pairs"] = [
+        {"first_index": 1, "second_index": 2}
+    ]
+    value["issues"] = [
+        {
+            "code": "equivalent_distractors",
+            "message": (
+                "'both daytime and nighttime' and 'all hours' collapse to the "
+                "same outcome under the stated transit rules."
+            ),
+        }
+    ]
+
+    assert validation_consistency_errors(value) == []
+
+
+def test_validator_retries_inconsistent_equivalent_distractor_metadata() -> None:
+    value = _judgment(passed=True)
+    value["verdict"] = "fail"
+    value["normalized_distractor_answers"] = ["nighttime", "all hours", "ALL HOURS"]
+    value["equivalent_distractor_pairs"] = [
+        {"first_index": 2, "second_index": 1}
+    ]
+    value["issues"] = [
+        {"code": "equivalent_distractors", "message": "Equivalent alternatives."}
+    ]
+
+    errors = validation_consistency_errors(value)
+    assert any("distractors_mutually_distinct is true" in error for error in errors)
+    assert any("indices must be ordered and distinct" in error for error in errors)
+
+
+def test_validator_catches_duplicate_normalized_direct_outcomes() -> None:
+    value = _judgment(passed=True)
+    value["normalized_answer"] = "approved"
+    value["normalized_distractor_answers"] = [
+        "Denied",
+        "  DENIED  ",
+        "pending",
+    ]
+
+    errors = validation_consistency_errors(value)
+    assert any("equivalent pair 0-1 is not listed" in error for error in errors)
+    assert any("distractors_mutually_distinct is true" in error for error in errors)
+
+
+def test_validator_catches_normalized_distractor_matching_answer() -> None:
+    value = _judgment(passed=True)
+    value["normalized_distractor_answers"][0] = " ５ "
+
+    errors = validation_consistency_errors(value)
+    assert any("distractor 0 is not listed as invalid" in error for error in errors)
+
+
+def test_validator_accepts_well_formed_adversarial_audit_rejection() -> None:
+    value = _judgment(passed=True)
+    value["verdict"] = "uncertain"
+    value["confidence"] = "medium"
+    value["checks"]["self_contained"] = False
+    value["checks"]["unique_answer"] = False
+    value["checks"]["option_independent"] = False
+    value["option_independent_answer"] = "A controller or heating component failed"
+    value["unstated_assumptions"] = [
+        "The symptoms uniquely identify the heating element."
+    ]
+    value["reasonable_alternative_answers"] = ["Control board failure"]
+    value["issues"] = [
+        {"code": "unstated_assumption", "message": "The cause is not isolated."},
+        {"code": "alternative_answer", "message": "Another cause fits."},
+        {"code": "option_dependent", "message": "The options cue the answer."},
+    ]
+
+    assert validation_consistency_errors(value) == []
+
+
+def test_validator_retries_incomplete_adversarial_audit_metadata() -> None:
+    value = _judgment(passed=True)
+    value["verdict"] = "fail"
+    value["unstated_assumptions"] = ["A missing environmental assumption."]
+    value["reasonable_alternative_answers"] = ["Another viable answer"]
+
+    errors = validation_consistency_errors(value)
+    assert "unstated assumptions are listed but self_contained is true" in errors
+    assert any("without an unstated_assumption issue" in error for error in errors)
+    assert "alternative answers are listed but unique_answer is true" in errors
+    assert any("without an alternative_answer issue" in error for error in errors)
+
+
 def test_validator_parse_failure_record_preserves_raw_openrouter_response(
     tmp_path: Path,
 ) -> None:
@@ -448,3 +670,70 @@ def test_validator_parse_failure_record_preserves_raw_openrouter_response(
     assert raw["choices"][0]["message"]["content"] is None
     assert raw["choices"][0]["finish_reason"] == "length"
     assert raw["usage"]["completion_tokens_details"]["reasoning_tokens"] == 2048
+    trials = error_record["attempt_record"]["validator_attempts"]
+    assert len(trials) == 2
+    assert all(trial["response_error"] == "truncated_output" for trial in trials)
+
+
+def test_validator_truncation_retries_same_candidate_and_recovers(
+    tmp_path: Path,
+) -> None:
+    catalogs = load_catalogs(ROOT)
+    calls: list[str] = []
+
+    def fake_caller(profile, **kwargs):
+        calls.append(profile["role"])
+        if profile["role"] == "generator":
+            return _result(_payload(), profile, len(calls))
+        if calls.count("validator") == 1:
+            raw = {
+                "id": "gen-validator-truncated",
+                "model": profile["model"],
+                "provider": "test-provider",
+                "choices": [
+                    {
+                        "finish_reason": "length",
+                        "native_finish_reason": "max_output_tokens",
+                        "message": {"content": '{"verdict":"pass"'},
+                    }
+                ],
+                "usage": {
+                    "prompt_tokens": 100,
+                    "completion_tokens": 4096,
+                    "completion_tokens_details": {"reasoning_tokens": 4000},
+                },
+            }
+            raise OpenRouterResponseError(
+                "Validator returned invalid JSON: truncated",
+                raw_response=raw,
+                provenance={
+                    "profile_id": profile["profile_id"],
+                    "requested_model": profile["model"],
+                    "response_id": raw["id"],
+                    "provider": raw["provider"],
+                },
+            )
+        return _result(_judgment(passed=True), profile, len(calls))
+
+    run_dir = tmp_path / "run"
+    report = generate_validated_payloads(
+        catalogs=catalogs,
+        generator_profile_path=GENERATOR,
+        validator_profile_path=VALIDATOR,
+        output_path=tmp_path / "payloads.jsonl",
+        run_dir=run_dir,
+        per_topic=1,
+        max_generation_attempts=1,
+        max_semantic_attempts=1,
+        max_validator_attempts=2,
+        limit=1,
+        caller=fake_caller,
+    )
+
+    assert report["status"] == "completed"
+    assert calls == ["generator", "validator", "validator"]
+    attempt = load_jsonl(run_dir / "attempts.jsonl")[0]
+    assert attempt["status"] == "accepted"
+    assert len(attempt["validator_attempts"]) == 2
+    assert attempt["validator_attempts"][0]["response_error"] == "truncated_output"
+    assert attempt["validator_attempts"][1]["consistency_errors"] == []
