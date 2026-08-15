@@ -1,6 +1,6 @@
 # TAE 2026 Sprint Status
 
-HEAD: `e923e161afcc6fbc07d132c8d95cee7e35f3e48d`
+HEAD: `26d29219113ae333b4a4729195284d4d752b97b9`
 INPUT SHA: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022` (288 items; `probe results/llama31_8b_3f9ccbe890cb7a06/meta.jsonl`)
 MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B local result (revision `6f6073b423013f6a7d4d9f39144961bfbfbc386b`, recorded from extraction config; matched analysis provenance still being repaired); Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending extraction.
 - ACTIVE JOBS: SLURM `51479700` (`tae31_70b`) pending priority on `gpu`, `4xh100-80`; exact 3.1-70B BF16 all-layer extraction.
