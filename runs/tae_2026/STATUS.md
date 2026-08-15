@@ -36,10 +36,10 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - open critical findings: target-format exposure control; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; full-depth fixed-dimensional controls; causal endpoint baseline blocked by gated 8B access; pending 3.1-70B extraction; legacy layer semantics guarded.
 
 ## PAPER
-- pages drafted: anonymized skeleton, integrated equal-N/geometry results, section placeholders, related-work matrix, and bibliography under `paper/tae_2026_workshop/`.
-- missing sections: causal/model results and final limitations evidence.
-- missing figures: causal transport and three-model comparison; geometry full-depth figures are present.
-- compile check: anonymization checks pass; local compile is blocked because official `neurips_2026.sty` is not installed. Do not replace it with a fabricated style.
+- pages drafted: anonymized workshop paper with integrated equal-N/geometry results, paper-local geometry/partial-model figures, related-work matrix, and bibliography under `paper/tae_2026_workshop/`.
+- missing evidence: causal transport outcomes and matched three-model results; current causal section records the pre-baseline access failure explicitly.
+- figures: geometry full-depth curves and partial 8B/3.3-70B ledger figures embedded; causal transport and matched three-model figures remain unavailable.
+- compile check: official January 2026 `neurips_2026.sty` is vendored from the public NeurIPS 2026 style source; `pdflatex`/`bibtex`/`pdflatex`/`pdflatex` completed successfully (5 pages, no unresolved citations on final pass).
 
 ## CURRENT BEST DEFENSIBLE CLAIM
 - On the 288-item Llama-3.1-8B layer-24 development artifact, equal-N mixed-format training AUC `0.6684` exceeds benchmark-only `0.6113` and casual-only `0.6259`, while pooled training is `0.7029`; the gap is not sample-size-only on this artifact. Across raw all-layer geometry, `norm(C)/norm(A)` versus benchmark→casual AUC correlates `-0.3814`, but this is one-model trajectory evidence, not independent-N significance or causal evidence.

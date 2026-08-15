@@ -4,8 +4,10 @@ We compute $A$, $B$, and $C$ in the original activation space and in fixed 256-d
 On the Llama-3.1-8B development bank, raw $\|C\|/\|A\|$ ranges from $0.2780$ to $0.8428$. Its trajectory correlation with benchmark-to-casual AUC is $-0.3814$. The same association is $-0.3662$ under 256-D PCA and $-0.3795$ under a fixed random projection. Raw/PCA interaction-ratio trajectories correlate at $0.9993$. These are descriptive repeated-layer associations, not independent-sample significance tests.
 
 \begin{figure}[t]
-\centering\fbox{\parbox{0.9\linewidth}{Full-depth geometry curves are committed under \texttt{runs/tae\_2026/figures/geometry\_20260815\_8b\_all\_layers/}. Final camera-ready placement pending.}}
-\caption{Predeclared all-layer geometry curves.}
+\centering
+\includegraphics[width=0.98\linewidth]{figures/01_interaction_ratio_vs_depth.png}
+\caption{Predeclared full-depth $\|C\|/\|A\|$ trajectory on the Llama-3.1-8B development artifact.}
+\label{fig:geometry-depth}
 \end{figure}
 
 The interaction association is stronger for one-format cross-format transfer than for equal-N mixed-format AUC (correlations $-0.3818$ versus $-0.1605$). This is consistent with target-format exposure contributing separately from the interaction mechanism. The current $B$-projection versus AUC-minus-balanced-accuracy association is weak ($0.2286$), so we do not claim that the threshold mechanism is established. Undefined zero-vector ratios and cosines remain explicit missing values.

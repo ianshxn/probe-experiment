@@ -4,6 +4,10 @@ We compare Llama-3.1-8B-Instruct, Llama-3.1-70B-Instruct, and Llama-3.3-70B-Inst
 The current matched ledger records complete 8B and 3.3-70B legacy curves with exact revisions. The 3.1-70B archive is pending user-owned job `51479700`; jobs `51479700` and `51484306` are not modified by this sprint. No three-model claim is made until the 3.1-70B archive passes exact input-hash and layer-semantics checks.
 
 \begin{figure}[t]
-\centering\fbox{\parbox{0.9\linewidth}{Placeholder: matched relative-depth curves for pooled, cross-format, equal-N AUC, interaction ratio, delta cosine, and subspace overlap after 3.1-70B extraction.}}
-\caption{Three-model matched trajectories.}
+\centering
+\includegraphics[width=0.32\linewidth]{figures/pooled_auc_relative_depth.png}
+\includegraphics[width=0.32\linewidth]{figures/b2c_auc_relative_depth.png}
+\includegraphics[width=0.32\linewidth]{figures/c2b_auc_relative_depth.png}
+\caption{Partial scalar relative-depth ledger for the existing 8B and 3.3-70B development curves: pooled AUC, benchmark$\rightarrow$casual AUC, and casual$\rightarrow$benchmark AUC. The exact 3.1-70B archive is pending, so this is not a matched three-model result.}
+\label{fig:partial-model-comparison}
 \end{figure}

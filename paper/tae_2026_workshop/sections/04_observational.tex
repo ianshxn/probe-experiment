@@ -1,7 +1,9 @@
 \section{Confounded, Decorrelated, and Cross-Format Results}
 \begin{figure}[t]
-\centering\fbox{\parbox{0.9\linewidth}{Placeholder: full depth curves for confounded, pooled/decorrelated, benchmark$\rightarrow$casual, and casual$\rightarrow$benchmark AUC and balanced accuracy.}}
-\caption{Full layer trajectories; no best-layer-only presentation.}
+\centering
+\includegraphics[width=0.98\linewidth]{figures/02_cross_format_auc_vs_depth.png}
+\caption{Predeclared all-layer cross-format AUC trajectories for the Llama-3.1-8B development artifact. The transfer curves are descriptive and retain the original training-design confounds; equal-$N$ controls are reported separately.}
+\label{fig:observational-depth}
 \end{figure}
 
 The current local Llama-3.1-8B and Llama-3.3-70B files are development diagnostics. We will report their exact stimulus, revision, layer semantics, and status before interpreting any model difference. The headline observation is treated as a motivation, not as a mechanism: pooled purpose decoding is higher than one-format transfer, but the original comparison is confounded by training size and target-format exposure.
