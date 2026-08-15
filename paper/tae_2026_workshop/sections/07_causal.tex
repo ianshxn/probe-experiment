@@ -3,7 +3,4 @@ After geometry, we froze a layer-selection rule before inspecting intervention o
 
 The frozen protocol requires direct candidate-logit baseline validation before steering, randomized candidate mappings, raw-space strength calibration, zero-strength/sign controls, and fixed random directions. The independent one-H100 Llama-3.1-8B job (`51488273`) failed before model loading because the approved Hugging Face credential returned HTTP 403 for the gated exact revision. No 8B baseline or steering outcome exists; this is a technical access failure, not evidence for or against the causal hypothesis. A separate exact cached 3.3-70B baseline and transport path (`51495134` / `51495235`) is dependency-gated and has not produced an inspected outcome.
 
-\begin{figure}[t]
-\centering\fbox{\parbox{0.9\linewidth}{Placeholder: purpose/format readout changes for full factorial versus main-effect-only transport, with random and sign controls.}}
-\caption{Held-out-family counterfactual transport.}
-\end{figure}
+No causal transport figure or outcome table is reported in this version: the 8B endpoint failed before baseline, while the exact cached 3.3-70B protocol is still dependency-gated. Reporting a transport effect before those gates pass would convert an engineering artifact into a causal claim.
