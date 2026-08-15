@@ -7,13 +7,13 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 
 ## EQUAL-N
 
-- status: **complete for primary Llama-3.1-8B layer 24; validated immutable run with target-format exposure reference; all-layer extension pending**.
-- main numbers: benchmark→benchmark `0.7444/0.6875`; benchmark→casual `0.5544/0.5208`; casual→casual `0.7095/0.6181`; casual→benchmark `0.5656/0.5000`; equal-N mixed `0.6684/0.6250`; pooled `0.7029/0.6597` (AUC/BA). Five fixed seeds; conditional family-bootstrap equal-N AUC CI `[0.6262,0.7345]`.
-- artifact: `runs/tae_2026/equal_n/equal_n_20260815_8b_l24_v3_target_exposure/results.json` and `report.md`; result SHA256 `460548e4288855ed6665f703e85100be445fedc5114b8926b82f634d27f1efbf`.
+- status: **all-layer validated equal-N and target-format exposure trajectory complete for 8B**.
+- main numbers: layer-24 benchmark→benchmark/casual `0.7444/0.5544` AUC, casual→casual/benchmark `0.7095/0.5656`, equal-N mixed `0.6684`; across layers interaction ratio vs equal-N mixed AUC `-0.1605`, vs benchmark→casual `-0.3818`, vs casual→benchmark `-0.3474`; mixed AUC range `0.5505–0.9237`.
+- artifact: `runs/tae_2026/equal_n/equal_n_20260815_8b_all_layers_v1/results.json` and `report.md`; result SHA256 `f064b230f7076562bf68033d03129d890020ef357cdb0b70b0dd143983d711ed`.
 ## GEOMETRY
-- status: **all-layer raw and fixed-dimensional geometry complete for 8B; bootstrap bands and target-exposure depth curves pending**.
+- status: **all-layer raw/fixed-dimensional geometry, conditional family bootstrap, and equal-N target-exposure curves complete for 8B**.
 - main numbers: raw ratio range `0.2780–0.8428`; PCA ratio range `0.2349–0.8224`; raw/PCA ratio correlation `0.9993`; PCA ratio vs benchmark→casual AUC `-0.3662`; random-projection ratio vs AUC `-0.3795`; raw ratio vs AUC `-0.3814`; B-projection vs AUC−BA gap `0.2286`.
-- artifact: `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v2_controls/results.json` and `report.md`; result SHA256 `8cf6d2fd6506db7e2076d52135ceb7dd321e7742b40a863edfc564b2d9fb3b3b`; raw figures remain under `runs/tae_2026/figures/geometry_20260815_8b_all_layers/`.
+- artifact: bootstrap `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v3_bootstrap/`; source controlled geometry `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v2_controls/`.
 
 ## CAUSAL
 - status: **geometry-only protocol frozen; baseline endpoint blocked before steering**.
@@ -44,4 +44,4 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - On the 288-item Llama-3.1-8B layer-24 development artifact, equal-N mixed-format training AUC `0.6684` exceeds benchmark-only `0.6113` and casual-only `0.6259`, while pooled training is `0.7029`; the gap is not sample-size-only on this artifact. Across raw all-layer geometry, `norm(C)/norm(A)` versus benchmark→casual AUC correlates `-0.3814`, but this is one-model trajectory evidence, not independent-N significance or causal evidence.
 
 ## NEXT BLOCKER
-- Complete target-exposure depth curves and refit/family uncertainty; monitor SLURM `51479700`; then run the already-frozen endpoint baseline before any steering.
+- Monitor SLURM `51479700`; then run the already-frozen direct-logit endpoint baseline before any steering and complete matched 3.1-70B analyses.
