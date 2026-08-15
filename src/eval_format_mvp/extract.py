@@ -17,6 +17,8 @@ def extract_activations(
     layer: int,
     batch_size: int,
     max_length: int,
+    device_map: str | None = None,
+    all_layers: bool = False,
 ) -> dict[str, Any]:
     try:
         import numpy as np
@@ -40,13 +42,20 @@ def extract_activations(
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        revision=model_revision,
-        torch_dtype=dtype,
-        low_cpu_mem_usage=True,
-    ).to(device)
+    load_kwargs: dict[str, Any] = {
+        "revision": model_revision,
+        "torch_dtype": dtype,
+        "low_cpu_mem_usage": True,
+    }
+    # Weights larger than one accelerator are sharded by accelerate. Per-block
+    # forward hooks still fire on whichever device owns that block.
+    if device_map:
+        load_kwargs["device_map"] = device_map
+    model = AutoModelForCausalLM.from_pretrained(model_name, **load_kwargs)
+    if not device_map:
+        model = model.to(device)
     model.eval()
+    input_device = model.device
     if not hasattr(model, "model") or not hasattr(model.model, "layers"):
         raise MVPError("Expected a causal-LM exposing transformer blocks at .model.layers")
     n_layers = int(model.config.num_hidden_layers)
@@ -74,16 +83,23 @@ def extract_activations(
             "Raise --max-length intentionally; prompts are never truncated."
         )
 
-    # A forward hook on the block reads its output residual stream directly,
+    # A forward hook on each block reads its output residual stream directly,
     # before the final model norm that hidden_states applies at the last layer.
-    captured: dict[str, Any] = {}
+    target_layers = tuple(range(n_layers)) if all_layers else (layer,)
+    captured: dict[int, Any] = {}
 
-    def capture_last_token(_module, _inputs, output) -> None:
-        hidden = output[0] if isinstance(output, (tuple, list)) else output
-        captured["hidden"] = hidden[:, -1, :].detach()
+    def _make_hook(index: int):
+        def capture_last_token(_module, _inputs, output) -> None:
+            hidden = output[0] if isinstance(output, (tuple, list)) else output
+            captured[index] = hidden[:, -1, :].detach()
 
-    handle = model.model.layers[layer].register_forward_hook(capture_last_token)
-    activations: list[Any] = []
+        return capture_last_token
+
+    handles = [
+        model.model.layers[index].register_forward_hook(_make_hook(index))
+        for index in target_layers
+    ]
+    batches: dict[int, list[Any]] = {index: [] for index in target_layers}
     try:
         with torch.inference_mode():
             for start in range(0, len(prompts), batch_size):
@@ -97,19 +113,36 @@ def extract_activations(
                 )
                 if not bool(torch.all(encoded["attention_mask"][:, -1] == 1)):
                     raise MVPError("Last position must be a real prompt token, not padding")
-                encoded = {key: value.to(device) for key, value in encoded.items()}
+                encoded = {
+                    key: value.to(input_device) for key, value in encoded.items()
+                }
                 model.model(**encoded, use_cache=False, return_dict=True)
-                if "hidden" not in captured:
-                    raise MVPError(f"Forward hook did not fire for layer {layer}")
-                activations.append(captured["hidden"].float().cpu().numpy())
+                for index in target_layers:
+                    if index not in captured:
+                        raise MVPError(f"Forward hook did not fire for layer {index}")
+                    batches[index].append(captured[index].float().cpu().numpy())
     finally:
-        handle.remove()
+        for handle in handles:
+            handle.remove()
 
-    matrix = np.concatenate(activations, axis=0)
+    per_layer = {
+        index: np.concatenate(values, axis=0) for index, values in batches.items()
+    }
+    matrix = per_layer[layer]
     item_ids = np.asarray([str(row["item_id"]) for row in rows], dtype=str)
+    token_lengths = np.asarray([len(ids) for ids in unpadded], dtype=np.int32)
     output_dir.mkdir(parents=True, exist_ok=True)
     activation_path = output_dir / "activations.npz"
     np.savez_compressed(activation_path, X=matrix, item_ids=item_ids)
+    all_layers_path = output_dir / "activations_all_layers.npz"
+    if all_layers:
+        np.savez_compressed(
+            all_layers_path,
+            X=np.stack([per_layer[index] for index in target_layers], axis=1),
+            item_ids=item_ids,
+            layers=np.asarray(target_layers, dtype=np.int16),
+            token_lengths=token_lengths,
+        )
     write_jsonl(output_dir / "meta.jsonl", rows)
     config = {
         "schema_version": 1,
@@ -117,6 +150,9 @@ def extract_activations(
         "model_revision": model_revision or "default_resolved_by_hub",
         "n_transformer_layers": n_layers,
         "layer": layer,
+        "primary_layer": layer,
+        "layers": list(target_layers),
+        "device_map": device_map or "single_device",
         "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
         "position": "last_prompt_token_after_chat_template_before_generation",
         "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
@@ -129,6 +165,9 @@ def extract_activations(
         "items_path": str(items_path),
         "items_sha256": sha256_file(items_path),
         "activations_sha256": sha256_file(activation_path),
+        "activations_all_layers_sha256": (
+            sha256_file(all_layers_path) if all_layers else None
+        ),
     }
     write_json(output_dir / "config.json", config)
     return config

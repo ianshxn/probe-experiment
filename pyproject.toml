@@ -21,6 +21,7 @@ extract = [
   "numpy>=1.26",
   "torch>=2.5",
   "transformers>=4.55",
+  "accelerate>=0.34",
 ]
 dev = [
   "numpy>=1.26",

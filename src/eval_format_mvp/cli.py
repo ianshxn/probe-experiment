@@ -76,6 +76,15 @@ def build_parser() -> argparse.ArgumentParser:
     extract.add_argument("--layer", type=int, default=24)
     extract.add_argument("--batch-size", type=int, default=8)
     extract.add_argument(
+        "--all-layers",
+        action="store_true",
+        help="capture every transformer block in the same forward pass",
+    )
+    extract.add_argument(
+        "--device-map",
+        help="accelerate device map; use 'auto' to shard weights across GPUs",
+    )
+    extract.add_argument(
         "--max-length",
         type=int,
         default=2048,
@@ -163,6 +172,8 @@ def main(argv: list[str] | None = None) -> None:
                     layer=args.layer,
                     batch_size=args.batch_size,
                     max_length=args.max_length,
+                    device_map=args.device_map,
+                    all_layers=args.all_layers,
                 )
             )
         elif args.command == "analyze":
