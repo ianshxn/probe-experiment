@@ -1,9 +1,11 @@
 \section{Factorial Representational Mechanism}
-We compute $A$, $B$, and $C$ in the original activation space and in fixed 256-dimensional controls. Reducers are fitted on training payloads only. We report full layer curves for $\|A\|$, $\|B\|$, $\|C\|$, $\|C\|/\|A\|$, matched-direction cosines, principal cosines, projections of $B$ onto learned purpose directions, cross-format AUC, and balanced accuracy. Layers are repeated measurements, not independent replicates; uncertainty resamples complete families or payload blocks.
+We compute $A$, $B$, and $C$ in the original activation space and in fixed 256-dimensional controls. Reducers are fitted on training payloads only. We report full layer curves for $\|A\|$, $\|B\|$, $\|C\|$, $\|C\|/\|A\|$, matched-direction cosines, principal cosines, projections of $B$ onto learned purpose directions, cross-format AUC, and balanced accuracy. Layers are repeated measurements, not independent replicates; uncertainty resamples complete purpose families conditional on fixed fold fits.
+
+On the Llama-3.1-8B development bank, raw $\|C\|/\|A\|$ ranges from $0.2780$ to $0.8428$. Its trajectory correlation with benchmark-to-casual AUC is $-0.3814$. The same association is $-0.3662$ under 256-D PCA and $-0.3795$ under a fixed random projection. Raw/PCA interaction-ratio trajectories correlate at $0.9993$. These are descriptive repeated-layer associations, not independent-sample significance tests.
 
 \begin{figure}[t]
-\centering\fbox{\parbox{0.9\linewidth}{Placeholders: interaction ratio vs relative depth; cross-format AUC; interaction ratio vs AUC; $B$ projection vs AUC--balanced-accuracy gap; delta cosine; subspace overlap.}}
+\centering\fbox{\parbox{0.9\linewidth}{Full-depth geometry curves are committed under \texttt{runs/tae\_2026/figures/geometry\_20260815\_8b\_all\_layers/}. Final camera-ready placement pending.}}
 \caption{Predeclared all-layer geometry curves.}
 \end{figure}
 
-The explanatory tests are associations between development geometry and held-out transfer. They are not causal claims. Undefined zero-vector ratios and cosines remain explicit missing values.
+The interaction association is stronger for one-format cross-format transfer than for equal-N mixed-format AUC (correlations $-0.3818$ versus $-0.1605$). This is consistent with target-format exposure contributing separately from the interaction mechanism. The current $B$-projection versus AUC-minus-balanced-accuracy association is weak ($0.2286$), so we do not claim that the threshold mechanism is established. Undefined zero-vector ratios and cosines remain explicit missing values.
