@@ -3,7 +3,7 @@
 HEAD: `52e2934` (last substantive sprint commit; causal access failure and claim limits recorded)
 INPUT SHA: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022` (288 items; `probe results/llama31_8b_3f9ccbe890cb7a06/meta.jsonl`)
 MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B local result (revision `6f6073b423013f6a7d4d9f39144961bfbfbc386b`); Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending user-owned job.
-- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; parent-owned 3.3 extraction `51493815`, dependent analyses `51492935` (3.1-70B) / `51493916` (3.3-70B), and matched comparison `51494255` are queued. Causal `51488273` failed before baseline at gated model access.
+- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; parent-owned extraction/analysis/comparison jobs `51493815`, `51492935`, `51493916`, `51494255`; parent-owned causal 3.3 selector/baseline/transport jobs `51494932`, `51495134`, `51495235`; causal 8B `51488273` failed before baseline at gated model access.
 
 ## EQUAL-N
 
@@ -16,12 +16,13 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - artifact: bootstrap `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v3_bootstrap/`; source controlled geometry `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v2_controls/`.
 
 ## CAUSAL
-- status: **geometry-only protocol frozen; independent 8B causal job failed before baseline because HF gated access returned HTTP 403**.
-- baseline endpoint: not run; no steering outcomes inspected or produced.
-- selected layers: shared `5`, interaction `16`, selected only from all-layer geometry (eligibility pooled AUC >= 0.80).
-- protocol hash: `d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9`.
-- failure artifact: `runs/tae_2026/causal/causal_20260815_8b_job51488273_failed/` (failure SHA256 `717bf442bbf2eec7ce714302ac98acd8e06796a8edb3f7772fefe51364fe855d`).
-- frozen protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; retry requires authorized exact weights and cannot be relabeled as this failed run.
+- status: **3.3-70B causal recovery path queued from exact cached weights; 8B causal path failed before baseline because HF gated access returned HTTP 403**.
+- 3.3 protocol selection: geometry-only selector `51494932` waits on 3.3 analysis; baseline `51495134` and transport `51495235` are dependency-gated. No 3.3 endpoint or steering outcome has been inspected.
+- 8B baseline endpoint: not run; no 8B steering outcomes inspected or produced.
+- 8B selected layers: shared `5`, interaction `16`, selected only from all-layer geometry (eligibility pooled AUC >= 0.80).
+- 8B protocol hash: `d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9`.
+- 8B failure artifact: `runs/tae_2026/causal/causal_20260815_8b_job51488273_failed/` (failure SHA256 `717bf442bbf2eec7ce714302ac98acd8e06796a8edb3f7772fefe51364fe855d`).
+- frozen 8B protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; 3.3 results will be a separate immutable run.
 
 ## 3.1-70B
 - status: **submitted; pending cluster execution**. Exact Hub revision resolved as `1605565b47bb9346c5515c34102e054115b4f98b`; no matching cache existed before submission.

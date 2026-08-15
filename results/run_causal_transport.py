@@ -158,11 +158,20 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--model", required=True)
     parser.add_argument("--revision", required=True)
+    parser.add_argument("--protocol", type=Path)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--max-length", type=int, default=2048)
     parser.add_argument("--device-map", default="auto")
     parser.add_argument("--local-files-only", action="store_true")
     args = parser.parse_args()
+    layers = LAYERS
+    protocol_hash = PROTOCOL_HASH
+    protocol_seed = PROTOCOL_SEED
+    if args.protocol is not None:
+        protocol = json.loads(args.protocol.read_text())
+        layers = tuple(int(layer) for layer in protocol["selected_layers"].values())
+        protocol_hash = str(protocol["protocol_sha256"])
+        protocol_seed = int(protocol["protocol_seed"])
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     rows = [json.loads(line) for line in args.items.open() if line.strip()]
@@ -180,7 +189,7 @@ def main() -> None:
     baseline: dict[str, Any] = {}
     activations: dict[str, dict[int, np.ndarray]] = {}
     for kind in ("purpose", "format"):
-        scores, captures = forward_batches(model, tokenizer, prompts[kind], candidate_ids=ids, batch_size=args.batch_size, layers=LAYERS, max_length=args.max_length)
+        scores, captures = forward_batches(model, tokenizer, prompts[kind], candidate_ids=ids, batch_size=args.batch_size, layers=layers, max_length=args.max_length)
         baseline[kind] = metric(scores[kind], rows, kind)
         activations[kind] = captures
     if min(baseline[kind]["accuracy"] for kind in baseline) < 0.55:
@@ -190,7 +199,7 @@ def main() -> None:
     results: dict[str, Any] = {}
     families = sorted({str(row["purpose_family_id"]) for row in rows})
     for kind in ("purpose", "format"):
-        for layer in LAYERS:
+        for layer in layers:
             x = activations[kind][layer]
             for mode in modes:
                 score_parts = {readout: [] for readout in ids}
@@ -208,7 +217,7 @@ def main() -> None:
                 results[f"{kind}::L{layer}::{mode}"] = {"source_endpoint": kind, "layer": layer, "mode": mode, "readouts": {readout: metric(combined[readout], held_rows, readout) for readout in ids}, "folds": row_parts}
 
     args.output.parent.mkdir(parents=True, exist_ok=False)
-    args.output.joinpath("results.json").write_text(json.dumps({"schema_version": 1, "status": "causal_transport_complete", "model": args.model, "revision": args.revision, "input_sha256": sha256(args.items), "protocol_hash": PROTOCOL_HASH, "protocol_seed": PROTOCOL_SEED, "layers": list(LAYERS), "baseline": baseline, "results": results, "scientific_boundary": "held-out family residual-stream transport; direct-logit endpoint only after baseline threshold"}, indent=2) + "\n")
+    args.output.joinpath("results.json").write_text(json.dumps({"schema_version": 1, "status": "causal_transport_complete", "model": args.model, "revision": args.revision, "input_sha256": sha256(args.items), "protocol_hash": protocol_hash, "protocol_seed": protocol_seed, "layers": list(layers), "baseline": baseline, "results": results, "scientific_boundary": "held-out family residual-stream transport; direct-logit endpoint only after baseline threshold"}, indent=2) + "\n")
 
 
 if __name__ == "__main__":
