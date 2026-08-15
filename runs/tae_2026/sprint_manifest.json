@@ -47,7 +47,7 @@
     "causal_module_sha256": "5dbd019ade5996f8109cc6d6723c72fe0fd4b06627fc0e1c332bd5a2014a2106",
     "geometry_runner_sha256": "aac9e6acced0d98ab3cfaeea075ec98c1f42dcaaef22352156d2f58a6fa949f5",
     "equal_n_runner_sha256": "0bff3fedb9575fda191be0f7c49766f83aaf376d99471eb173299258885d8cae",
-    "causal_runner_sha256": "cd3464a43fc3d06393ec54418cab2e6effb49d36b23c10be3bcb3e48b0218e85",
+    "causal_runner_sha256": "42549bf9895f0e4c5d9e3d6bfcc755be4c6cf47769fa2aa3935ee652a5860728",
     "matched_comparison_runner_sha256": "fb265519d03358f2cb959888a7a98bbb617ab34573e09802ab76958e2006d102",
     "llama31_8b_sweep_sha256": "b9dad459502a231f17862bb3a41372925147013044979e2c83e4ff07f6eedac1",
     "llama33_70b_sweep_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"

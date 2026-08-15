@@ -216,7 +216,7 @@ def main() -> None:
                 held_rows = [row for held in families for row in rows if str(row["purpose_family_id"]) == held]
                 results[f"{kind}::L{layer}::{mode}"] = {"source_endpoint": kind, "layer": layer, "mode": mode, "readouts": {readout: metric(combined[readout], held_rows, readout) for readout in ids}, "folds": row_parts}
 
-    args.output.parent.mkdir(parents=True, exist_ok=False)
+    args.output.mkdir(parents=True, exist_ok=False)
     args.output.joinpath("results.json").write_text(json.dumps({"schema_version": 1, "status": "causal_transport_complete", "model": args.model, "revision": args.revision, "input_sha256": sha256(args.items), "protocol_hash": protocol_hash, "protocol_seed": protocol_seed, "layers": list(layers), "baseline": baseline, "results": results, "scientific_boundary": "held-out family residual-stream transport; direct-logit endpoint only after baseline threshold"}, indent=2) + "\n")
 
 
