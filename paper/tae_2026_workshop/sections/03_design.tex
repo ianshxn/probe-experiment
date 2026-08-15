@@ -1,0 +1,10 @@
+\section{Controlled Purpose $\times$ Format Design}
+Each payload block has four matched cells: $h_{EB}$, $h_{EC}$, $h_{DB}$, and $h_{DC}$. Purpose is effect-coded as evaluation $p=+1$ and deployment $p=-1$; format is benchmark $f=+1$ and casual $f=-1$. We hold payload identity and purpose-family splits fixed, and evaluate with leave-one-purpose-family-out folds.
+
+The factorial decomposition is predeclared:
+\begin{align}
+ h_{p,f}&=\mu+pA+fB+pfC+\epsilon,\\
+ A&=(\delta_B+\delta_C)/4,\quad C=(\delta_B-\delta_C)/4,\\
+ B&=((h_{EB}+h_{DB})-(h_{EC}+h_{DC}))/4,
+\end{align}
+where $\delta_B=h_{EB}-h_{DB}$ and $\delta_C=h_{EC}-h_{DC}$. All analyses preserve complete payload blocks.

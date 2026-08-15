@@ -1,0 +1,18 @@
+\section{Equal-Training-Row Control}
+For each held-out purpose family, benchmark-only and casual-only training use the eval/deploy pair from every training block in one format. Equal-N mixed-format training uses one balanced format assignment per block and retains that pair. The assignment seed bank is fixed before evaluation; blocks are never split.
+
+\begin{table}[t]
+\centering
+\caption{Primary Llama-3.1-8B layer-24 development diagnostic. Values are AUC / balanced accuracy; five fixed assignment seeds for equal-N.}
+\begin{tabular}{lcc}\toprule
+Training regime & AUC & Balanced accuracy\\\midrule
+Benchmark-only & 0.6113 & 0.6042\\
+Casual-only & 0.6259 & 0.5590\\
+Equal-N mixed-format & 0.6684 & 0.6250\\
+Pooled/decorrelated & 0.7029 & 0.6597\\
+Benchmark $\rightarrow$ casual & 0.5544 & 0.5208\\
+Casual $\rightarrow$ benchmark & 0.5656 & 0.5000\\\bottomrule
+\end{tabular}
+\end{table}
+
+The primary result is that equal-N mixed-format training remains above one-format training on this development bank, while pooled training remains higher. This rejects a sample-count-only explanation but does not by itself establish the factorial mechanism. The source artifact and its development-only status are recorded in \texttt{runs/tae\_2026/equal\_n/equal\_n\_20260815\_8b\_l24/}.

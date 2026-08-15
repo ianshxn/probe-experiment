@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "run_id": "causal_20260815_geometry_frozen",
+  "protocol_sha256": "d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9",
+  "status": "blocked_before_steering",
+  "reason": "No local causal model endpoint is available; the exact Llama-3.1-70B BF16 all-layer extraction is still pending SLURM job 51479700. Baseline wording/mapping are frozen in protocol.json and no steering outcomes were inspected.",
+  "attempted_checks": [
+    "verified torch and transformers are importable locally",
+    "attempted local-only Llama-3.1-8B tokenizer load; timed out without a cached endpoint",
+    "verified candidate mapping and single-token requirement are explicit in protocol"
+  ],
+  "purpose_readout": {"status": "not_run", "accuracy_by_family": null, "wrapper_results": null},
+  "format_readout": {"status": "not_run", "accuracy_by_family": null, "wrapper_results": null},
+  "candidate_tokenization": {"status": "not_run", "mapping_seed": 2026081533, "requirement": "exactly one continuation token per candidate"},
+  "scientific_boundary": "No behavioral or internal causal claim is permitted until this baseline passes independently by purpose, format, wrapper, and held-out family."
+}

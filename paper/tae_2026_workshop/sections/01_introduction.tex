@@ -1,0 +1,6 @@
+\section{Introduction}
+Evaluation awareness is often measured by linear probes over model activations. A probe can score highly while reading a correlated benchmark format, so accuracy alone does not establish that the representation contains purpose. We ask a narrower question: when a purpose probe transfers between benchmark-style and casual formats, what representation component determines success or failure?
+
+Our controlled design crosses evaluation/deployment purpose with benchmark/casual format for matched payloads. We first remove the current pooled-versus-transfer training-size confound. We then test the fixed factorial estimand $h_{p,f}=\mu+pA+fB+pfC+\epsilon$, where $A$ is shared purpose, $B$ is a format offset, and $C$ is a purpose$\times$format interaction. Finally, after freezing layer and endpoint rules from development geometry, we test held-out-family residual-stream counterfactual transport.
+
+\paragraph{Claim boundary.} The manuscript will distinguish ranking (AUC), threshold calibration (balanced accuracy), observational geometry, internal causal mediation, and behavioral causal steering. No result will be promoted beyond the strongest completed gate.

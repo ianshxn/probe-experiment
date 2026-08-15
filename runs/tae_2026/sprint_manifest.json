@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "sprint": "tae_2026",
+  "venue": "TAE (Trust-AI-Eval), NeurIPS 2026 workshop",
+  "start_state": {
+    "git_commit": "4e64e93729026ce39c85e13800e1a40467e4f644",
+    "git_status_short": "?? RULES.md",
+    "analysis_sha256": "95b87c5bbfa950198b299854d6b68e942418d8e9c20b2134d58c1c85f3369641",
+    "input_item_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+    "input_item_count": 288,
+    "input_source": "probe results/llama31_8b_3f9ccbe890cb7a06/meta.jsonl"
+  },
+  "known_runs": {
+    "llama31_8b": {
+      "run_dir": "probe results/llama31_8b_3f9ccbe890cb7a06",
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "activation_sha256": "fa633ff7977160672f32d7141d94ede039bf8627c7167a77996792efa49104b4",
+      "dtype_inference": "bfloat16",
+      "dtype_stored": "float32",
+      "layers": 32,
+      "hidden_size": 4096,
+      "token_position": "last_prompt_token_after_chat_template_before_generation",
+      "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm"
+    },
+    "llama33_70b": {
+      "run_dir": "results/layer_sweep_llama33_70b.json",
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "not recorded in current local result; must resolve before comparison",
+      "result_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"
+    }
+  },
+  "required_replication": {
+    "model": "meta-llama/Llama-3.1-70B-Instruct",
+    "revision": "resolve and freeze before extraction",
+    "same_stimulus_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+    "dtype": "bfloat16 inference, float32 stored activations",
+    "status": "not yet verified"
+  },
+  "analysis_inputs": {
+    "current_sweep_sha256": "95b87c5bbfa950198b299854d6b68e942418d8e9c20b2134d58c1c85f3369641",
+    "llama31_8b_sweep_sha256": "b9dad459502a231f17862bb3a41372925147013044979e2c83e4ff07f6eedac1",
+    "llama33_70b_sweep_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"
+  },
+  "scientific_status": "development evidence; no confirmation-grade claims yet"
+}

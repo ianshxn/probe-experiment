@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "run_id": "hostile_20260815_initial",
+  "git_commit": "4e64e93729026ce39c85e13800e1a40467e4f644",
+  "status": "critical_findings_open",
+  "findings": [
+    {"id":"unequal_n_raw_gap","severity":"fixed_for_primary","status":"fixed","evidence":"validated equal-N layer-24 artifact"},
+    {"id":"target_format_exposure","severity":"critical","status":"open","evidence":"equal-N mixes formats but one-format transfer does not expose target format"},
+    {"id":"coverage_72_vs_80","severity":"critical","status":"open","evidence":"288 rows and 72 blocks in checked-in activation bank"},
+    {"id":"family_bootstrap_refit","severity":"high","status":"open","evidence":"current interval conditional on fixed fold fits"},
+    {"id":"fixed_dimensional_full_curve","severity":"high","status":"open","evidence":"controls complete only for primary layer"},
+    {"id":"causal_endpoint_baseline","severity":"critical","status":"blocked","evidence":"no local endpoint; protocol frozen before steering"},
+    {"id":"llama31_70b","severity":"critical","status":"running","evidence":"SLURM 51479700 pending"},
+    {"id":"legacy_layer_semantics","severity":"high","status":"guarded","evidence":"current archive explicitly zero-based block output; legacy paths differ"}
+  ]
+}

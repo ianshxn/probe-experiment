@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[dblblindworkshop]{neurips_2026}
+\workshoptitle{TAE (Trust-AI-Eval): Can We Trust AI Evaluation?}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage{xcolor}
+\title{When Evaluation-Awareness Probes Transfer Across Formats}
+\author{Anonymous Authors}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Evaluation-purpose probes can exploit benchmark structure rather than evaluation purpose. We study this failure with an English controlled purpose $\times$ format factorial design. The paper's primary tests are an equal-training-row control, an all-layer decomposition into shared purpose ($A$), format ($B$), and purpose$\times$format interaction ($C$), and preregistered residual-stream counterfactual transport on held-out purpose families. We report the strongest claim supported by these tests; current local results are development diagnostics and are not treated as confirmation-grade evidence.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_confounds}
+\input{sections/03_design}
+\input{sections/04_observational}
+\input{sections/05_equal_n}
+\input{sections/06_geometry}
+\input{sections/07_causal}
+\input{sections/08_models}
+\input{sections/09_implications}
+\input{sections/10_limitations}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\appendix
+\input{sections/appendix_methods}
+\end{document}
