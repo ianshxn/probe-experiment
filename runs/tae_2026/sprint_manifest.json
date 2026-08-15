@@ -2,6 +2,7 @@
   "schema_version": 1,
   "sprint": "tae_2026",
   "venue": "TAE (Trust-AI-Eval), NeurIPS 2026 workshop",
+  "current_commit": "e923e161afcc6fbc07d132c8d95cee7e35f3e48d",
   "start_state": {
     "git_commit": "4e64e93729026ce39c85e13800e1a40467e4f644",
     "git_status_short": "?? RULES.md",
@@ -26,19 +27,22 @@
     "llama33_70b": {
       "run_dir": "results/layer_sweep_llama33_70b.json",
       "model": "meta-llama/Llama-3.3-70B-Instruct",
-      "revision": "not recorded in current local result; must resolve before comparison",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
       "result_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"
     }
   },
   "required_replication": {
     "model": "meta-llama/Llama-3.1-70B-Instruct",
-    "revision": "resolve and freeze before extraction",
+    "revision": "1605565b47bb9346c5515c34102e054115b4f98b",
     "same_stimulus_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
     "dtype": "bfloat16 inference, float32 stored activations",
-    "status": "not yet verified"
+    "status": "submitted_as_slurm_51479700_pending"
   },
   "analysis_inputs": {
     "current_sweep_sha256": "95b87c5bbfa950198b299854d6b68e942418d8e9c20b2134d58c1c85f3369641",
+    "equal_n_module_sha256": "897f69aca4942a507c90057342bc88fae33579c02cb6014ff0e3a1b8fca26122",
+    "geometry_module_sha256": "2d32f70b3ebab89fa06d98f3ccb8d126affd6382539cdb05e53c63e2c1fa0c9f",
+    "causal_module_sha256": "5dbd019ade5996f8109cc6d6723c72fe0fd4b06627fc0e1c332bd5a2014a2106",
     "llama31_8b_sweep_sha256": "b9dad459502a231f17862bb3a41372925147013044979e2c83e4ff07f6eedac1",
     "llama33_70b_sweep_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"
   },
