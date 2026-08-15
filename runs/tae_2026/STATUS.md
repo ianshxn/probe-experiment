@@ -3,7 +3,7 @@
 HEAD: `52e2934` (last substantive sprint commit; causal access failure and claim limits recorded)
 INPUT SHA: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022` (288 items; `probe results/llama31_8b_3f9ccbe890cb7a06/meta.jsonl`)
 MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B local result (revision `6f6073b423013f6a7d4d9f39144961bfbfbc386b`); Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending user-owned job.
-- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; independent causal Llama-3.1-8B job `51488273` pending priority. The canceled redundant 3.3 preflight was parent-owned `51487594`.
+- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; dependent parent-owned analysis job `51492935` waits on `51479700`; independent causal Llama-3.1-8B job `51488273` failed before baseline at gated model access.
 
 ## EQUAL-N
 
@@ -30,7 +30,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 
 ## MODEL COMPARISON
 - status: partial ledger complete; 8B/3.3-70B exact revisions repaired; 3.1-70B pending user-owned extraction.
-- key result: no three-model claim yet. Ledger: `runs/tae_2026/model_comparison/model_comparison_20260815_partial/`.
+- dependent analysis: parent-owned SLURM `51492935` will run fixed-dimensional geometry and all-layer equal-N analysis after `51479700`; it does not modify the user-owned extraction job.
 
 ## HOSTILE REVIEW
 - open critical findings: target-format exposure control; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; full-depth fixed-dimensional controls; causal endpoint baseline blocked by gated 8B access; pending 3.1-70B extraction; legacy layer semantics guarded.

@@ -26,6 +26,9 @@ def main() -> None:
     p.add_argument("--activations", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--run-id", required=True)
+    p.add_argument("--model", default="meta-llama/Llama-3.1-8B-Instruct")
+    p.add_argument("--revision", default="0e9e39f249a16976918f6564b8830bc894c89659")
+    p.add_argument("--git-commit", default="working_tree")
     args = p.parse_args()
     rows = [json.loads(line) for line in args.items.open() if line.strip()]
     archive = np.load(args.activations, allow_pickle=False)
@@ -47,8 +50,8 @@ def main() -> None:
         "analysis": "equal_n_mixed_format_control_all_layers",
         "status": "development_diagnostic",
         "run_id": args.run_id,
-        "git_commit": "4e64e93729026ce39c85e13800e1a40467e4f644",
-        "layers": layers,
+        "git_commit": args.git_commit,
+        "model": {"name": args.model, "revision": args.revision, "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm", "token_position": "last_prompt_token_after_chat_template_before_generation", "dtype_inference": "bfloat16", "dtype_stored": "float32"},
         "hidden_size": int(x.shape[2]),
         "input_artifacts": {"items": str(args.items), "items_sha256": sha256(args.items), "activations": str(args.activations), "activations_sha256": sha256(args.activations)},
         "model": {"name": "meta-llama/Llama-3.1-8B-Instruct", "revision": "0e9e39f249a16976918f6564b8830bc894c89659", "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm", "token_position": "last_prompt_token_after_chat_template_before_generation", "dtype_inference": "bfloat16", "dtype_stored": "float32"},
