@@ -1,6 +1,6 @@
 # TAE 2026 Sprint Status
 
-HEAD: `bb2c0ff` (causal protocol provenance; remote runner/package hashes verified)
+HEAD: `52e2934` (last substantive sprint commit; causal access failure and claim limits recorded)
 INPUT SHA: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022` (288 items; `probe results/llama31_8b_3f9ccbe890cb7a06/meta.jsonl`)
 MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B local result (revision `6f6073b423013f6a7d4d9f39144961bfbfbc386b`); Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending user-owned job.
 - ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; independent causal Llama-3.1-8B job `51488273` pending priority. The canceled redundant 3.3 preflight was parent-owned `51487594`.
