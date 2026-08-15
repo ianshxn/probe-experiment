@@ -1,0 +1,1634 @@
+[
+ {
+  "layer": 0,
+  "confounded": {
+   "auc": 0.5096450617283951,
+   "bal_acc": 0.5,
+   "paired_pos": 0.7847222222222222,
+   "paired_mean": 0.03181740771990491,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.5677565586419754,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.8055555555555556,
+   "paired_mean": 0.7991817508278325,
+   "cells": {
+    "evaluation::benchmark": 50.0,
+    "evaluation::casual": 50.0,
+    "deployment::benchmark": 41.66666666666667,
+    "deployment::casual": 38.88888888888889
+   }
+  },
+  "b2c": {
+   "auc": 0.5335648148148148,
+   "bal_acc": 0.5,
+   "paired_pos": 0.8194444444444444,
+   "paired_mean": 0.7980591533453807,
+   "cells": {
+    "evaluation::casual": 9.722222222222223,
+    "deployment::casual": 9.722222222222223
+   }
+  },
+  "c2b": {
+   "auc": 0.5374228395061729,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.8333333333333334,
+   "paired_mean": 0.8484912899762629,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "deployment::benchmark": 98.61111111111111
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 1,
+  "confounded": {
+   "auc": 0.5107542438271605,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6041666666666666,
+   "paired_mean": 0.0348762497301435,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.5766782407407407,
+   "bal_acc": 0.5763888888888888,
+   "paired_pos": 0.7569444444444444,
+   "paired_mean": 0.965363017178761,
+   "cells": {
+    "evaluation::benchmark": 61.111111111111114,
+    "evaluation::casual": 54.166666666666664,
+    "deployment::benchmark": 45.83333333333333,
+    "deployment::casual": 38.88888888888889
+   }
+  },
+  "b2c": {
+   "auc": 0.5277777777777778,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.7777777777777778,
+   "paired_mean": 0.739601534396756,
+   "cells": {
+    "evaluation::casual": 5.555555555555555,
+    "deployment::casual": 4.166666666666666
+   }
+  },
+  "c2b": {
+   "auc": 0.5422453703703705,
+   "bal_acc": 0.5138888888888888,
+   "paired_pos": 0.75,
+   "paired_mean": 1.0055771069374737,
+   "cells": {
+    "evaluation::benchmark": 76.38888888888889,
+    "deployment::benchmark": 73.61111111111111
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 2,
+  "confounded": {
+   "auc": 0.5173128858024691,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6527777777777778,
+   "paired_mean": 0.061733998121112355,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.5579185956790125,
+   "bal_acc": 0.53125,
+   "paired_pos": 0.6736111111111112,
+   "paired_mean": 0.9208612766826584,
+   "cells": {
+    "evaluation::benchmark": 47.22222222222222,
+    "evaluation::casual": 48.61111111111111,
+    "deployment::benchmark": 40.27777777777778,
+    "deployment::casual": 43.05555555555556
+   }
+  },
+  "b2c": {
+   "auc": 0.523533950617284,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.625,
+   "paired_mean": 0.661726092573449,
+   "cells": {
+    "evaluation::casual": 68.05555555555556,
+    "deployment::casual": 66.66666666666666
+   }
+  },
+  "c2b": {
+   "auc": 0.5212191358024691,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.7222222222222222,
+   "paired_mean": 0.8991288537585587,
+   "cells": {
+    "evaluation::benchmark": 68.05555555555556,
+    "deployment::benchmark": 66.66666666666666
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 3,
+  "confounded": {
+   "auc": 0.5147087191358025,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5347222222222222,
+   "paired_mean": 0.042393947911443665,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.6794463734567902,
+   "bal_acc": 0.6145833333333333,
+   "paired_pos": 0.9375,
+   "paired_mean": 2.8747865146164773,
+   "cells": {
+    "evaluation::benchmark": 66.66666666666666,
+    "evaluation::casual": 65.27777777777779,
+    "deployment::benchmark": 40.27777777777778,
+    "deployment::casual": 45.83333333333333
+   }
+  },
+  "b2c": {
+   "auc": 0.5873842592592593,
+   "bal_acc": 0.5208333333333334,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 2.776520693153522,
+   "cells": {
+    "evaluation::casual": 48.61111111111111,
+    "deployment::casual": 44.44444444444444
+   }
+  },
+  "c2b": {
+   "auc": 0.5682870370370371,
+   "bal_acc": 0.5277777777777777,
+   "paired_pos": 0.9444444444444444,
+   "paired_mean": 2.589153036471411,
+   "cells": {
+    "evaluation::benchmark": 54.166666666666664,
+    "deployment::benchmark": 48.61111111111111
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 4,
+  "confounded": {
+   "auc": 0.5251253858024691,
+   "bal_acc": 0.5,
+   "paired_pos": 0.7430555555555556,
+   "paired_mean": 0.0737602717025114,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7927276234567903,
+   "bal_acc": 0.7291666666666666,
+   "paired_pos": 0.8541666666666666,
+   "paired_mean": 3.5280574480872215,
+   "cells": {
+    "evaluation::benchmark": 72.22222222222221,
+    "evaluation::casual": 66.66666666666666,
+    "deployment::benchmark": 27.77777777777778,
+    "deployment::casual": 19.444444444444446
+   }
+  },
+  "b2c": {
+   "auc": 0.6805555555555557,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.875,
+   "paired_mean": 3.4344671537108433,
+   "cells": {
+    "evaluation::casual": 1.3888888888888888,
+    "deployment::casual": 0.0
+   }
+  },
+  "c2b": {
+   "auc": 0.6159336419753086,
+   "bal_acc": 0.5555555555555556,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 2.941233001572562,
+   "cells": {
+    "evaluation::benchmark": 83.33333333333334,
+    "deployment::benchmark": 72.22222222222221
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 5,
+  "confounded": {
+   "auc": 0.5350115740740741,
+   "bal_acc": 0.5,
+   "paired_pos": 0.7708333333333334,
+   "paired_mean": 0.11094148363114553,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8884066358024691,
+   "bal_acc": 0.8090277777777778,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 5.1507289016147375,
+   "cells": {
+    "evaluation::benchmark": 84.72222222222221,
+    "evaluation::casual": 87.5,
+    "deployment::benchmark": 23.61111111111111,
+    "deployment::casual": 25.0
+   }
+  },
+  "b2c": {
+   "auc": 0.7717978395061729,
+   "bal_acc": 0.7083333333333334,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 4.845099865015664,
+   "cells": {
+    "evaluation::casual": 45.83333333333333,
+    "deployment::casual": 4.166666666666666
+   }
+  },
+  "c2b": {
+   "auc": 0.7247299382716049,
+   "bal_acc": 0.576388888888889,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 4.050705202310695,
+   "cells": {
+    "evaluation::benchmark": 98.61111111111111,
+    "deployment::benchmark": 83.33333333333334
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 6,
+  "confounded": {
+   "auc": 0.5160590277777778,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6180555555555556,
+   "paired_mean": 0.06524011089213436,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8595679012345679,
+   "bal_acc": 0.7569444444444444,
+   "paired_pos": 0.9722222222222222,
+   "paired_mean": 4.988081257758425,
+   "cells": {
+    "evaluation::benchmark": 83.33333333333334,
+    "evaluation::casual": 83.33333333333334,
+    "deployment::benchmark": 30.555555555555557,
+    "deployment::casual": 33.33333333333333
+   }
+  },
+  "b2c": {
+   "auc": 0.7631172839506173,
+   "bal_acc": 0.7083333333333333,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 4.657628212250393,
+   "cells": {
+    "evaluation::casual": 76.38888888888889,
+    "deployment::casual": 34.72222222222222
+   }
+  },
+  "c2b": {
+   "auc": 0.7272376543209875,
+   "bal_acc": 0.6388888888888888,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 3.6278143364168858,
+   "cells": {
+    "evaluation::benchmark": 79.16666666666666,
+    "deployment::benchmark": 51.388888888888886
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 7,
+  "confounded": {
+   "auc": 0.5204957561728394,
+   "bal_acc": 0.5,
+   "paired_pos": 0.625,
+   "paired_mean": 0.12755389789153268,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.865017361111111,
+   "bal_acc": 0.7777777777777778,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 5.274905405952698,
+   "cells": {
+    "evaluation::benchmark": 77.77777777777779,
+    "evaluation::casual": 83.33333333333334,
+    "deployment::benchmark": 25.0,
+    "deployment::casual": 25.0
+   }
+  },
+  "b2c": {
+   "auc": 0.7544367283950616,
+   "bal_acc": 0.6944444444444444,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 4.58265853212929,
+   "cells": {
+    "evaluation::casual": 62.5,
+    "deployment::casual": 23.61111111111111
+   }
+  },
+  "c2b": {
+   "auc": 0.7081404320987654,
+   "bal_acc": 0.6180555555555556,
+   "paired_pos": 0.8472222222222222,
+   "paired_mean": 3.610607037007611,
+   "cells": {
+    "evaluation::benchmark": 94.44444444444444,
+    "deployment::benchmark": 70.83333333333334
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 8,
+  "confounded": {
+   "auc": 0.5189043209876543,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6319444444444444,
+   "paired_mean": 0.09091557799997635,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9352334104938271,
+   "bal_acc": 0.8506944444444444,
+   "paired_pos": 0.9791666666666666,
+   "paired_mean": 6.038091993994754,
+   "cells": {
+    "evaluation::benchmark": 87.5,
+    "evaluation::casual": 86.11111111111111,
+    "deployment::benchmark": 8.333333333333332,
+    "deployment::casual": 25.0
+   }
+  },
+  "b2c": {
+   "auc": 0.8449074074074074,
+   "bal_acc": 0.7291666666666666,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 5.204360879897973,
+   "cells": {
+    "evaluation::casual": 88.88888888888889,
+    "deployment::casual": 43.05555555555556
+   }
+  },
+  "c2b": {
+   "auc": 0.7407407407407407,
+   "bal_acc": 0.625,
+   "paired_pos": 0.9583333333333334,
+   "paired_mean": 4.164109231296433,
+   "cells": {
+    "evaluation::benchmark": 86.11111111111111,
+    "deployment::benchmark": 61.111111111111114
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 9,
+  "confounded": {
+   "auc": 0.525318287037037,
+   "bal_acc": 0.5,
+   "paired_pos": 0.7430555555555556,
+   "paired_mean": 0.11353155085102139,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8948206018518519,
+   "bal_acc": 0.8055555555555556,
+   "paired_pos": 0.9722222222222222,
+   "paired_mean": 5.474109343613264,
+   "cells": {
+    "evaluation::benchmark": 77.77777777777779,
+    "evaluation::casual": 83.33333333333334,
+    "deployment::benchmark": 15.277777777777779,
+    "deployment::casual": 23.61111111111111
+   }
+  },
+  "b2c": {
+   "auc": 0.7683256172839505,
+   "bal_acc": 0.6527777777777777,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 4.482828600568434,
+   "cells": {
+    "evaluation::casual": 76.38888888888889,
+    "deployment::casual": 45.83333333333333
+   }
+  },
+  "c2b": {
+   "auc": 0.7208719135802469,
+   "bal_acc": 0.5,
+   "paired_pos": 0.9444444444444444,
+   "paired_mean": 3.098331376789386,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "deployment::benchmark": 100.0
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 10,
+  "confounded": {
+   "auc": 0.5173128858024691,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6597222222222222,
+   "paired_mean": 0.07100900873662258,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8759645061728395,
+   "bal_acc": 0.7847222222222222,
+   "paired_pos": 0.9513888888888888,
+   "paired_mean": 5.456710039203731,
+   "cells": {
+    "evaluation::benchmark": 70.83333333333334,
+    "evaluation::casual": 77.77777777777779,
+    "deployment::benchmark": 11.11111111111111,
+    "deployment::casual": 23.61111111111111
+   }
+  },
+  "b2c": {
+   "auc": 0.7270447530864197,
+   "bal_acc": 0.7013888888888888,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 4.587154024712248,
+   "cells": {
+    "evaluation::casual": 61.111111111111114,
+    "deployment::casual": 20.833333333333336
+   }
+  },
+  "c2b": {
+   "auc": 0.779320987654321,
+   "bal_acc": 0.5555555555555556,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 3.106871481669946,
+   "cells": {
+    "evaluation::benchmark": 97.22222222222221,
+    "deployment::benchmark": 86.11111111111111
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 11,
+  "confounded": {
+   "auc": 0.5151427469135803,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5763888888888888,
+   "paired_mean": 0.06404478090412341,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8608699845679013,
+   "bal_acc": 0.7708333333333333,
+   "paired_pos": 0.9097222222222222,
+   "paired_mean": 5.149062940389143,
+   "cells": {
+    "evaluation::benchmark": 66.66666666666666,
+    "evaluation::casual": 70.83333333333334,
+    "deployment::benchmark": 11.11111111111111,
+    "deployment::casual": 18.055555555555554
+   }
+  },
+  "b2c": {
+   "auc": 0.712962962962963,
+   "bal_acc": 0.6875,
+   "paired_pos": 0.875,
+   "paired_mean": 3.9207956014155636,
+   "cells": {
+    "evaluation::casual": 56.94444444444444,
+    "deployment::casual": 19.444444444444446
+   }
+  },
+  "c2b": {
+   "auc": 0.7299382716049383,
+   "bal_acc": 0.6805555555555556,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 2.5727189405612645,
+   "cells": {
+    "evaluation::benchmark": 50.0,
+    "deployment::benchmark": 13.88888888888889
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 12,
+  "confounded": {
+   "auc": 0.5075231481481481,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5486111111111112,
+   "paired_mean": 0.03636789062223958,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8547935956790123,
+   "bal_acc": 0.78125,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 4.995900243750269,
+   "cells": {
+    "evaluation::benchmark": 75.0,
+    "evaluation::casual": 76.38888888888889,
+    "deployment::benchmark": 18.055555555555554,
+    "deployment::casual": 20.833333333333336
+   }
+  },
+  "b2c": {
+   "auc": 0.6849922839506173,
+   "bal_acc": 0.5833333333333333,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 3.995617382461123,
+   "cells": {
+    "evaluation::casual": 37.5,
+    "deployment::casual": 20.833333333333336
+   }
+  },
+  "c2b": {
+   "auc": 0.7449845679012346,
+   "bal_acc": 0.6527777777777778,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 2.1778473019016404,
+   "cells": {
+    "evaluation::benchmark": 75.0,
+    "deployment::benchmark": 44.44444444444444
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 13,
+  "confounded": {
+   "auc": 0.5193865740740741,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5347222222222222,
+   "paired_mean": 0.04863646389729665,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8511766975308641,
+   "bal_acc": 0.7743055555555556,
+   "paired_pos": 0.9513888888888888,
+   "paired_mean": 4.832340705540444,
+   "cells": {
+    "evaluation::benchmark": 75.0,
+    "evaluation::casual": 76.38888888888889,
+    "deployment::benchmark": 25.0,
+    "deployment::casual": 16.666666666666664
+   }
+  },
+  "b2c": {
+   "auc": 0.7337962962962963,
+   "bal_acc": 0.5277777777777778,
+   "paired_pos": 0.9444444444444444,
+   "paired_mean": 4.2279050926026445,
+   "cells": {
+    "evaluation::casual": 5.555555555555555,
+    "deployment::casual": 0.0
+   }
+  },
+  "c2b": {
+   "auc": 0.6745756172839507,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 2.1642528807364405,
+   "cells": {
+    "evaluation::benchmark": 79.16666666666666,
+    "deployment::benchmark": 69.44444444444444
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 14,
+  "confounded": {
+   "auc": 0.5198206018518519,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5972222222222222,
+   "paired_mean": 0.05695602280217275,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8448109567901234,
+   "bal_acc": 0.7638888888888888,
+   "paired_pos": 0.9375,
+   "paired_mean": 5.237871537912661,
+   "cells": {
+    "evaluation::benchmark": 72.22222222222221,
+    "evaluation::casual": 75.0,
+    "deployment::benchmark": 19.444444444444446,
+    "deployment::casual": 22.22222222222222
+   }
+  },
+  "b2c": {
+   "auc": 0.7164351851851851,
+   "bal_acc": 0.625,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 4.302004888382137,
+   "cells": {
+    "evaluation::casual": 31.944444444444443,
+    "deployment::casual": 6.944444444444445
+   }
+  },
+  "c2b": {
+   "auc": 0.6753472222222222,
+   "bal_acc": 0.5625,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 2.1307343974963096,
+   "cells": {
+    "evaluation::benchmark": 91.66666666666666,
+    "deployment::benchmark": 79.16666666666666
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 15,
+  "confounded": {
+   "auc": 0.519483024691358,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6805555555555556,
+   "paired_mean": 0.06056766426886072,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.822241512345679,
+   "bal_acc": 0.7638888888888888,
+   "paired_pos": 0.9375,
+   "paired_mean": 4.9074458567664045,
+   "cells": {
+    "evaluation::benchmark": 76.38888888888889,
+    "evaluation::casual": 77.77777777777779,
+    "deployment::benchmark": 22.22222222222222,
+    "deployment::casual": 26.38888888888889
+   }
+  },
+  "b2c": {
+   "auc": 0.7266589506172839,
+   "bal_acc": 0.5416666666666667,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 3.723547171478803,
+   "cells": {
+    "evaluation::casual": 9.722222222222223,
+    "deployment::casual": 1.3888888888888888
+   }
+  },
+  "c2b": {
+   "auc": 0.6153549382716049,
+   "bal_acc": 0.5138888888888888,
+   "paired_pos": 0.9444444444444444,
+   "paired_mean": 1.5376399444705224,
+   "cells": {
+    "evaluation::benchmark": 97.22222222222221,
+    "deployment::benchmark": 94.44444444444444
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 16,
+  "confounded": {
+   "auc": 0.5267168209876543,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6666666666666666,
+   "paired_mean": 0.09068047794905458,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8031925154320987,
+   "bal_acc": 0.7326388888888888,
+   "paired_pos": 0.9375,
+   "paired_mean": 4.7499134600315935,
+   "cells": {
+    "evaluation::benchmark": 79.16666666666666,
+    "evaluation::casual": 69.44444444444444,
+    "deployment::benchmark": 26.38888888888889,
+    "deployment::casual": 29.166666666666668
+   }
+  },
+  "b2c": {
+   "auc": 0.6786265432098765,
+   "bal_acc": 0.5763888888888888,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 3.310916543739145,
+   "cells": {
+    "evaluation::casual": 18.055555555555554,
+    "deployment::casual": 2.7777777777777777
+   }
+  },
+  "c2b": {
+   "auc": 0.6022376543209876,
+   "bal_acc": 0.5277777777777778,
+   "paired_pos": 0.9583333333333334,
+   "paired_mean": 1.2597340963620778,
+   "cells": {
+    "evaluation::benchmark": 80.55555555555556,
+    "deployment::benchmark": 75.0
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 17,
+  "confounded": {
+   "auc": 0.5233410493827161,
+   "bal_acc": 0.5,
+   "paired_pos": 0.625,
+   "paired_mean": 0.06784250957406873,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7666377314814815,
+   "bal_acc": 0.6944444444444444,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 4.035145818794122,
+   "cells": {
+    "evaluation::benchmark": 73.61111111111111,
+    "evaluation::casual": 72.22222222222221,
+    "deployment::benchmark": 33.33333333333333,
+    "deployment::casual": 34.72222222222222
+   }
+  },
+  "b2c": {
+   "auc": 0.6379243827160495,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 2.4498258743463555,
+   "cells": {
+    "evaluation::casual": 8.333333333333332,
+    "deployment::casual": 6.944444444444445
+   }
+  },
+  "c2b": {
+   "auc": 0.6026234567901235,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.875,
+   "paired_mean": 0.8737846050206505,
+   "cells": {
+    "evaluation::benchmark": 70.83333333333334,
+    "deployment::benchmark": 61.111111111111114
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 18,
+  "confounded": {
+   "auc": 0.5168788580246914,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5763888888888888,
+   "paired_mean": 0.052366015989378206,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7732445987654322,
+   "bal_acc": 0.6805555555555556,
+   "paired_pos": 0.9444444444444444,
+   "paired_mean": 3.939671631759717,
+   "cells": {
+    "evaluation::benchmark": 72.22222222222221,
+    "evaluation::casual": 75.0,
+    "deployment::benchmark": 38.88888888888889,
+    "deployment::casual": 36.11111111111111
+   }
+  },
+  "b2c": {
+   "auc": 0.6222993827160493,
+   "bal_acc": 0.5694444444444444,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 2.255477158386334,
+   "cells": {
+    "evaluation::casual": 34.72222222222222,
+    "deployment::casual": 20.833333333333336
+   }
+  },
+  "c2b": {
+   "auc": 0.5945216049382717,
+   "bal_acc": 0.5277777777777778,
+   "paired_pos": 0.875,
+   "paired_mean": 0.8179589992123533,
+   "cells": {
+    "evaluation::benchmark": 88.88888888888889,
+    "deployment::benchmark": 83.33333333333334
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 19,
+  "confounded": {
+   "auc": 0.5185667438271605,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5763888888888888,
+   "paired_mean": 0.05445136968745474,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7645158179012345,
+   "bal_acc": 0.6701388888888888,
+   "paired_pos": 0.9375,
+   "paired_mean": 3.7623905483670166,
+   "cells": {
+    "evaluation::benchmark": 73.61111111111111,
+    "evaluation::casual": 72.22222222222221,
+    "deployment::benchmark": 37.5,
+    "deployment::casual": 40.27777777777778
+   }
+  },
+  "b2c": {
+   "auc": 0.6001157407407408,
+   "bal_acc": 0.5763888888888888,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 2.065932220885361,
+   "cells": {
+    "evaluation::casual": 38.88888888888889,
+    "deployment::casual": 23.61111111111111
+   }
+  },
+  "c2b": {
+   "auc": 0.5846836419753086,
+   "bal_acc": 0.5625,
+   "paired_pos": 0.875,
+   "paired_mean": 0.7218029543348651,
+   "cells": {
+    "evaluation::benchmark": 72.22222222222221,
+    "deployment::benchmark": 59.72222222222222
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 20,
+  "confounded": {
+   "auc": 0.5193383487654321,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5972222222222222,
+   "paired_mean": 0.05901557726261887,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7589216820987655,
+   "bal_acc": 0.6944444444444444,
+   "paired_pos": 0.9375,
+   "paired_mean": 3.5595566735468527,
+   "cells": {
+    "evaluation::benchmark": 70.83333333333334,
+    "evaluation::casual": 73.61111111111111,
+    "deployment::benchmark": 36.11111111111111,
+    "deployment::casual": 30.555555555555557
+   }
+  },
+  "b2c": {
+   "auc": 0.5908564814814814,
+   "bal_acc": 0.5347222222222222,
+   "paired_pos": 0.8888888888888888,
+   "paired_mean": 1.9695409416353666,
+   "cells": {
+    "evaluation::casual": 18.055555555555554,
+    "deployment::casual": 11.11111111111111
+   }
+  },
+  "c2b": {
+   "auc": 0.5671296296296297,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.8472222222222222,
+   "paired_mean": 0.6197493714714339,
+   "cells": {
+    "evaluation::benchmark": 86.11111111111111,
+    "deployment::benchmark": 76.38888888888889
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 21,
+  "confounded": {
+   "auc": 0.5189043209876544,
+   "bal_acc": 0.5,
+   "paired_pos": 0.625,
+   "paired_mean": 0.06175442485975265,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7501929012345679,
+   "bal_acc": 0.6840277777777778,
+   "paired_pos": 0.9375,
+   "paired_mean": 3.3435140578642937,
+   "cells": {
+    "evaluation::benchmark": 72.22222222222221,
+    "evaluation::casual": 76.38888888888889,
+    "deployment::benchmark": 36.11111111111111,
+    "deployment::casual": 38.88888888888889
+   }
+  },
+  "b2c": {
+   "auc": 0.5787037037037037,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 1.9221607797549527,
+   "cells": {
+    "evaluation::casual": 25.0,
+    "deployment::casual": 15.277777777777779
+   }
+  },
+  "c2b": {
+   "auc": 0.5698302469135802,
+   "bal_acc": 0.5,
+   "paired_pos": 0.8888888888888888,
+   "paired_mean": 0.5768908070155052,
+   "cells": {
+    "evaluation::benchmark": 94.44444444444444,
+    "deployment::benchmark": 94.44444444444444
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 22,
+  "confounded": {
+   "auc": 0.5162519290123456,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5972222222222222,
+   "paired_mean": 0.05864438840258303,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7350019290123457,
+   "bal_acc": 0.6666666666666667,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 3.0841213378180417,
+   "cells": {
+    "evaluation::benchmark": 76.38888888888889,
+    "evaluation::casual": 72.22222222222221,
+    "deployment::benchmark": 41.66666666666667,
+    "deployment::casual": 40.27777777777778
+   }
+  },
+  "b2c": {
+   "auc": 0.5628858024691358,
+   "bal_acc": 0.5277777777777778,
+   "paired_pos": 0.8888888888888888,
+   "paired_mean": 1.6553169585205718,
+   "cells": {
+    "evaluation::casual": 19.444444444444446,
+    "deployment::casual": 13.88888888888889
+   }
+  },
+  "c2b": {
+   "auc": 0.5727237654320987,
+   "bal_acc": 0.5,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 0.550294512818946,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "deployment::benchmark": 100.0
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 23,
+  "confounded": {
+   "auc": 0.5121527777777777,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5972222222222222,
+   "paired_mean": 0.043205972666820275,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7184606481481481,
+   "bal_acc": 0.6875,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 2.95987824154265,
+   "cells": {
+    "evaluation::benchmark": 77.77777777777779,
+    "evaluation::casual": 75.0,
+    "deployment::benchmark": 36.11111111111111,
+    "deployment::casual": 41.66666666666667
+   }
+  },
+  "b2c": {
+   "auc": 0.5594135802469136,
+   "bal_acc": 0.5277777777777778,
+   "paired_pos": 0.8888888888888888,
+   "paired_mean": 1.6361569039596353,
+   "cells": {
+    "evaluation::casual": 26.38888888888889,
+    "deployment::casual": 20.833333333333336
+   }
+  },
+  "c2b": {
+   "auc": 0.5698302469135802,
+   "bal_acc": 0.5,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 0.5218967126210898,
+   "cells": {
+    "evaluation::benchmark": 98.61111111111111,
+    "deployment::benchmark": 98.61111111111111
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 24,
+  "confounded": {
+   "auc": 0.5081983024691358,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5625,
+   "paired_mean": 0.03373245266909285,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7028838734567902,
+   "bal_acc": 0.6597222222222223,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 2.7387311517302297,
+   "cells": {
+    "evaluation::benchmark": 75.0,
+    "evaluation::casual": 72.22222222222221,
+    "deployment::benchmark": 34.72222222222222,
+    "deployment::casual": 48.61111111111111
+   }
+  },
+  "b2c": {
+   "auc": 0.5543981481481481,
+   "bal_acc": 0.5208333333333334,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 1.4254405309556166,
+   "cells": {
+    "evaluation::casual": 26.38888888888889,
+    "deployment::casual": 22.22222222222222
+   }
+  },
+  "c2b": {
+   "auc": 0.5655864197530864,
+   "bal_acc": 0.5,
+   "paired_pos": 0.7916666666666666,
+   "paired_mean": 0.42538674519366754,
+   "cells": {
+    "evaluation::benchmark": 95.83333333333334,
+    "deployment::benchmark": 95.83333333333334
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 25,
+  "confounded": {
+   "auc": 0.5044367283950617,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5416666666666666,
+   "paired_mean": 0.022002221980926995,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.712866512345679,
+   "bal_acc": 0.6770833333333334,
+   "paired_pos": 0.9375,
+   "paired_mean": 2.791241476462807,
+   "cells": {
+    "evaluation::benchmark": 75.0,
+    "evaluation::casual": 72.22222222222221,
+    "deployment::benchmark": 34.72222222222222,
+    "deployment::casual": 41.66666666666667
+   }
+  },
+  "b2c": {
+   "auc": 0.5657793209876543,
+   "bal_acc": 0.5138888888888888,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 1.6063197018968605,
+   "cells": {
+    "evaluation::casual": 26.38888888888889,
+    "deployment::casual": 23.61111111111111
+   }
+  },
+  "c2b": {
+   "auc": 0.5565200617283951,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.8611111111111112,
+   "paired_mean": 0.4858700970398643,
+   "cells": {
+    "evaluation::benchmark": 94.44444444444444,
+    "deployment::benchmark": 93.05555555555556
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 26,
+  "confounded": {
+   "auc": 0.5022183641975309,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5069444444444444,
+   "paired_mean": 0.015406509740349794,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.732204861111111,
+   "bal_acc": 0.6840277777777778,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 2.949957864977857,
+   "cells": {
+    "evaluation::benchmark": 76.38888888888889,
+    "evaluation::casual": 75.0,
+    "deployment::benchmark": 33.33333333333333,
+    "deployment::casual": 44.44444444444444
+   }
+  },
+  "b2c": {
+   "auc": 0.5760030864197531,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.9027777777777778,
+   "paired_mean": 1.6386693256104357,
+   "cells": {
+    "evaluation::casual": 38.88888888888889,
+    "deployment::casual": 29.166666666666668
+   }
+  },
+  "c2b": {
+   "auc": 0.5752314814814815,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.8472222222222222,
+   "paired_mean": 0.5907721068443982,
+   "cells": {
+    "evaluation::benchmark": 77.77777777777779,
+    "deployment::benchmark": 68.05555555555556
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 27,
+  "confounded": {
+   "auc": 0.5014467592592593,
+   "bal_acc": 0.5,
+   "paired_pos": 0.4652777777777778,
+   "paired_mean": 0.011558100941520884,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7205343364197531,
+   "bal_acc": 0.6701388888888888,
+   "paired_pos": 0.9236111111111112,
+   "paired_mean": 2.8786442372529715,
+   "cells": {
+    "evaluation::benchmark": 73.61111111111111,
+    "evaluation::casual": 75.0,
+    "deployment::benchmark": 34.72222222222222,
+    "deployment::casual": 45.83333333333333
+   }
+  },
+  "b2c": {
+   "auc": 0.5825617283950617,
+   "bal_acc": 0.5833333333333333,
+   "paired_pos": 0.9166666666666666,
+   "paired_mean": 1.544895441234677,
+   "cells": {
+    "evaluation::casual": 62.5,
+    "deployment::casual": 45.83333333333333
+   }
+  },
+  "c2b": {
+   "auc": 0.5858410493827161,
+   "bal_acc": 0.5694444444444444,
+   "paired_pos": 0.8472222222222222,
+   "paired_mean": 0.6482285654623272,
+   "cells": {
+    "evaluation::benchmark": 81.94444444444444,
+    "deployment::benchmark": 68.05555555555556
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 28,
+  "confounded": {
+   "auc": 0.5018807870370371,
+   "bal_acc": 0.5,
+   "paired_pos": 0.4791666666666667,
+   "paired_mean": 0.011256861534105081,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7139756944444446,
+   "bal_acc": 0.6631944444444444,
+   "paired_pos": 0.9375,
+   "paired_mean": 2.864924208201986,
+   "cells": {
+    "evaluation::benchmark": 75.0,
+    "evaluation::casual": 70.83333333333334,
+    "deployment::benchmark": 36.11111111111111,
+    "deployment::casual": 44.44444444444444
+   }
+  },
+  "b2c": {
+   "auc": 0.5900848765432098,
+   "bal_acc": 0.5625,
+   "paired_pos": 0.9305555555555556,
+   "paired_mean": 1.6872240604552078,
+   "cells": {
+    "evaluation::casual": 50.0,
+    "deployment::casual": 37.5
+   }
+  },
+  "c2b": {
+   "auc": 0.5920138888888888,
+   "bal_acc": 0.5555555555555556,
+   "paired_pos": 0.8611111111111112,
+   "paired_mean": 0.7123121039820011,
+   "cells": {
+    "evaluation::benchmark": 61.111111111111114,
+    "deployment::benchmark": 50.0
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 29,
+  "confounded": {
+   "auc": 0.5008198302469136,
+   "bal_acc": 0.5,
+   "paired_pos": 0.4652777777777778,
+   "paired_mean": -0.0025347613579470695,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7115644290123457,
+   "bal_acc": 0.6527777777777777,
+   "paired_pos": 0.9375,
+   "paired_mean": 2.795518223930076,
+   "cells": {
+    "evaluation::benchmark": 73.61111111111111,
+    "evaluation::casual": 66.66666666666666,
+    "deployment::benchmark": 34.72222222222222,
+    "deployment::casual": 44.44444444444444
+   }
+  },
+  "b2c": {
+   "auc": 0.5769675925925926,
+   "bal_acc": 0.5833333333333334,
+   "paired_pos": 0.8611111111111112,
+   "paired_mean": 1.6338569610194627,
+   "cells": {
+    "evaluation::casual": 77.77777777777779,
+    "deployment::casual": 61.111111111111114
+   }
+  },
+  "c2b": {
+   "auc": 0.5912422839506173,
+   "bal_acc": 0.5625,
+   "paired_pos": 0.875,
+   "paired_mean": 0.6453971031264653,
+   "cells": {
+    "evaluation::benchmark": 47.22222222222222,
+    "deployment::benchmark": 34.72222222222222
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 30,
+  "confounded": {
+   "auc": 0.49585262345679015,
+   "bal_acc": 0.5,
+   "paired_pos": 0.4375,
+   "paired_mean": -0.021004973304959276,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7152777777777778,
+   "bal_acc": 0.6458333333333333,
+   "paired_pos": 0.9444444444444444,
+   "paired_mean": 2.7250662285638256,
+   "cells": {
+    "evaluation::benchmark": 72.22222222222221,
+    "evaluation::casual": 72.22222222222221,
+    "deployment::benchmark": 40.27777777777778,
+    "deployment::casual": 45.83333333333333
+   }
+  },
+  "b2c": {
+   "auc": 0.5754243827160493,
+   "bal_acc": 0.5208333333333334,
+   "paired_pos": 0.8472222222222222,
+   "paired_mean": 1.6202028010244167,
+   "cells": {
+    "evaluation::casual": 93.05555555555556,
+    "deployment::casual": 88.88888888888889
+   }
+  },
+  "c2b": {
+   "auc": 0.5908564814814815,
+   "bal_acc": 0.5208333333333334,
+   "paired_pos": 0.8611111111111112,
+   "paired_mean": 0.6204554033915435,
+   "cells": {
+    "evaluation::benchmark": 30.555555555555557,
+    "deployment::benchmark": 26.38888888888889
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 31,
+  "confounded": {
+   "auc": 0.49609375,
+   "bal_acc": 0.5,
+   "paired_pos": 0.4097222222222222,
+   "paired_mean": -0.02567173457545592,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.6891396604938271,
+   "bal_acc": 0.6319444444444444,
+   "paired_pos": 0.9236111111111112,
+   "paired_mean": 2.775463581057824,
+   "cells": {
+    "evaluation::benchmark": 69.44444444444444,
+    "evaluation::casual": 68.05555555555556,
+    "deployment::benchmark": 40.27777777777778,
+    "deployment::casual": 44.44444444444444
+   }
+  },
+  "b2c": {
+   "auc": 0.5688657407407408,
+   "bal_acc": 0.5486111111111112,
+   "paired_pos": 0.7916666666666666,
+   "paired_mean": 1.9552640465697455,
+   "cells": {
+    "evaluation::casual": 40.27777777777778,
+    "deployment::casual": 30.555555555555557
+   }
+  },
+  "c2b": {
+   "auc": 0.5871913580246914,
+   "bal_acc": 0.5069444444444444,
+   "paired_pos": 0.875,
+   "paired_mean": 0.6496155157106656,
+   "cells": {
+    "evaluation::benchmark": 11.11111111111111,
+    "deployment::benchmark": 9.722222222222223
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ }
+]

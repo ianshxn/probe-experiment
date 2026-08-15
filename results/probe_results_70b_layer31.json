@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "status": "development_diagnostic",
+  "split_unit": "purpose_family_id_with_payload_blocks_kept_complete",
+  "regularization_C": 0.1,
+  "counts": {
+    "items": 288,
+    "payload_blocks": 72,
+    "purpose_families": 5,
+    "hidden_size": 8192
+  },
+  "purpose_probe_regimes": {
+    "standard_confounded": {
+      "n": 288,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "purpose_auc": 0.5725790895061729,
+      "by_cell": {
+        "evaluation::benchmark": {
+          "n": 72,
+          "percent_predicted_evaluation": 100.0,
+          "mean_score": 8.562668382672292
+        },
+        "evaluation::casual": {
+          "n": 72,
+          "percent_predicted_evaluation": 0.0,
+          "mean_score": -8.046686858862069
+        },
+        "deployment::benchmark": {
+          "n": 72,
+          "percent_predicted_evaluation": 100.0,
+          "mean_score": 8.55582020092073
+        },
+        "deployment::casual": {
+          "n": 72,
+          "percent_predicted_evaluation": 0.0,
+          "mean_score": -8.54269909409258
+        }
+      },
+      "paired_eval_minus_deploy": {
+        "benchmark": {
+          "n_blocks": 72,
+          "mean_eval_minus_deploy_score": 0.006848181751561359,
+          "proportion_positive": 0.6111111111111112
+        },
+        "casual": {
+          "n_blocks": 72,
+          "mean_eval_minus_deploy_score": 0.49601223523051124,
+          "proportion_positive": 0.9861111111111112
+        }
+      }
+    },
+    "decorrelated": {
+      "n": 288,
+      "accuracy": 0.9097222222222222,
+      "balanced_accuracy": 0.9097222222222223,
+      "purpose_auc": 0.9744888117283951,
+      "by_cell": {
+        "evaluation::benchmark": {
+          "n": 72,
+          "percent_predicted_evaluation": 77.77777777777779,
+          "mean_score": 4.5616942507664575
+        },
+        "evaluation::casual": {
+          "n": 72,
+          "percent_predicted_evaluation": 88.88888888888889,
+          "mean_score": 5.46079902020368
+        },
+        "deployment::benchmark": {
+          "n": 72,
+          "percent_predicted_evaluation": 1.3888888888888888,
+          "mean_score": -4.422899201949739
+        },
+        "deployment::casual": {
+          "n": 72,
+          "percent_predicted_evaluation": 1.3888888888888888,
+          "mean_score": -5.448942908731985
+        }
+      },
+      "paired_eval_minus_deploy": {
+        "benchmark": {
+          "n_blocks": 72,
+          "mean_eval_minus_deploy_score": 8.984593452716197,
+          "proportion_positive": 1.0
+        },
+        "casual": {
+          "n_blocks": 72,
+          "mean_eval_minus_deploy_score": 10.909741928935667,
+          "proportion_positive": 1.0
+        }
+      }
+    },
+    "benchmark_to_casual": {
+      "n": 144,
+      "accuracy": 0.7430555555555556,
+      "balanced_accuracy": 0.7430555555555556,
+      "purpose_auc": 0.8576388888888888,
+      "by_cell": {
+        "evaluation::casual": {
+          "n": 72,
+          "percent_predicted_evaluation": 48.61111111111111,
+          "mean_score": -1.3168676571214135
+        },
+        "deployment::casual": {
+          "n": 72,
+          "percent_predicted_evaluation": 0.0,
+          "mean_score": -8.152078091544809
+        }
+      },
+      "paired_eval_minus_deploy": {
+        "casual": {
+          "n_blocks": 72,
+          "mean_eval_minus_deploy_score": 6.835210434423394,
+          "proportion_positive": 1.0
+        }
+      }
+    },
+    "casual_to_benchmark": {
+      "n": 144,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "purpose_auc": 0.9203317901234568,
+      "by_cell": {
+        "evaluation::benchmark": {
+          "n": 72,
+          "percent_predicted_evaluation": 100.0,
+          "mean_score": 20.660586845665087
+        },
+        "deployment::benchmark": {
+          "n": 72,
+          "percent_predicted_evaluation": 100.0,
+          "mean_score": 16.683965821632
+        }
+      },
+      "paired_eval_minus_deploy": {
+        "benchmark": {
+          "n_blocks": 72,
+          "mean_eval_minus_deploy_score": 3.9766210240330886,
+          "proportion_positive": 0.9861111111111112
+        }
+      }
+    }
+  },
+  "format_probe": {
+    "n": 288,
+    "balanced_accuracy": 1.0,
+    "format_auc": 1.0
+  }
+}
