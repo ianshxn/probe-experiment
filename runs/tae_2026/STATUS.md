@@ -3,7 +3,7 @@
 HEAD: `52e2934` (last substantive sprint commit; causal access failure and claim limits recorded)
 INPUT SHA: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022` (288 items; `probe results/llama31_8b_3f9ccbe890cb7a06/meta.jsonl`)
 MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B local result (revision `6f6073b423013f6a7d4d9f39144961bfbfbc386b`); Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending user-owned job.
-- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; dependent parent-owned analysis job `51492935` waits on `51479700`; independent causal Llama-3.1-8B job `51488273` failed before baseline at gated model access.
+- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; parent-owned 3.3 extraction `51493815`, dependent analyses `51492935` (3.1-70B) / `51493916` (3.3-70B), and matched comparison `51494255` are queued. Causal `51488273` failed before baseline at gated model access.
 
 ## EQUAL-N
 
@@ -44,5 +44,8 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 ## CURRENT BEST DEFENSIBLE CLAIM
 - On the 288-item Llama-3.1-8B layer-24 development artifact, equal-N mixed-format training AUC `0.6684` exceeds benchmark-only `0.6113` and casual-only `0.6259`, while pooled training is `0.7029`; the gap is not sample-size-only on this artifact. Across raw all-layer geometry, `norm(C)/norm(A)` versus benchmark→casual AUC correlates `-0.3814`, but this is one-model trajectory evidence, not independent-N significance or causal evidence.
 
+## INPUT SERIALIZATION
+- The canonical UTF-8/LF bank is frozen at `runs/tae_2026/input/rendered_items_canonical_lf.jsonl`, SHA256 `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022`. The deployed legacy `rendered_items.jsonl` has identical parsed rows/order but CRLF serialization (`4780e19e...`); new parent-owned jobs use the canonical bank. User-owned jobs were not modified; their resulting archive must pass exact semantic and byte-level provenance checks before inclusion.
+
 ## NEXT BLOCKER
-- Next blocker: 3.1-70B extraction and a model-authorized endpoint path. The frozen 8B causal protocol is not scientifically negative; its first execution failed before baseline at model access.
+- Validate the user-owned 3.1-70B archive and wait for parent-owned 3.3/analysis jobs; causal retry remains blocked by model authorization.

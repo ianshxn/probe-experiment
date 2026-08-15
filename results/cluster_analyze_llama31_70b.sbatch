@@ -18,7 +18,7 @@ export TMPDIR=/scratch/jppatton/langea/tmp
 export PYTHONPATH=/scratch/jppatton/langea/deploy/tae_2026
 mkdir -p /scratch/jppatton/langea/logs /scratch/jppatton/langea/tmp
 PY=/bighome/jppatton/langea/runtime/vllm/bin/python
-ITEMS=/scratch/jppatton/langea/deploy/tae_2026/rendered_items.jsonl
+ITEMS=/scratch/jppatton/langea/deploy/tae_2026/rendered_items_canonical_lf.jsonl
 ARCH=/scratch/jppatton/langea/runs/tae_2026/llama31_70b/llama31_70b_20260815_rev1605565b/activations_all_layers.npz
 ROOT=/scratch/jppatton/langea/runs/tae_2026/llama31_70b_analysis/llama31_70b_20260816
 mkdir -p /scratch/jppatton/langea/runs/tae_2026/llama31_70b_analysis
