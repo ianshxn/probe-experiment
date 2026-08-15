@@ -2,14 +2,14 @@
   "schema_version": 1,
   "sprint": "tae_2026",
   "venue": "TAE (Trust-AI-Eval), NeurIPS 2026 workshop",
-  "current_commit": "9ceff263a768ed0dd0a840cf3162e456ed4499f7",
+  "current_commit": "771004f",
   "start_state": {
     "git_commit": "4e64e93729026ce39c85e13800e1a40467e4f644",
     "git_status_short": "?? RULES.md",
     "analysis_sha256": "95b87c5bbfa950198b299854d6b68e942418d8e9c20b2134d58c1c85f3369641",
     "input_item_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
     "input_item_count": 288,
-    "input_source": "probe results/llama31_8b_3f9ccbe890cb7a06/meta.jsonl"
+    "input_source": "runs/tae_2026/input/rendered_items_canonical_lf.jsonl"
   },
   "known_runs": {
     "llama31_8b": {
@@ -26,9 +26,11 @@
     },
     "llama33_70b": {
       "run_dir": "results/layer_sweep_llama33_70b.json",
+      "parent_extraction_run_dir": "runs/tae_2026/llama33_70b_parent/llama33_70b_20260816_rev6f6073b",
       "model": "meta-llama/Llama-3.3-70B-Instruct",
       "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
-      "result_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"
+      "result_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3",
+      "parent_extraction_job": "51493815"
     }
   },
   "required_replication": {
@@ -41,8 +43,12 @@
   "analysis_inputs": {
     "current_sweep_sha256": "95b87c5bbfa950198b299854d6b68e942418d8e9c20b2134d58c1c85f3369641",
     "equal_n_module_sha256": "897f69aca4942a507c90057342bc88fae33579c02cb6014ff0e3a1b8fca26122",
-    "geometry_module_sha256": "2d32f70b3ebab89fa06d98f3ccb8d126affd6382539cdb05e53c63e2c1fa0c9f",
+    "geometry_module_sha256": "8c5636fc8d646b1cc5bafd9bee6a7a0d477088341b7aa75a2afbc115a3cae5c2",
     "causal_module_sha256": "5dbd019ade5996f8109cc6d6723c72fe0fd4b06627fc0e1c332bd5a2014a2106",
+    "geometry_runner_sha256": "aac9e6acced0d98ab3cfaeea075ec98c1f42dcaaef22352156d2f58a6fa949f5",
+    "equal_n_runner_sha256": "0bff3fedb9575fda191be0f7c49766f83aaf376d99471eb173299258885d8cae",
+    "causal_runner_sha256": "cd3464a43fc3d06393ec54418cab2e6effb49d36b23c10be3bcb3e48b0218e85",
+    "matched_comparison_runner_sha256": "fb265519d03358f2cb959888a7a98bbb617ab34573e09802ab76958e2006d102",
     "llama31_8b_sweep_sha256": "b9dad459502a231f17862bb3a41372925147013044979e2c83e4ff07f6eedac1",
     "llama33_70b_sweep_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"
   },
