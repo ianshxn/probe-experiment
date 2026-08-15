@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "run_id": "causal_20260815_8b_job51488273_failed",
+  "status": "technical_failure_before_baseline",
+  "job_id": "51488273",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "protocol_hash": "d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9",
+  "failure": "Hugging Face gated-repository access returned HTTP 403 before model loading; no baseline or steering outcome was produced.",
+  "stderr_artifact": "job.err",
+  "scientific_boundary": "No causal or endpoint claim is made from this run."
+}

@@ -16,12 +16,12 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - artifact: bootstrap `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v3_bootstrap/`; source controlled geometry `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v2_controls/`.
 
 ## CAUSAL
-- status: **geometry-only protocol frozen; independent one-GPU 8B causal job submitted; baseline and transport pending**.
-- baseline endpoint: pending job `51488273`; no steering outcomes inspected yet.
+- status: **geometry-only protocol frozen; independent 8B causal job failed before baseline because HF gated access returned HTTP 403**.
+- baseline endpoint: not run; no steering outcomes inspected or produced.
 - selected layers: shared `5`, interaction `16`, selected only from all-layer geometry (eligibility pooled AUC >= 0.80).
 - protocol hash: `d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9`.
-- main effects: not measured.
-- artifact: `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; execution code `results/run_causal_transport.py`, job script `results/cluster_causal_8b_frozen.sbatch`.
+- failure artifact: `runs/tae_2026/causal/causal_20260815_8b_job51488273_failed/` (failure SHA256 `717bf442bbf2eec7ce714302ac98acd8e06796a8edb3f7772fefe51364fe855d`).
+- frozen protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; retry requires authorized exact weights and cannot be relabeled as this failed run.
 
 ## 3.1-70B
 - status: **submitted; pending cluster execution**. Exact Hub revision resolved as `1605565b47bb9346c5515c34102e054115b4f98b`; no matching cache existed before submission.
@@ -33,7 +33,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - key result: no three-model claim yet. Ledger: `runs/tae_2026/model_comparison/model_comparison_20260815_partial/`.
 
 ## HOSTILE REVIEW
-- open critical findings: target-format exposure control; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; full-depth fixed-dimensional controls; causal endpoint baseline; pending 3.1-70B extraction; legacy layer semantics guarded.
+- open critical findings: target-format exposure control; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; full-depth fixed-dimensional controls; causal endpoint baseline blocked by gated 8B access; pending 3.1-70B extraction; legacy layer semantics guarded.
 
 ## PAPER
 - pages drafted: anonymized skeleton, integrated equal-N/geometry results, section placeholders, related-work matrix, and bibliography under `paper/tae_2026_workshop/`.
@@ -45,4 +45,4 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - On the 288-item Llama-3.1-8B layer-24 development artifact, equal-N mixed-format training AUC `0.6684` exceeds benchmark-only `0.6113` and casual-only `0.6259`, while pooled training is `0.7029`; the gap is not sample-size-only on this artifact. Across raw all-layer geometry, `norm(C)/norm(A)` versus benchmark→casual AUC correlates `-0.3814`, but this is one-model trajectory evidence, not independent-N significance or causal evidence.
 
 ## NEXT BLOCKER
-- Monitor SLURM `51479700`; then run the already-frozen direct-logit endpoint baseline before any steering and complete matched 3.1-70B analyses.
+- Next blocker: 3.1-70B extraction and a model-authorized endpoint path. The frozen 8B causal protocol is not scientifically negative; its first execution failed before baseline at model access.
