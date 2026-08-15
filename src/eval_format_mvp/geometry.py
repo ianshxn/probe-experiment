@@ -5,9 +5,6 @@ from collections import defaultdict
 from typing import Any, Sequence
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import balanced_accuracy_score, roc_auc_score
-from sklearn.preprocessing import StandardScaler
 
 
 def _unit(v: np.ndarray) -> np.ndarray | None:
@@ -75,6 +72,8 @@ def factorial_components(x: np.ndarray, rows: Sequence[dict[str, Any]]) -> dict[
 
 
 def _fit_score(train_x: np.ndarray, train_y: np.ndarray, test_x: np.ndarray) -> np.ndarray:
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.preprocessing import StandardScaler
     scaler = StandardScaler()
     model = LogisticRegression(C=0.1, max_iter=3000, random_state=0)
     model.fit(scaler.fit_transform(train_x), train_y)
@@ -82,6 +81,7 @@ def _fit_score(train_x: np.ndarray, train_y: np.ndarray, test_x: np.ndarray) -> 
 
 
 def _transfer_metrics(x: np.ndarray, rows: Sequence[dict[str, Any]]) -> dict[str, Any]:
+    from sklearn.metrics import balanced_accuracy_score, roc_auc_score
     y = np.asarray([int(row["label"]) for row in rows])
     family = np.asarray([str(row["purpose_family_id"]) for row in rows])
     fmt = np.asarray([str(row["format"]) for row in rows])

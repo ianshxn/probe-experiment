@@ -7,3 +7,5 @@ Input hash required for all models: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b
 The ledger records exact revisions and source hashes for the existing Llama-3.1-8B and Llama-3.3-70B legacy sweep curves. Llama-3.1-70B is pinned to revision `1605565b47bb9346c5515c34102e054115b4f98b` and remains pending SLURM job 51479700, which is user-owned and not modified.
 
 The existing 8B/3.3-70B curves are development evidence only. They do not constitute the matched three-model comparison because the 3.1-70B archive and matched equal-N/geometry outputs are absent.
+
+Partial scalar relative-depth figures are under `runs/tae_2026/figures/model_comparison_partial/`. They intentionally omit a three-model claim and will be regenerated only after the exact 3.1-70B archive is available.
