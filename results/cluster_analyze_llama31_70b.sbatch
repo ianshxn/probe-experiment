@@ -27,11 +27,11 @@ $PY /scratch/jppatton/langea/deploy/tae_2026/run_geometry_all.py \
   --output "$ROOT/geometry/results.json" --run-id llama31_70b_geometry_20260816 \
   --model meta-llama/Llama-3.1-70B-Instruct \
   --revision 1605565b47bb9346c5515c34102e054115b4f98b \
-  --git-commit 4e64e93729026ce39c85e13800e1a40467e4f644 --controls
+  --git-commit 2037dd9 --controls
 $PY /scratch/jppatton/langea/deploy/tae_2026/run_equal_n_all.py \
   --items "$ITEMS" --activations "$ARCH" \
   --output "$ROOT/equal_n/results.json" --run-id llama31_70b_equal_n_20260816 \
   --model meta-llama/Llama-3.1-70B-Instruct \
   --revision 1605565b47bb9346c5515c34102e054115b4f98b \
-  --git-commit 4e64e93729026ce39c85e13800e1a40467e4f644
+  --git-commit 2037dd9
 $PY -c 'import json,hashlib, pathlib; root=pathlib.Path("'"$ROOT"'"); payload={"status":"analysis_complete","run_id":"llama31_70b_analysis_20260816","job_id":"'"${SLURM_JOB_ID}"'","geometry_sha256":hashlib.sha256((root/"geometry"/"results.json").read_bytes()).hexdigest(),"equal_n_sha256":hashlib.sha256((root/"equal_n"/"results.json").read_bytes()).hexdigest()}; (root/"analysis_manifest.json").write_text(json.dumps(payload,indent=2)+"\n")'
