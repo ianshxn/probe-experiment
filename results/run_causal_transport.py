@@ -12,6 +12,7 @@ from eval_format_mvp.causal import direct_candidate_scores, factorial_transport,
 from eval_format_mvp.geometry import factorial_components
 
 PROTOCOL_SEED = 2026081533
+PROTOCOL_HASH = "d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9"
 RANDOM_SEEDS = tuple(range(2026081501, 2026081533))
 LAYERS = (5, 16)
 
@@ -207,7 +208,7 @@ def main() -> None:
                 results[f"{kind}::L{layer}::{mode}"] = {"source_endpoint": kind, "layer": layer, "mode": mode, "readouts": {readout: metric(combined[readout], held_rows, readout) for readout in ids}, "folds": row_parts}
 
     args.output.parent.mkdir(parents=True, exist_ok=False)
-    args.output.joinpath("results.json").write_text(json.dumps({"schema_version": 1, "status": "causal_transport_complete", "model": args.model, "revision": args.revision, "input_sha256": sha256(args.items), "protocol_seed": PROTOCOL_SEED, "layers": list(LAYERS), "baseline": baseline, "results": results, "scientific_boundary": "held-out family residual-stream transport; direct-logit endpoint only after baseline threshold"}, indent=2) + "\n")
+    args.output.joinpath("results.json").write_text(json.dumps({"schema_version": 1, "status": "causal_transport_complete", "model": args.model, "revision": args.revision, "input_sha256": sha256(args.items), "protocol_hash": PROTOCOL_HASH, "protocol_seed": PROTOCOL_SEED, "layers": list(LAYERS), "baseline": baseline, "results": results, "scientific_boundary": "held-out family residual-stream transport; direct-logit endpoint only after baseline threshold"}, indent=2) + "\n")
 
 
 if __name__ == "__main__":
