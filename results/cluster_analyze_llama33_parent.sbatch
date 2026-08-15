@@ -26,11 +26,11 @@ $PY /scratch/jppatton/langea/deploy/tae_2026/run_geometry_all.py \
   --output "$ROOT/geometry/results.json" --run-id llama33_70b_geometry_20260816 \
   --model meta-llama/Llama-3.3-70B-Instruct \
   --revision 6f6073b423013f6a7d4d9f39144961bfbfbc386b \
-  --git-commit e5bf38b --controls
+  --git-commit 09115a7 --controls
 $PY /scratch/jppatton/langea/deploy/tae_2026/run_equal_n_all.py \
   --items "$ITEMS" --activations "$ARCH" \
   --output "$ROOT/equal_n/results.json" --run-id llama33_70b_equal_n_20260816 \
   --model meta-llama/Llama-3.3-70B-Instruct \
   --revision 6f6073b423013f6a7d4d9f39144961bfbfbc386b \
-  --git-commit e5bf38b
+  --git-commit 09115a7
 $PY -c 'import json,hashlib,pathlib; root=pathlib.Path("'"$ROOT"'"); payload={"status":"analysis_complete","run_id":"llama33_70b_parent_analysis_20260816","job_id":"'"${SLURM_JOB_ID}"'","geometry_sha256":hashlib.sha256((root/"geometry"/"results.json").read_bytes()).hexdigest(),"equal_n_sha256":hashlib.sha256((root/"equal_n"/"results.json").read_bytes()).hexdigest()}; (root/"analysis_manifest.json").parent.mkdir(parents=True,exist_ok=True); (root/"analysis_manifest.json").write_text(json.dumps(payload,indent=2)+"\n")'

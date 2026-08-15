@@ -16,4 +16,4 @@ mkdir -p /scratch/jppatton/langea/logs /scratch/jppatton/langea/tmp
 /bighome/jppatton/langea/runtime/vllm/bin/python /scratch/jppatton/langea/deploy/tae_2026/select_causal_layers.py \
   --geometry /scratch/jppatton/langea/runs/tae_2026/llama33_70b_parent_analysis/llama33_70b_20260816/geometry/results.json \
   --output /scratch/jppatton/langea/runs/tae_2026/causal/causal_20260816_33_geometry_frozen/protocol.json \
-  --run-id causal_20260816_33_geometry_frozen --git-commit e5bf38b
+  --run-id causal_20260816_33_geometry_frozen --git-commit 1369291
