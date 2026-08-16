@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "run_id": "causal_20260816_8b_bf16_natural_counterfactual_controls",
+  "status": "final_bf16_internal_natural_target_controls",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "input_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+  "source_protocol": "runs/tae_2026/causal/causal_20260816_internal_mediation_access_granted/protocol.json",
+  "intervention_layers": [5, 16],
+  "readout_layers": [16, 24, 31],
+  "target": "Natural matched purpose-counterfactual prompt activation at the same downstream layer after continued model forward.",
+  "modes": ["zero", "purpose_full", "purpose_main", "purpose_norm_matched", "purpose_wrong_c", "purpose_shuffled_c", "random_c_2026081501 through random_c_2026081532"],
+  "random_control": "32 fixed Gaussian directions orthogonalized to A, rescaled to ||C||, with the same unit-direction/training-projection-SD strength convention.",
+  "bootstrap": "Complete payload cells, payload blocks, and held-out purpose families; fixed seed 2026081604 for summary resampling.",
+  "forward": {"continued": true, "dtype": "BF16 inference; float32 stored representations", "max_length": 2048},
+  "scientific_boundary": "Internal causal mediation only; no behavioral endpoint or generation claim."
+}

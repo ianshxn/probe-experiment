@@ -116,7 +116,16 @@
     "llama33_analysis_batch_sha256": "7c603c9e60e8be8a7c68a2c6736e83844058a60249453ba4a6fbee80e9b7eb3f",
     "comparison_batch_sha256": "027528339cf5d02117f3efc86c1fedefe1b82d9461069490a0cee4eb1a8b791b",
     "llama31_8b_sweep_sha256": "b9dad459502a231f17862bb3a41372925147013044979e2c83e4ff07f6eedac1",
-    "llama33_70b_sweep_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3"
+    "llama33_70b_sweep_sha256": "5afe52c7b08d769859b406157a77fbe7fd90ea47d11b34d7556bc248cefe46f3",
+    "causal_final_bf16_job": "51575504",
+    "causal_final_bf16_results_sha256": "1f1c54293ac8d2ecf099eb81e713809376b867319d793e26db21a22540f4b58d",
+    "causal_final_bf16_protocol_sha256": "2d31886ca949660c3af856e2303a04a0f86d5a4dc1329d6265bd4943c5602d87",
+    "causal_final_bf16_report_sha256": "626785ec5b7b8dd5c0650bf6e21fbbbfc4a37d7889463927fdc1f51dceef1d07",
+    "causal_natural_controls_job": "51580007",
+    "causal_natural_controls_runner_sha256": "4933d8622e42a9649f8f18a9085ff0a165438c50f95e87def448730c1b285142",
+    "causal_natural_controls_results_sha256": "5686e9b6563044c7adb1e9492cc4b7f4ff200192986eaf81ca96b0ec527f17e1",
+    "causal_natural_controls_protocol_sha256": "888bc511531a3e3d1b259dbe8a37864c0e54045aaa20db2e019c49bd8b07b71d",
+    "causal_natural_controls_report_sha256": "0e974c869bcada33788a72b9ec5a7bbb87be1d8a2caab156eb52d5dcc224c007"
   },
   "scientific_status": "development evidence; no confirmation-grade claims yet"
 }
