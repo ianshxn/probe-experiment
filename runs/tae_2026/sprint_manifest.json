@@ -62,7 +62,7 @@
     "archive_validator_sha256": "f5bfbf1dcf2eff500344528daae3ebf8347b9ecdbcfd6fc3282184dbc7bd88b4",
     "archive_recovery_sha256": "c89dbf1a12d2ae213dca655457e5d2db2dc823177c16948567f982476c72b209",
     "archive_recovery_batch_sha256": "83a2d8f7b17a63f46cc30925c5ecc7b84b6da930bd24096e01875713aafa7e77",
-    "llama33_extraction_sha256": "eac5fc913cfe46c57053a1dd48194d3831fcbc1c9aa3d67839f83ca69c026645",
+    "llama33_extraction_sha256": "378081f5b1b3def5bead73a24c70d2a2a6f22f81b99f9b75af10b06b81a086da",
     "llama31_analysis_batch_sha256": "47fbf729eaeee938e17d106b9c747604ba28e4b10b2485c161c520d47d916fb4",
     "llama33_analysis_batch_sha256": "7c603c9e60e8be8a7c68a2c6736e83844058a60249453ba4a6fbee80e9b7eb3f",
     "comparison_batch_sha256": "027528339cf5d02117f3efc86c1fedefe1b82d9461069490a0cee4eb1a8b791b",
