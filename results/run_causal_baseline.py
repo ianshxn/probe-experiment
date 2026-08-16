@@ -44,17 +44,30 @@ def _wrapper(kind: str, mapping: dict[str, str]) -> str:
     )
 
 
+def _auc(scores: np.ndarray, target_index: np.ndarray) -> float | None:
+    if len(np.unique(target_index)) < 2:
+        return None
+    margin = np.asarray(scores[:, 0] - scores[:, 1], dtype=float)
+    positive = margin[target_index == 0]
+    negative = margin[target_index == 1]
+    comparisons = (positive[:, None] > negative[None, :]).astype(float)
+    comparisons += 0.5 * (positive[:, None] == negative[None, :])
+    return float(np.mean(comparisons))
+
+
 def _summarize(rows: list[dict[str, Any]], logits: list[np.ndarray], *, kind: str, mapping: dict[str, str], labels: list[str]) -> dict[str, Any]:
     records = []
-    for row, score in zip(rows, logits):
-        predicted = labels[int(np.argmax(score))]
+    target_index = np.asarray([labels.index(str(row["intended_purpose"] if kind == "purpose" else row["format"])) for row in rows])
+    scores = np.asarray(logits, dtype=float)
+    predicted_index = np.argmax(scores, axis=1)
+    for row, score, predicted in zip(rows, scores, predicted_index):
         target = str(row["intended_purpose"] if kind == "purpose" else row["format"])
-        records.append({"family": str(row["purpose_family_id"]), "target": target, "predicted": predicted, "correct": predicted == target, "scores": score.tolist()})
+        records.append({"family": str(row["purpose_family_id"]), "target": target, "predicted": labels[int(predicted)], "correct": labels[int(predicted)] == target, "scores": score.tolist()})
     by_family = {}
     for family in sorted({record["family"] for record in records}):
-        subset = [record for record in records if record["family"] == family]
-        by_family[family] = {"n": len(subset), "accuracy": float(np.mean([record["correct"] for record in subset]))}
-    return {"kind": kind, "mapping": mapping, "n": len(records), "accuracy": float(np.mean([record["correct"] for record in records])), "by_family": by_family, "records": records}
+        mask = np.asarray([record["family"] == family for record in records])
+        by_family[family] = {"n": int(mask.sum()), "accuracy": float(np.mean(predicted_index[mask] == target_index[mask])), "auc": _auc(scores[mask], target_index[mask])}
+    return {"kind": kind, "wrapper": f"{kind}_v1", "mapping": mapping, "n": len(records), "accuracy": float(np.mean(predicted_index == target_index)), "auc": _auc(scores, target_index), "by_family": by_family, "records": records}
 
 
 def main() -> None:

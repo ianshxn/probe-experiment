@@ -92,6 +92,17 @@ def forward_batches(model: Any, tokenizer: Any, prompts: list[str], *, candidate
     return {kind: np.concatenate(values, axis=0) for kind, values in scores.items()}, {layer: np.concatenate(values, axis=0) for layer, values in captures.items()}
 
 
+def _auc(scores: np.ndarray, target_index: np.ndarray) -> float | None:
+    if len(np.unique(target_index)) < 2:
+        return None
+    margin = np.asarray(scores[:, 0] - scores[:, 1], dtype=float)
+    positive = margin[target_index == 0]
+    negative = margin[target_index == 1]
+    comparisons = (positive[:, None] > negative[None, :]).astype(float)
+    comparisons += 0.5 * (positive[:, None] == negative[None, :])
+    return float(np.mean(comparisons))
+
+
 def metric(scores: np.ndarray, rows: list[dict[str, Any]], kind: str) -> dict[str, Any]:
     labels = [str(row["intended_purpose"] if kind == "purpose" else row["format"]) for row in rows]
     categories = ["evaluation", "deployment"] if kind == "purpose" else ["benchmark", "casual"]
@@ -101,8 +112,8 @@ def metric(scores: np.ndarray, rows: list[dict[str, Any]], kind: str) -> dict[st
     by_family = {}
     for family in sorted({str(row["purpose_family_id"]) for row in rows}):
         mask = np.asarray([str(row["purpose_family_id"]) == family for row in rows])
-        by_family[family] = {"n": int(mask.sum()), "accuracy": float(np.mean(prediction[mask] == target_index[mask])), "mean_target_margin": float(np.mean(np.where(target_index[mask] == 0, margin[mask], -margin[mask])))}
-    return {"n": len(rows), "accuracy": float(np.mean(prediction == target_index)), "mean_target_margin": float(np.mean(np.where(target_index == 0, margin, -margin))), "by_family": by_family}
+        by_family[family] = {"n": int(mask.sum()), "accuracy": float(np.mean(prediction[mask] == target_index[mask])), "auc": _auc(scores[mask], target_index[mask]), "mean_target_margin": float(np.mean(np.where(target_index[mask] == 0, margin[mask], -margin[mask])))}
+    return {"n": len(rows), "accuracy": float(np.mean(prediction == target_index)), "auc": _auc(scores, target_index), "mean_target_margin": float(np.mean(np.where(target_index == 0, margin, -margin))), "by_family": by_family}
 
 
 def build_deltas(x: np.ndarray, rows: list[dict[str, Any]], layer: int, held: str, target: str, mode: str, rng: np.random.Generator | None = None) -> tuple[np.ndarray, dict[str, Any]]:
@@ -159,11 +170,21 @@ def main() -> None:
     parser.add_argument("--model", required=True)
     parser.add_argument("--revision", required=True)
     parser.add_argument("--protocol", type=Path)
+    parser.add_argument("--baseline", type=Path, required=True, help="validated unsteered endpoint baseline artifact")
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--max-length", type=int, default=2048)
     parser.add_argument("--device-map", default="auto")
     parser.add_argument("--local-files-only", action="store_true")
     args = parser.parse_args()
+    baseline_gate = json.loads(args.baseline.read_text())
+    if baseline_gate.get("status") != "baseline_endpoint_validation":
+        raise ValueError("transport requires a completed baseline endpoint artifact")
+    if baseline_gate.get("model") != args.model or baseline_gate.get("revision") != args.revision:
+        raise ValueError("baseline model provenance does not match transport model")
+    if baseline_gate.get("input_sha256") != sha256(args.items):
+        raise ValueError("baseline input hash does not match transport input")
+    if min(float(baseline_gate[k]["accuracy"]) for k in ("purpose", "format")) < 0.55:
+        raise RuntimeError("baseline endpoint is near chance; refusing causal transport")
     layers = LAYERS
     protocol_hash = PROTOCOL_HASH
     protocol_seed = PROTOCOL_SEED
@@ -217,7 +238,8 @@ def main() -> None:
                 results[f"{kind}::L{layer}::{mode}"] = {"source_endpoint": kind, "layer": layer, "mode": mode, "readouts": {readout: metric(combined[readout], held_rows, readout) for readout in ids}, "folds": row_parts}
 
     args.output.mkdir(parents=True, exist_ok=False)
-    args.output.joinpath("results.json").write_text(json.dumps({"schema_version": 1, "status": "causal_transport_complete", "model": args.model, "revision": args.revision, "input_sha256": sha256(args.items), "protocol_hash": protocol_hash, "protocol_seed": protocol_seed, "layers": list(layers), "baseline": baseline, "results": results, "scientific_boundary": "held-out family residual-stream transport; direct-logit endpoint only after baseline threshold"}, indent=2) + "\n")
+    payload = {"schema_version": 1, "status": "causal_transport_complete", "model": args.model, "revision": args.revision, "input_sha256": sha256(args.items), "protocol_hash": protocol_hash, "protocol_seed": protocol_seed, "layers": list(layers), "baseline_gate": baseline_gate, "baseline": baseline, "results": results, "scientific_boundary": "held-out family residual-stream transport; direct-logit endpoint only after baseline threshold"}
+    args.output.joinpath("results.json").write_text(json.dumps(payload, indent=2) + "\n")
 
 
 if __name__ == "__main__":

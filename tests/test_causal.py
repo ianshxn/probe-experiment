@@ -12,6 +12,15 @@ from eval_format_mvp.causal import (  # noqa: E402
     residual_intervention,
     unit_strength,
 )
+from results.run_causal_baseline import _auc
+
+
+def test_baseline_auc_uses_candidate_margin_and_handles_ties() -> None:
+    scores = np.asarray([[3.0, 0.0], [2.0, 1.0], [0.0, 2.0], [1.0, 3.0]])
+    targets = np.asarray([0, 0, 1, 1])
+    assert _auc(scores, targets) == 1.0
+    tied = np.asarray([[1.0, 1.0], [0.0, 0.0]])
+    assert _auc(tied, np.asarray([0, 1])) == 0.5
 
 
 class _Block(torch.nn.Module):
