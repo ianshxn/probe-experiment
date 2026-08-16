@@ -19,7 +19,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - status: **independent 8B baseline attempt failed before model loading on HF authorization; frozen 8B transport was dependency-gated. Exact 3.3 causal path remains independently queued.**
 - 3.3 protocol selection: geometry-only selector `51494932` waits on 3.3 analysis; baseline `51495134` and transport `51495235` are dependency-gated. No 3.3 endpoint or steering outcome has been inspected.
 - 8B baseline job `51503230`: one H100, failed before tokenizer/model loading with HTTP 403 for the exact gated revision. Purpose/format accuracy and AUC do not exist.
-- 8B transport job `51503331`: dependency-never-satisfied after baseline failure; no steering outcomes inspected or produced.
+- 8B transport job `51503331`: canceled after baseline failure; no steering outcomes inspected or produced.
 - 8B selected layers: shared `5`, interaction `16`, selected only from all-layer geometry (eligibility pooled AUC >= 0.80).
 - 8B protocol hash: `d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9`.
 - 8B failure artifacts: prior `runs/tae_2026/causal/causal_20260815_8b_job51488273_failed/`; current `runs/tae_2026/causal/causal_20260816_8b_baseline_job51503230_failed/`.
