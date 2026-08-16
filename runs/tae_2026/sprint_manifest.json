@@ -80,6 +80,8 @@
     "causal_internal_protocol_bundle_sha256": "6003394b7f5235d432b25c5978d2a2db78b5e3f738d29707e246cda779268786",
     "causal_internal_report_sha256": "9c32b37a99c1258702699db6f10494a94d606350a2d36a30ebfda56817e4e36c",
     "matched_comparison_runner_sha256": "fb265519d03358f2cb959888a7a98bbb617ab34573e09802ab76958e2006d102",
+    "hostile_review_findings_sha256": "91fd0ef87e52bdd704480267c09aae9b56527feb05c75a8cc362045bce3accf3",
+    "hostile_review_report_sha256": "f03a14aa8cce6d4d7c361018270db8e9a194f5d2a0b934826740e1063e772eb7",
     "archive_validator_sha256": "f5bfbf1dcf2eff500344528daae3ebf8347b9ecdbcfd6fc3282184dbc7bd88b4",
     "archive_recovery_sha256": "c89dbf1a12d2ae213dca655457e5d2db2dc823177c16948567f982476c72b209",
     "archive_recovery_batch_sha256": "83a2d8f7b17a63f46cc30925c5ecc7b84b6da930bd24096e01875713aafa7e77",

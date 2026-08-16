@@ -37,7 +37,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - dependent analysis: parent-owned `51500106` consumes only the validated archive manifest; matched comparison `51500207` waits for `51500106` and exact 3.3 analysis `51493916`.
 
 ## HOSTILE REVIEW
-- open critical findings: target-format exposure control; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; full-depth fixed-dimensional controls; causal endpoint baseline blocked by gated 8B access; pending 3.1-70B extraction; legacy layer semantics guarded.
+- open critical findings: target-format exposure estimand; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; behavioral endpoint blocked after near-chance baseline; pending 3.1-70B and 3.3 parent extraction; legacy layer semantics guarded. Fixed: 8B full-depth fixed-dimensional controls and internal-mediation protocol/result boundary.
 
 ## PAPER
 - pages drafted: anonymized workshop paper with integrated equal-N/geometry results, internal mediation result, paper-local geometry/partial-model figures, related-work matrix, and bibliography under `paper/tae_2026_workshop/`.
