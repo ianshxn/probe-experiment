@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "run_id": "causal_20260816_8b_quant4_h100_exploratory_internal",
+  "status": "EXPLORATORY_QUANTIZED_INTERNAL_MEDIATION",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "input_sha256": "ebac61b7e6b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+  "source_frozen_protocol_hash": "d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9",
+  "quantization": {"library": "bitsandbytes", "name": "bitsandbytes-nf4-4bit", "bits": 4, "compute_dtype": "bfloat16", "double_quant": false},
+  "intervention_layers": [5, 16],
+  "downstream_readout_layers": [16, 24, 31],
+  "modes": ["purpose_full", "purpose_main", "plus_A", "minus_A", "plus_C", "minus_C", "zero"],
+  "fit_scope": "A/B/C and downstream directions are fit on training purpose families within each held-out-family fold, using activations from this same quantized model instance.",
+  "forward": {"continue_model_forward": true, "token_position": "last real prompt token after left padding", "layer_semantics": "zero-based transformer block output before final model norm", "max_length": 2048},
+  "scientific_boundary": "Exploratory quantized internal readout only; not BF16 evidence, not behavioral causal steering, and not a replacement for the frozen BF16 result."
+}

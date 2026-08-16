@@ -1,0 +1,2152 @@
+{
+  "schema_version": 1,
+  "status": "EXPLORATORY_QUANTIZED_INTERNAL_MEDIATION",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "input_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+  "protocol_hash": "3f5b2db1e8774b45c2111d63c25dfa2c52ee6fc2f7b2478759a7f9a8b8bb5372",
+  "source_protocol_hash": "d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9",
+  "protocol_seed": 2026081533,
+  "quantization": {
+    "name": "bitsandbytes-nf4-4bit",
+    "bits": 4,
+    "library": "bitsandbytes",
+    "config": {
+      "quant_method": "bitsandbytes",
+      "_load_in_8bit": false,
+      "_load_in_4bit": true,
+      "llm_int8_threshold": 6.0,
+      "llm_int8_skip_modules": null,
+      "llm_int8_enable_fp32_cpu_offload": false,
+      "llm_int8_has_fp16_weight": false,
+      "bnb_4bit_quant_type": "nf4",
+      "bnb_4bit_use_double_quant": false,
+      "bnb_4bit_compute_dtype": "bfloat16",
+      "bnb_4bit_quant_storage": "uint8",
+      "load_in_4bit": true,
+      "load_in_8bit": false
+    }
+  },
+  "intervention_layers": [
+    5,
+    16
+  ],
+  "downstream_readout_layers": [
+    16,
+    24,
+    31
+  ],
+  "modes": [
+    "purpose_full",
+    "purpose_main",
+    "plus_A",
+    "minus_A",
+    "plus_C",
+    "minus_C",
+    "zero"
+  ],
+  "n_results": 70,
+  "results": {
+    "purpose::intervention_L5::purpose_full::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_full",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1100611992699187
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12597753918575416
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4830290783279647
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 5,
+        "mode": "purpose_full",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L5::purpose_full::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_full",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13238319452698524
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1461667483887652
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5520709550439656
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 5,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::purpose_full::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_full",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.02730025807687591
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05758420667746002
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.23724150517725967
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 5,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::purpose_full::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_full",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04761084612655364
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07463873726785028
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.21981886295861358
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 5,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::purpose_full::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_full",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.051103902382426646
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.057497847935668034
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.3218626915251385
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 5,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::purpose_main::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_main",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10879123039041905
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12208729001333019
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4830506906899925
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 5,
+        "mode": "purpose_main",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L5::purpose_main::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_main",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13345196301695167
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1459562118238986
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5512820183143761
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 5,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::purpose_main::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_main",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029142421049199285
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.058808229640339604
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.22886592442752882
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 5,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::purpose_main::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_main",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.047020824097697
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07253592652496924
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2122830917678267
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 5,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::purpose_main::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "purpose_main",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.050717190114613474
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05750023118027287
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.3262029336302548
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 5,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_A::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_A",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10868453800154726
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12035089404599442
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.47603158170019055
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 5,
+        "mode": "plus_A",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L5::plus_A::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_A",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13414608768051986
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1460059157091839
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5519255533552493
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 5,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_A::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_A",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029796740299401492
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.059305033244455414
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.22432401856410017
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 5,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_A::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_A",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04809987253346616
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07387689994541256
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.21788455028641604
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 5,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_A::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_A",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05232197774836424
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05867371224569266
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.32429131064632316
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 5,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_A::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_A",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1083820632663704
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12196121041722119
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.482817388238594
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 5,
+        "mode": "minus_A",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L5::minus_A::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_A",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13418317117183237
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1460078580505567
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5539106484093311
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 5,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_A::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_A",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.03002571045960981
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.06012510948535166
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.231005486706666
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 5,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_A::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_A",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04865010337486307
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.0746602528579767
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.21495982837625555
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 5,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_A::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_A",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05227047923948715
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.06008041915310728
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.3264610424738003
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 5,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_C::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_C",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10749086708623362
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1218730506039194
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4805635230256913
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 5,
+        "mode": "plus_C",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L5::plus_C::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_C",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13367598139312933
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14348395041658524
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5405757333020514
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 5,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_C::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_C",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029172074941975077
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05703585613580448
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.22563523098328556
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 5,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_C::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_C",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04752344990631891
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07391834995145365
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2108159248303933
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 5,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::plus_C::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "plus_C",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.051306068874155626
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05915147918605485
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.3249233185063782
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 5,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_C::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_C",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10830971611114304
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12084299951979571
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.48056757761304025
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 5,
+        "mode": "minus_C",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L5::minus_C::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_C",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1334032432597427
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14480414641838976
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5454343796598516
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 5,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_C::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_C",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.02951040916717004
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.06220670231144711
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.23497875196073206
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 5,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_C::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_C",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04764851208071403
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07356441761318207
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.21387351745980762
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 5,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::minus_C::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "minus_C",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.051752546112474054
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05736707975589133
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.3249697181618329
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 5,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::zero::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "zero",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12188234030521239
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4735937917888342
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 5,
+        "mode": "zero",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L5::zero::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "zero",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14483277729124985
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5555240523883859
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 5,
+        "mode": "zero",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::zero::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "zero",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05750777623857539
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.23271587560431786
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 5,
+        "mode": "zero",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::zero::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "zero",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07458849501213319
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2150208963688429
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 5,
+        "mode": "zero",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L5::zero::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 5,
+      "mode": "zero",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.06132693025397743
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.32911076552723245
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 5,
+        "mode": "zero",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_full::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_full",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.06994141440424595
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.42937208781684433
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 16,
+        "mode": "purpose_full",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L16::purpose_full::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_full",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07435322719156291
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4819296703895363
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 16,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_full::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_full",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": -0.02754643267103431
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1324035192235668
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 16,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_full::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_full",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": -0.01663877374369222
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.11765559505527534
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 16,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_full::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_full",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": -0.023122876591585344
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2376886269200195
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 16,
+        "mode": "purpose_full",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_main::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_main",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07496201461634999
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4348719541134496
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 16,
+        "mode": "purpose_main",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L16::purpose_main::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_main",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.08778956086492341
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.49265338742819864
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 16,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_main::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_main",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": -0.009479607552094649
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.1558533644641972
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 16,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_main::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_main",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.0003533350587637025
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13770989660356012
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 16,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::purpose_main::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "purpose_main",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": -0.011544678465684934
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2548915961254968
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 16,
+        "mode": "purpose_main",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_A::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_A",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12250909929025755
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4783641550443687
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 16,
+        "mode": "plus_A",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L16::plus_A::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_A",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14853517719999015
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5483047603551877
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 16,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_A::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_A",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05848158050666744
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.23436058198620607
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 16,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_A::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_A",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.0754633884237043
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.21291296254879605
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 16,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_A::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_A",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05755596729731354
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.33266458782351194
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 16,
+        "mode": "plus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_A::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_A",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12129950399643219
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.47444819996040155
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 16,
+        "mode": "minus_A",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L16::minus_A::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_A",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14518674934242398
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5507283527990323
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 16,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_A::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_A",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05913021948894048
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.23512367396616035
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 16,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_A::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_A",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07445405901034098
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2108654077170409
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 16,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_A::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_A",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.060372922940827856
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.3306690027630079
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 16,
+        "mode": "minus_A",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_C::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_C",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12016232849061181
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4756730891626255
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 16,
+        "mode": "plus_C",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L16::plus_C::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_C",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14584006109151051
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5484435937603399
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 16,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_C::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_C",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.059910329100576094
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.22981481509984267
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 16,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_C::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_C",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07271781975702803
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2160546807360519
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 16,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::plus_C::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "plus_C",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.061641810358457505
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.3321485999764925
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 16,
+        "mode": "plus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_C::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_C",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12159429228112795
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.47206178774329954
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 16,
+        "mode": "minus_C",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L16::minus_C::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_C",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14520437948960258
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.55523040024396
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 16,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_C::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_C",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05643681776096659
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.23333105180982397
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 16,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_C::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_C",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07494914674579586
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.22073149371151551
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 16,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::minus_C::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "minus_C",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.0597620176206064
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.332572691209227
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 16,
+        "mode": "minus_C",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::zero::held_ff01": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "zero",
+      "held_family": "ff01",
+      "n": 64,
+      "readouts": {
+        "L16::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.10828747497964011
+        },
+        "L24::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.12188234030521239
+        },
+        "L31::purpose": {
+          "n": 64,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.4735937917888342
+        }
+      },
+      "meta": {
+        "held_family": "ff01",
+        "layer": 16,
+        "mode": "zero",
+        "n": 64
+      }
+    },
+    "purpose::intervention_L16::zero::held_ff02": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "zero",
+      "held_family": "ff02",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.13396775293214397
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.14483277729124985
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.5555240523883859
+        }
+      },
+      "meta": {
+        "held_family": "ff02",
+        "layer": 16,
+        "mode": "zero",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::zero::held_ff03": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "zero",
+      "held_family": "ff03",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.029100836757301445
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.05750777623857539
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.23271587560431786
+        }
+      },
+      "meta": {
+        "held_family": "ff03",
+        "layer": 16,
+        "mode": "zero",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::zero::held_ff04": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "zero",
+      "held_family": "ff04",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.04710066558273551
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.07458849501213319
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.2150208963688429
+        }
+      },
+      "meta": {
+        "held_family": "ff04",
+        "layer": 16,
+        "mode": "zero",
+        "n": 56
+      }
+    },
+    "purpose::intervention_L16::zero::held_ff05": {
+      "source_kind": "purpose",
+      "intervention_layer": 16,
+      "mode": "zero",
+      "held_family": "ff05",
+      "n": 56,
+      "readouts": {
+        "L16::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.052581739765441275
+        },
+        "L24::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.06132693025397743
+        },
+        "L31::purpose": {
+          "n": 56,
+          "accuracy": 0.5,
+          "mean_target_projection": 0.32911076552723245
+        }
+      },
+      "meta": {
+        "held_family": "ff05",
+        "layer": 16,
+        "mode": "zero",
+        "n": 56
+      }
+    }
+  },
+  "scientific_boundary": "Exploratory quantized internal readout only; not BF16 evidence, not behavioral causal steering, and not a replacement for the frozen result."
+}
