@@ -84,6 +84,51 @@ def plot(curves: dict[str, list[dict[str, Any]]], out_dir: Path, field: str, yla
     fig.savefig(out_dir / filename, dpi=220)
     plt.close(fig)
 
+def write_report(curves: dict[str, list[dict[str, Any]]], geometries: dict[str, dict[str, Any]], equal_ns: dict[str, dict[str, Any]], output: Path) -> None:
+    lines = [
+        "# Matched three-model geometry and equal-N comparison",
+        "",
+        "Status: complete only when all three input payloads pass the frozen model, revision, and input-hash checks.",
+        "",
+        f"Input SHA256: `{INPUT_SHA}`",
+        "",
+        "| model | revision | hidden size | layers | max pooled AUC | max benchmark-to-casual AUC | max equal-N mixed AUC |",
+        "|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for key in ("llama31_8b", "llama31_70b", "llama33_70b"):
+        model = geometries[key]["model"]
+        rows = curves[key]
+        lines.append(
+            f"| `{key}` | `{model['revision']}` | {geometries[key]['hidden_size']} | {len(rows)} | "
+            f"{max(row['pooled_auc'] for row in rows):.4f} | "
+            f"{max(row['benchmark_to_casual_auc'] for row in rows):.4f} | "
+            f"{max(row['equal_n_mixed_auc'] for row in rows):.4f} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Provenance",
+            "",
+        ]
+    )
+    for key in ("llama31_8b", "llama31_70b", "llama33_70b"):
+        geometry_inputs = geometries[key]["input_artifacts"]
+        equal_inputs = equal_ns[key].get("input_artifacts", {})
+        lines.append(
+            f"- `{key}` geometry activation SHA256 `{geometry_inputs.get('activations_sha256', 'missing')}`; "
+            f"geometry item SHA256 `{geometry_inputs.get('items_sha256', 'missing')}`; "
+            f"equal-N item SHA256 `{equal_inputs.get('items_sha256', 'missing')}`."
+        )
+    lines.extend(
+        [
+            "",
+            "The three-model scale and generation comparisons are descriptive: 3.1-8B versus 3.1-70B changes scale within a model family, while 3.1-70B versus 3.3-70B changes generation/training at the same nominal size. Neither comparison is a perfectly causal estimate.",
+            "",
+            "The analysis fits no cross-model pooled probe and treats relative depth as a plotting coordinate, not an independent statistical unit.",
+        ]
+    )
+    output.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -114,6 +159,7 @@ def main() -> None:
     plot(curves, args.figures, "equal_n_mixed_auc", "Equal-N mixed AUC", "equal_n_auc_relative_depth.png")
     plot(curves, args.figures, "norm_C_over_norm_A", "norm(C) / norm(A)", "interaction_ratio_relative_depth.png")
     plot(curves, args.figures, "delta_cosine", "Purpose-delta cosine", "delta_cosine_relative_depth.png")
+    write_report(curves, geometries, equal_ns, args.output.parent / "report.md")
 
 
 if __name__ == "__main__":
