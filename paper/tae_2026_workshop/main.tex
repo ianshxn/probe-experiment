@@ -15,7 +15,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Evaluation-purpose probes can exploit benchmark structure rather than evaluation purpose. We study this failure with an English controlled purpose $\times$ format factorial design. The paper's primary tests are an equal-training-row control, an all-layer decomposition into shared purpose ($A$), format ($B$), and purpose$\times$format interaction ($C$), and a frozen residual-stream counterfactual transport protocol on held-out purpose families. We report the strongest claim supported by these tests; current local results are development diagnostics and are not treated as confirmation-grade evidence.
+Evaluation-purpose probes can exploit benchmark structure rather than evaluation purpose. We study this failure with an English controlled purpose $\times$ format factorial design. Equal-N controls and an all-layer decomposition separate shared purpose ($A$), format ($B$), and purpose$\times$format interaction ($C$). Geometry selects a shared layer and an interaction-heavy layer before intervention. In BF16 Llama-3.1-8B, correctly signed $C$ improves continued-forward transport toward the model's natural matched purpose counterfactual at the interaction-heavy layer, but not at the shared layer; wrong-sign, norm-matched, shuffled, and fixed-random controls do not reproduce the effect. The direct behavioral endpoint fails validation, so the claim is restricted to internal mechanistic representation under controlled prompt-provided context, not behavioral steering or spontaneous evaluation awareness.
 \end{abstract}
 
 \input{sections/01_introduction}
