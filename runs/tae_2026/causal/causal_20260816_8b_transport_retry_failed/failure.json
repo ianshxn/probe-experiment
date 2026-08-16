@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "endpoint_gate_failure_before_transport",
+  "job_id": "51515710",
+  "baseline_job_id": "51515708",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "input_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+  "baseline_sha256": "d92c3f481aeafb8c0cd9defa77da4441b38ca29bfe4942309dba677f7d32b5fe",
+  "baseline": {
+    "purpose_accuracy": 0.4756944444444444,
+    "purpose_auc": 0.47470582561728397,
+    "format_accuracy": 0.5694444444444444,
+    "format_auc": 0.5988136574074074,
+    "candidate_mapping_seed": 2026081533
+  },
+  "gate": "baseline purpose or format accuracy below 0.55; refuse causal transport",
+  "scientific_boundary": "No held-out factorial transport result exists; endpoint validation was near chance for purpose and transport was not run."
+}

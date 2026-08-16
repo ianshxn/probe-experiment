@@ -16,15 +16,16 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - artifact: bootstrap `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v3_bootstrap/`; source controlled geometry `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v2_controls/`.
 
 ## CAUSAL
-- status: **8B HF access preflight now passes for the exact revision; immutable baseline retry and dependency-gated transport are submitted. No endpoint or transport outcome has been inspected yet.**
+- status: **8B baseline completed after access approval; the frozen purpose endpoint is near chance, so behavioral transport was correctly refused by the predeclared gate. Internal-mediation fallback retry is submitted; no mediation outcome has been inspected.**
 - 3.3 protocol selection: geometry-only selector `51494932` waits on 3.3 analysis; baseline `51495134` and transport `51495235` are dependency-gated. No 3.3 endpoint or steering outcome has been inspected.
 - 8B prior baseline job `51503230`: one H100, failed before tokenizer/model loading with HTTP 403. Prior transport `51503331` was canceled; neither produced a scientific outcome.
-- 8B retry baseline job `51515708`: one H100, immutable run path `causal_20260816_8b_baseline_retry`, submitted after config-access preflight passed.
-- 8B retry transport job `51515710`: dependency `afterok:51515708`, immutable output path `causal_20260816_8b_transport_retry`; no result yet.
+- 8B retry baseline job `51515708`: completed; immutable artifact `runs/tae_2026/causal/causal_20260816_8b_baseline_retry/baseline.json`, SHA256 `d92c3f481aeafb8c0cd9defa77da4441b38ca29bfe4942309dba677f7d32b5fe`.
+- 8B endpoint metrics: purpose accuracy/AUC `0.4757/0.4747`; format accuracy/AUC `0.5694/0.5988`; candidate mapping seed `2026081533`. Purpose endpoint is below the frozen `0.55` accuracy threshold.
+- 8B retry transport job `51515710`: failed at the pre-steering endpoint gate with `baseline endpoint is near chance; refusing causal transport`; no transport result exists. Failure artifact: `runs/tae_2026/causal/causal_20260816_8b_transport_retry_failed/`.
+- Internal mediation setup job `51520918` failed before loading the protocol path and produced no scientific output. Corrected retry job `51521619` is submitted with fixed intervention layers `5/16`, downstream readout layers `16/24/31`, all frozen modes and random controls; output path `causal_20260816_internal_mediation_retry`.
 - 8B selected layers: shared `5`, interaction `16`, selected only from all-layer geometry (eligibility pooled AUC >= 0.80).
 - 8B protocol hash: `d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9`.
-- 8B failure artifacts: prior `runs/tae_2026/causal/causal_20260815_8b_job51488273_failed/`; prior retry `runs/tae_2026/causal/causal_20260816_8b_baseline_job51503230_failed/`.
-- frozen 8B protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; retry uses the same frozen protocol with a separate immutable run path.
+- frozen protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; internal fallback protocol SHA256 `3f5b2db1e8774b45c2111d63c25dfa2c52ee6fc2f7b2478759a7f9a8b8bb5372`.
 
 ## 3.1-70B
 - status: **submitted; preflight with the current approved HF credential returns HTTP 403 / “request ... awaiting a review from the repo authors” for the exact gated revision. No local exact 3.1-70B cache exists; user-owned extraction job `51479700` has not executed, so its execution outcome remains unobserved.**
