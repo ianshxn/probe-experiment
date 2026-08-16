@@ -35,6 +35,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 ## MODEL COMPARISON
 - status: partial ledger complete; 8B/3.3-70B exact revisions repaired; 3.1-70B pending user-owned extraction.
 - dependent analysis: parent-owned `51500106` consumes only the validated archive manifest; matched comparison `51500207` waits for `51500106` and exact 3.3 analysis `51493916`.
+- queue evidence (current): `51479700` and `51484306` are pending with estimated start `2026-08-17T23:30:18`; parent `51493815` is pending with estimated start `2026-08-18T12:52:23`; no output directories contain archives/results yet.
 
 ## HOSTILE REVIEW
 - open critical findings: target-format exposure estimand; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; behavioral endpoint blocked after near-chance baseline; pending 3.1-70B and 3.3 parent extraction; legacy layer semantics guarded. Fixed: 8B full-depth fixed-dimensional controls and internal-mediation protocol/result boundary.
