@@ -16,16 +16,18 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - artifact: bootstrap `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v3_bootstrap/`; source controlled geometry `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v2_controls/`.
 
 ## CAUSAL
-- status: **8B baseline completed after access approval; the frozen purpose endpoint is near chance, so behavioral transport was correctly refused by the predeclared gate. Internal mediation completed at layers 5/16 with held-out-family factor-selective downstream effects; this remains an internal readout result, not behavioral steering.**
+- status: **new HF access preflight is `ACCESS_OK` for the exact 8B revision. Independent baseline job `51535654` completed on one H100; purpose endpoint remains near chance, so behavioral transport was correctly refused by the frozen gate. Independent internal-mediation fallback job `51536964` is submitted without dependencies and is pending priority.**
 - 3.3 protocol selection: geometry-only selector `51494932` waits on 3.3 analysis; baseline `51495134` and transport `51495235` are dependency-gated. No 3.3 endpoint or steering outcome has been inspected.
 - 8B prior baseline job `51503230`: one H100, failed before tokenizer/model loading with HTTP 403. Prior transport `51503331` was canceled; neither produced a scientific outcome.
 - 8B retry baseline job `51515708`: completed; immutable artifact `runs/tae_2026/causal/causal_20260816_8b_baseline_retry/baseline.json`, SHA256 `d92c3f481aeafb8c0cd9defa77da4441b38ca29bfe4942309dba677f7d32b5fe`.
 - 8B endpoint metrics: purpose accuracy/AUC `0.4757/0.4747`; format accuracy/AUC `0.5694/0.5988`; candidate mapping seed `2026081533`. Purpose endpoint is below the frozen `0.55` accuracy threshold.
-- 8B retry transport job `51515710`: failed at the pre-steering endpoint gate with `baseline endpoint is near chance; refusing causal transport`; no transport result exists. Failure artifact: `runs/tae_2026/causal/causal_20260816_8b_transport_retry_failed/`.
+- Independent granted-access baseline job `51535654` (one `H100-80GB`, no dependency) reproduced the same endpoint metrics; artifact `runs/tae_2026/causal/causal_20260816_8b_baseline_access_granted/baseline.json`, SHA256 `6d68379f35dcff9413ca9b228c800def0af19993a363627a2a4b11eb8476635d`.
+- Granted-access behavioral transport was not run after the predeclared gate failed; failure artifact `runs/tae_2026/causal/causal_20260816_8b_transport_access_granted_gate_failed/failure.json`, SHA256 `a1d2463f163b4eaac5a2a0683231932d233a7491d760013c1a9ed16d750f1294`.
 - Internal mediation setup job `51520918` failed before loading the protocol path and produced no scientific output. Corrected retry job `51521619` completed with fixed intervention layers `5/16`, downstream readout layers `16/24/31`, all frozen modes and random controls; output `runs/tae_2026/causal/causal_20260816_internal_mediation_retry/`.
 - 8B selected layers: shared `5`, interaction `16`, selected only from all-layer geometry (eligibility pooled AUC >= 0.80).
 - 8B protocol hash: `d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9`.
 - frozen protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; internal fallback protocol SHA256 `3f5b2db1e8774b45c2111d63c25dfa2c52ee6fc2f7b2478759a7f9a8b8bb5372`; completed results SHA256 `887a6d7b0d01c60d9f4fe4009ccbe2d80565b51d5d6549209d8cfd6da523a4b8`.
+- Access preflight artifact: `runs/tae_2026/causal/causal_20260816_8b_access_granted_preflight/access.json`, SHA256 `e6c911bb7366c8d78f4cf545af76d3f84a25e3405f794735809d4c9e23bc137c`; independent internal batch SHA256 `cacc377d251c35fdb5123a885c09c9c82f3fa5dc9c6ce7927b259b4cbd3e1357`.
 
 ## 3.1-70B
 - status: **submitted; preflight with the current approved HF credential returns HTTP 403 / “request ... awaiting a review from the repo authors” for the exact gated revision. No local exact 3.1-70B cache exists; user-owned extraction job `51479700` has not executed, so its execution outcome remains unobserved.**
