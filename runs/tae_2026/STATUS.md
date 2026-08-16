@@ -1,9 +1,9 @@
 # TAE 2026 Sprint Status
 
-HEAD: `e3b16d9` (causal runner output fix and provenance)
+HEAD: `a730789` (exact archive provenance gates and queued recovery)
 INPUT SHA: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022` (288 items; canonical `runs/tae_2026/input/rendered_items_canonical_lf.jsonl`)
-MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B legacy result (revision `6f6073b423013f6a7d4d9f39144961bfbfbc386b`) plus exact parent extraction job `51493815`; Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending user-owned job.
-- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; parent-owned extraction/analysis/comparison jobs `51493815`, `51492935`, `51493916`, `51494255`; parent-owned causal 3.3 selector/baseline/transport jobs `51494932`, `51495134`, `51495235`; causal 8B `51488273` failed before baseline at gated model access.
+MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B exact parent extraction job `51493815` (legacy result retained only as development evidence); Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending user-owned job.
+- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; parent-owned 3.1 validation/recovery `51499182`, 3.1 analysis `51499221`, matched comparison `51499222`, 3.3 extraction/analysis `51493815`/`51493916`; parent-owned causal 3.3 selector/baseline/transport jobs `51494932`, `51495134`, `51495235`; causal 8B `51488273` failed before baseline at gated model access.
 
 ## EQUAL-N
 
@@ -25,13 +25,13 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - frozen 8B protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; 3.3 results will be a separate immutable run.
 
 ## 3.1-70B
-- status: **submitted; pending cluster execution**. Exact Hub revision resolved as `1605565b47bb9346c5515c34102e054115b4f98b`; no matching cache existed before submission.
-- job: SLURM `51479700`, `tae31_70b`, `gpu`/`gpu` QoS, `4xh100-80`, pending priority. Job script and runner are `results/cluster_extract_tae.py` and `results/cluster_extract_tae.sbatch`; remote copies live only under approved `/scratch/jppatton/langea/...` paths.
-- artifact: pending immutable `runs/tae_2026/llama31_70b/llama31_70b_20260815_rev1605565b/`; exact input hash and BF16/all-layer/pre-final-norm config are frozen.
+- status: **submitted; provenance-gated validation/recovery queued after the user-owned extraction**. Exact Hub revision resolved as `1605565b47bb9346c5515c34102e054115b4f98b`; the user-owned job still has not executed.
+- jobs: user-owned extraction `51479700`; parent-owned validator/recovery `51499182`; parent-owned analysis `51499221`; all remain dependency-gated. The validator rejects noncanonical input bytes and, if needed, extracts a new immutable archive from the canonical bank without modifying the user-owned run.
+- artifacts: user-owned archive target `runs/tae_2026/llama31_70b/llama31_70b_20260815_rev1605565b/`; canonical retry target `runs/tae_2026/llama31_70b_canonical/llama31_70b_20260816_rev1605565b/`; validation manifest target `runs/tae_2026/llama31_70b_validation/llama31_70b_validation_20260816/archive_manifest.json`.
 
 ## MODEL COMPARISON
 - status: partial ledger complete; 8B/3.3-70B exact revisions repaired; 3.1-70B pending user-owned extraction.
-- dependent analysis: parent-owned SLURM `51492935` will run fixed-dimensional geometry and all-layer equal-N analysis after `51479700`; it does not modify the user-owned extraction job.
+- dependent analysis: parent-owned `51499221` consumes only the validated archive manifest; matched comparison `51499222` waits for `51499221` and exact 3.3 analysis `51493916`.
 
 ## HOSTILE REVIEW
 - open critical findings: target-format exposure control; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; full-depth fixed-dimensional controls; causal endpoint baseline blocked by gated 8B access; pending 3.1-70B extraction; legacy layer semantics guarded.
@@ -49,4 +49,4 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - The canonical UTF-8/LF bank is frozen at `runs/tae_2026/input/rendered_items_canonical_lf.jsonl`, SHA256 `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022`. The deployed legacy `rendered_items.jsonl` has identical parsed rows/order but CRLF serialization (`4780e19e...`); new parent-owned jobs use the canonical bank. User-owned jobs were not modified; their resulting archive must pass exact semantic and byte-level provenance checks before inclusion.
 
 ## NEXT BLOCKER
-- Validate the user-owned 3.1-70B archive and await parent-owned 3.3 analyses; the 8B causal retry remains blocked by model authorization, while the exact cached 3.3 causal path is active.
+- Validate the user-owned 3.1-70B archive or complete the canonical retry, then await parent-owned 3.3 analyses; the 8B causal retry remains blocked by model authorization, while the exact cached 3.3 causal path is active.
