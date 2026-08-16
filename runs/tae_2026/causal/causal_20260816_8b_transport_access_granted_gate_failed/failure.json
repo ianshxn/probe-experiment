@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "endpoint_gate_failure_before_behavioral_transport",
+  "baseline_run_id": "causal_20260816_8b_baseline_access_granted",
+  "baseline_sha256": "6d68379f35dcff9413ca9b228c800def0af19993a363627a2a4b11eb8476635d",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "input_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+  "threshold": 0.55,
+  "purpose_accuracy": 0.4756944444444444,
+  "purpose_auc": 0.47470582561728397,
+  "format_accuracy": 0.5694444444444444,
+  "format_auc": 0.5988136574074074,
+  "scientific_boundary": "Behavioral residual-stream transport was not run and no held-out activation was modified because the predeclared purpose endpoint gate failed. Independent internal mediation fallback is submitted separately."
+}
