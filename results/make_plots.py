@@ -69,10 +69,10 @@ for ax,p,name,col in ((axes[0],p8,"Llama-3.1-8B  ·  layer 8",S8B),(axes[1],p70,
     ax.set_title(name,color=INK,loc="left",fontsize=11,fontweight="bold",pad=10)
     ax.set_ylim(0,110); axchrome(ax,"",""); ax.grid(axis="x",visible=False)
 axes[0].set_ylabel("% of prompts called “evaluation”")
-header(fig,"The confounded probe answers by format, not purpose",
-       "Gray splits by column (quiz vs casual).   Colored splits by row (eval vs deploy) — the intended behaviour.",
-       [Line2D([],[],color=MUTED,lw=9,label="confounded training"),
-        Line2D([],[],color=INK2,lw=9,alpha=.35,label="decorrelated training")],2)
+header(fig,"The confounded probe answers by format, not purpose","",
+       [Line2D([],[],color=MUTED,lw=9,label="confounded training (only eval-quiz + deploy-casual)"),
+        Line2D([],[],color=S8B,lw=9,label="decorrelated training, Llama-3.1-8B (all four cells)"),
+        Line2D([],[],color=S70,lw=9,label="decorrelated training, Llama-3.3-70B (all four cells)")],1)
 fig.tight_layout(rect=[0,0,1,0.86]); fig.savefig(f"{OUT}/02_confound_signature.png",dpi=200); plt.close(fig)
 
 # --- 3 ---
@@ -86,8 +86,7 @@ for ax,reg,title in ((axes[0],"b2c","trained on quiz  →  tested on casual"),
     ax.set_title(title,color=INK,loc="left",fontsize=11,fontweight="bold",pad=10)
     axchrome(ax,"relative depth (%)",""); ax.set_ylim(0.42,1.0)
 axes[0].set_ylabel("purpose AUC on the unseen format")
-header(fig,"Transfer to an unseen prompt format improves with scale",
-       "A probe trained on one prompt style, evaluated on the other. Held-out purpose families throughout.",
+header(fig,"Transfer to an unseen prompt format improves with scale","",
        [Line2D([],[],color=S8B,lw=2,label="Llama-3.1-8B"),Line2D([],[],color=S70,lw=2,label="Llama-3.3-70B")],2)
 fig.tight_layout(rect=[0,0,1,0.86]); fig.savefig(f"{OUT}/03_transfer_by_depth.png",dpi=200); plt.close(fig)
 
