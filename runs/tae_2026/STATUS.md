@@ -43,7 +43,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - pages drafted: anonymized workshop paper with integrated equal-N/geometry results, internal mediation result, paper-local geometry/partial-model figures, related-work matrix, and bibliography under `paper/tae_2026_workshop/`.
 - missing evidence: matched three-model results; behavioral causal transport remains intentionally unavailable because the direct endpoint gate failed.
 - figures: geometry full-depth curves and partial 8B/3.3-70B ledger figures embedded; causal internal mediation and matched three-model figures remain unavailable as standalone figures.
-- compile check: official January 2026 `neurips_2026.sty` is vendored from the public NeurIPS 2026 style source; `pdflatex`/`bibtex`/`pdflatex`/`pdflatex` completed successfully (5 pages, no unresolved citations on final pass).
+- compile check: official January 2026 `neurips_2026.sty` is vendored from the public NeurIPS 2026 style source; `pdflatex`/`bibtex`/`pdflatex`/`pdflatex` completed successfully (6 pages, no unresolved citations on final pass).
 
 ## CURRENT BEST DEFENSIBLE CLAIM
 - On the 288-item Llama-3.1-8B layer-24 development artifact, equal-N mixed-format training AUC `0.6684` exceeds benchmark-only `0.6113` and casual-only `0.6259`, while pooled training is `0.7029`; the gap is not sample-size-only on this artifact. Across raw all-layer geometry, `norm(C)/norm(A)` versus benchmark→casual AUC correlates `-0.3814`, but this is one-model trajectory evidence, not independent-N significance or causal evidence.
