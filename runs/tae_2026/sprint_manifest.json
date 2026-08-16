@@ -61,6 +61,7 @@
     "matched_comparison_runner_sha256": "fb265519d03358f2cb959888a7a98bbb617ab34573e09802ab76958e2006d102",
     "archive_validator_sha256": "f5bfbf1dcf2eff500344528daae3ebf8347b9ecdbcfd6fc3282184dbc7bd88b4",
     "archive_recovery_sha256": "c89dbf1a12d2ae213dca655457e5d2db2dc823177c16948567f982476c72b209",
+    "archive_recovery_batch_sha256": "83a2d8f7b17a63f46cc30925c5ecc7b84b6da930bd24096e01875713aafa7e77",
     "llama33_extraction_sha256": "d2d13262d76354a40ad55a467b00b6a7a8c547d1f0df93d3c8fea3c500c2a6ac",
     "llama31_analysis_batch_sha256": "5581e365256f87dec5624a99d3523c2b3c14df56631d00a1c067187ed1274275",
     "llama33_analysis_batch_sha256": "7c603c9e60e8be8a7c68a2c6736e83844058a60249453ba4a6fbee80e9b7eb3f",

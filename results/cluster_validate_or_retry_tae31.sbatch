@@ -4,6 +4,8 @@
 #SBATCH --qos=gpu
 #SBATCH --account=sdibbo_grp
 #SBATCH --gres=gpu:h100-80:4
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=400G
 #SBATCH --time=3-00:00:00
 #SBATCH --dependency=afterok:51479700
 #SBATCH --output=/scratch/jppatton/langea/logs/tae31-validate-%j.out
