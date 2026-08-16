@@ -26,7 +26,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - frozen 8B protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; 3.3 results will be a separate immutable run.
 
 ## 3.1-70B
-- status: **submitted; provenance-gated validation/recovery queued after the user-owned extraction**. Exact Hub revision resolved as `1605565b47bb9346c5515c34102e054115b4f98b`; the user-owned job still has not executed.
+- status: **submitted; preflight with the current approved HF credential returns HTTP 403 / “request ... awaiting a review from the repo authors” for the exact gated revision. No local exact 3.1-70B cache exists; user-owned extraction job `51479700` has not executed, so its execution outcome remains unobserved.**
 - jobs: user-owned extraction `51479700`; parent-owned validator/recovery `51499967`; parent-owned analysis `51500106`; all remain dependency-gated. The validator rejects noncanonical input bytes and, if needed, extracts a new immutable archive from the canonical bank without modifying the user-owned run.
 - artifacts: user-owned archive target `runs/tae_2026/llama31_70b/llama31_70b_20260815_rev1605565b/`; canonical retry target `runs/tae_2026/llama31_70b_canonical/llama31_70b_20260816_rev1605565b/`; validation manifest target `runs/tae_2026/llama31_70b_validation/llama31_70b_validation_20260816/archive_manifest.json`.
 

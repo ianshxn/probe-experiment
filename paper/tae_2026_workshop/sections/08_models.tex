@@ -1,7 +1,7 @@
 \section{Depth, Scale, and Generation Comparison}
 We compare Llama-3.1-8B-Instruct, Llama-3.1-70B-Instruct, and Llama-3.3-70B-Instruct on the exact rendered item order and hash, with BF16 inference, float32 stored activations, final prompt token, zero-based block output before final norm, identical family splits, and identical analysis code. The 3.1-8B/3.1-70B comparison is a within-family scale comparison; the 3.1-70B/3.3-70B comparison is a same-size generation/training comparison. Neither comparison is perfectly causal.
 
-The current matched ledger records complete 8B and 3.3-70B legacy curves with exact revisions. The 3.1-70B archive is pending user-owned job `51479700`; jobs `51479700` and `51484306` are not modified by this sprint. No three-model claim is made until the 3.1-70B archive passes exact input-hash and layer-semantics checks.
+The current matched ledger records complete 8B and 3.3-70B legacy curves with exact revisions. The exact Llama-3.1-70B revision is not available to the current approved HF credential: a preflight returns HTTP 403 while the request is awaiting repo-author review, and no local exact cache exists. User-owned extraction job `51479700` has not executed; no three-model claim is made until an archive passes exact input-hash and layer-semantics checks.
 
 \begin{figure}[t]
 \centering
