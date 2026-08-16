@@ -16,7 +16,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - artifact: bootstrap `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v3_bootstrap/`; source controlled geometry `runs/tae_2026/geometry/geometry_20260815_8b_all_layers_v2_controls/`.
 
 ## CAUSAL
-- status: **new HF access preflight is `ACCESS_OK` for the exact 8B revision. Independent baseline job `51535654` completed on one H100; purpose endpoint remains near chance, so behavioral transport was correctly refused by the frozen gate. Independent internal-mediation fallback job `51536964` is submitted without dependencies and is pending priority.**
+- status: **new HF access preflight is `ACCESS_OK` for the exact 8B revision. Independent baseline job `51535654` completed on one H100; purpose endpoint remains near chance, so behavioral transport was correctly refused by the frozen gate. Independent internal-mediation fallback job `51536964` completed without dependencies and reproduced the prior internal result.**
 - 3.3 protocol selection: geometry-only selector `51494932` waits on 3.3 analysis; baseline `51495134` and transport `51495235` are dependency-gated. No 3.3 endpoint or steering outcome has been inspected.
 - 8B prior baseline job `51503230`: one H100, failed before tokenizer/model loading with HTTP 403. Prior transport `51503331` was canceled; neither produced a scientific outcome.
 - 8B retry baseline job `51515708`: completed; immutable artifact `runs/tae_2026/causal/causal_20260816_8b_baseline_retry/baseline.json`, SHA256 `d92c3f481aeafb8c0cd9defa77da4441b38ca29bfe4942309dba677f7d32b5fe`.
@@ -28,6 +28,7 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 - 8B protocol hash: `d651da40a535526d382936a42428aa5ce0e816d1ff20cba8b79f55dadec140c9`.
 - frozen protocol artifact remains `runs/tae_2026/causal/causal_20260815_geometry_frozen/`; internal fallback protocol SHA256 `3f5b2db1e8774b45c2111d63c25dfa2c52ee6fc2f7b2478759a7f9a8b8bb5372`; completed results SHA256 `887a6d7b0d01c60d9f4fe4009ccbe2d80565b51d5d6549209d8cfd6da523a4b8`.
 - Access preflight artifact: `runs/tae_2026/causal/causal_20260816_8b_access_granted_preflight/access.json`, SHA256 `e6c911bb7366c8d78f4cf545af76d3f84a25e3405f794735809d4c9e23bc137c`; independent internal batch SHA256 `cacc377d251c35fdb5123a885c09c9c82f3fa5dc9c6ce7927b259b4cbd3e1357`.
+- Independent internal bundle: `runs/tae_2026/causal/causal_20260816_internal_mediation_access_granted/`; protocol SHA256 `5937f98ff37aa765370186fdb1f09041a824d41070ae2b3eca8b64e833948299`; results SHA256 `887a6d7b0d01c60d9f4fe4009ccbe2d80565b51d5d6549209d8cfd6da523a4b8`; report SHA256 `037fd409386a4c413342ff6b3394bf49dfc22e5fea8be1bfdd8a8c802c7ef2d7`. The full factorial purpose transport at L16 was `-0.0796` versus `-0.0667` for A-only; off-target format movement was `+0.0005`.
 
 ## 3.1-70B
 - status: **submitted; preflight with the current approved HF credential returns HTTP 403 / “request ... awaiting a review from the repo authors” for the exact gated revision. No local exact 3.1-70B cache exists; user-owned extraction job `51479700` has not executed, so its execution outcome remains unobserved.**
