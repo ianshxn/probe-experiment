@@ -1,0 +1,391 @@
+{
+  "definition": "benefit = distance(A-only,target)-distance(intervention,target)",
+  "rows": [
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": 0.0009035000370608435,
+      "median_C_increment": 0.0010074973106384277
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": 0.0012859909070862664,
+      "median_C_increment": 0.001439511775970459
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": -0.0019398008783658345,
+      "median_C_increment": -0.006367146968841553
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": -0.0020175203680992126,
+      "median_C_increment": -0.00164109468460083
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": 0.0043425485491752625,
+      "median_C_increment": 0.004614502191543579
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": -0.009797195179594887,
+      "median_C_increment": -0.009248793125152588
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": 0.009921121928426955,
+      "median_C_increment": 0.011291325092315674
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "n_cells": 144,
+      "mean_C_increment": -0.012247968879010942,
+      "median_C_increment": -0.011824488639831543
+    }
+  ],
+  "family_rows": [
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": -0.0024531763046979904
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": -0.0002822322504861014
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": 0.0031895488500595093
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": 0.004273144262177604
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": 0.0002697408199310303
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": 0.002319779247045517
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": 0.004883621420179095
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": -0.00217109067099435
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": -0.0005397732768739973
+    },
+    {
+      "layer": 5,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": 0.0017897337675094604
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": 0.0007435232400894165
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": -0.0011535627501351492
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": 0.0032433526856558664
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": -0.0069956864629473
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": -0.005919963121414185
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": -0.008892673999071121
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": 0.012534767389297485
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": -0.008577070065907069
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": -0.0019306199891226633
+    },
+    {
+      "layer": 5,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": -0.0022398403712681363
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": -0.0018252506852149963
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": 0.004922771028109959
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": 0.00092286935874394
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": 0.009222773568970817
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "correct_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": 0.009350693651608058
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": 0.005101995542645454
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": -0.013383954763412476
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": -0.010356858372688293
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": -0.021126659853117808
+    },
+    {
+      "layer": 16,
+      "format": "benchmark",
+      "condition": "wrong_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": -0.011348954268864222
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": 0.020876266062259674
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": 0.022137471607753208
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": -0.007072934082576207
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": 0.006710367543356759
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "correct_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": 0.005389417920793805
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff01",
+      "n_cells": 32,
+      "mean_C_increment": -0.019619159400463104
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff02",
+      "n_cells": 28,
+      "mean_C_increment": -0.021974508251462663
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff03",
+      "n_cells": 28,
+      "mean_C_increment": -0.0007149406841823033
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff04",
+      "n_cells": 28,
+      "mean_C_increment": -0.008651929242270333
+    },
+    {
+      "layer": 16,
+      "format": "casual",
+      "condition": "wrong_sign_C",
+      "family_id": "ff05",
+      "n_cells": 28,
+      "mean_C_increment": -0.009226279599325997
+    }
+  ]
+}

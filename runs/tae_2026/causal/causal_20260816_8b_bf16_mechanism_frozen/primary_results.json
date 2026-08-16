@@ -1,0 +1,118 @@
+{
+  "endpoint": "natural matched purpose-counterfactual target at downstream L24",
+  "source_artifact": "X:\\code\\probe-experiment\\runs\\tae_2026\\causal\\causal_20260816_8b_bf16_natural_counterfactual_controls\\results.json",
+  "family_table": [
+    {
+      "family_id": "ff01",
+      "n_payloads": 16,
+      "n_cells": 64,
+      "L5_C_benefit": -0.000854826532304287,
+      "L16_C_benefit": 0.009525507688522339,
+      "L16_minus_L5": 0.010380334220826626
+    },
+    {
+      "family_id": "ff02",
+      "n_payloads": 14,
+      "n_cells": 56,
+      "L5_C_benefit": -0.0007178975003106254,
+      "L16_C_benefit": 0.013530121317931585,
+      "L16_minus_L5": 0.01424801881824221
+    },
+    {
+      "family_id": "ff03",
+      "n_payloads": 14,
+      "n_cells": 56,
+      "L5_C_benefit": 0.0032164507678576876,
+      "L16_C_benefit": -0.0030750323619161335,
+      "L16_minus_L5": -0.0062914831297738215
+    },
+    {
+      "family_id": "ff04",
+      "n_payloads": 14,
+      "n_cells": 56,
+      "L5_C_benefit": -0.0013612711003848485,
+      "L16_C_benefit": 0.007966570556163788,
+      "L16_minus_L5": 0.009327841656548637
+    },
+    {
+      "family_id": "ff05",
+      "n_payloads": 14,
+      "n_cells": 56,
+      "L5_C_benefit": -0.002825111150741577,
+      "L16_C_benefit": 0.007370055786200932,
+      "L16_minus_L5": 0.01019516693694251
+    }
+  ],
+  "overall": {
+    "n_cells": 288,
+    "n_payload_blocks": 72,
+    "L5_C_benefit": -0.0005181504206524955,
+    "L16_C_benefit": 0.007131835238801109,
+    "L16_minus_L5": 0.007649985659453604
+  },
+  "sign_consistency": {
+    "n_families": 5,
+    "positive_families": 4,
+    "fraction_positive": 0.8,
+    "exact_two_sided_sign_test_p": 0.375,
+    "sign_flip_one_sided_p": 0.09090909090909091,
+    "sign_flip_observed_sum": 0.03785987850278616,
+    "sign_flip_null_count": 32
+  },
+  "leave_one_family_out": [
+    {
+      "removed_family": "ff01",
+      "remaining_families": [
+        "ff02",
+        "ff03",
+        "ff04",
+        "ff05"
+      ],
+      "contrast": 0.006869886070489883
+    },
+    {
+      "removed_family": "ff02",
+      "remaining_families": [
+        "ff01",
+        "ff03",
+        "ff04",
+        "ff05"
+      ],
+      "contrast": 0.006057356965952906
+    },
+    {
+      "removed_family": "ff03",
+      "remaining_families": [
+        "ff01",
+        "ff02",
+        "ff04",
+        "ff05"
+      ],
+      "contrast": 0.011015167780991259
+    },
+    {
+      "removed_family": "ff04",
+      "remaining_families": [
+        "ff01",
+        "ff02",
+        "ff03",
+        "ff05"
+      ],
+      "contrast": 0.007244985936016872
+    },
+    {
+      "removed_family": "ff05",
+      "remaining_families": [
+        "ff01",
+        "ff02",
+        "ff03",
+        "ff04"
+      ],
+      "contrast": 0.007035631557990764
+    }
+  ],
+  "leave_one_family_out_range": [
+    0.006057356965952906,
+    0.011015167780991259
+  ]
+}

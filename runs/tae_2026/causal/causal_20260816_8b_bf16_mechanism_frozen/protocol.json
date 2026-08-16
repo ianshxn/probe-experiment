@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "bundle_id": "causal_20260816_8b_bf16_mechanism_frozen",
+  "executed_protocol": "runs\\tae_2026\\causal\\causal_20260816_internal_mediation_protocol\\protocol.json",
+  "wrapper_protocol": "runs\\tae_2026\\causal\\causal_20260816_8b_bf16_natural_counterfactual_controls\\protocol.json",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "input_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+  "layers": {
+    "shared": 5,
+    "interaction_heavy": 16,
+    "readout": 24
+  },
+  "estimand": "C benefit = distance(A-only,target)-distance(full A+fC,target)",
+  "target": "natural matched purpose-counterfactual representation at L24 after continued forward",
+  "controls": [
+    "wrong-sign C",
+    "norm-matched A-only",
+    "coordinate-shuffled C",
+    "32 fixed random orthogonal-C directions",
+    "zero"
+  ],
+  "direct_endpoint": "failed predeclared purpose gate; excluded from causal claim",
+  "protocol_gate_note": "The historical batch executed the generic protocol; the wrapper protocol and runner hash bind the natural-target/control declarations used for this consolidation.",
+  "scientific_boundary": "Internal causal counterfactual transport/mediation under controlled prompt-provided purpose\u00d7format context; not behavioral steering."
+}

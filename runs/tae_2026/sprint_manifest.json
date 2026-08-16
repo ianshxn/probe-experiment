@@ -2,7 +2,7 @@
   "schema_version": 1,
   "sprint": "tae_2026",
   "venue": "TAE (Trust-AI-Eval), NeurIPS 2026 workshop",
-  "current_commit": "be8c5d6",
+  "current_commit": "1b73654",
   "start_state": {
     "git_commit": "4e64e93729026ce39c85e13800e1a40467e4f644",
     "git_status_short": "?? RULES.md",
@@ -125,7 +125,18 @@
     "causal_natural_controls_runner_sha256": "4933d8622e42a9649f8f18a9085ff0a165438c50f95e87def448730c1b285142",
     "causal_natural_controls_results_sha256": "5686e9b6563044c7adb1e9492cc4b7f4ff200192986eaf81ca96b0ec527f17e1",
     "causal_natural_controls_protocol_sha256": "888bc511531a3e3d1b259dbe8a37864c0e54045aaa20db2e019c49bd8b07b71d",
-    "causal_natural_controls_report_sha256": "0e974c869bcada33788a72b9ec5a7bbb87be1d8a2caab156eb52d5dcc224c007"
+    "causal_natural_controls_report_sha256": "0e974c869bcada33788a72b9ec5a7bbb87be1d8a2caab156eb52d5dcc224c007",
+    "causal_frozen_bundle_commit": "1b73654",
+    "causal_frozen_bundle_primary_sha256": "e3588d2dcff28d62ccb4892dbb1e72d1295f4a93cb9ed5840a619d998ae34b82",
+    "causal_frozen_bundle_family_sha256": "e932c773be2494eaceae71c2cb5cac27c5677197b3750208d0e418411da7bf51",
+    "causal_frozen_bundle_effect_sizes_sha256": "8345f253a087e5c1f09842973ce10e0b60bfddc76fe5198291b430c3610d1361",
+    "causal_frozen_bundle_wrong_sign_sha256": "757d8e95d81d2c1270f634d2a472c0166e63edee354fe74ed44efbc36646c402",
+    "causal_frozen_bundle_selectivity_sha256": "a6809f13ecab9f47167daf447216075e4abb81a879c0e5544031548905f78cec",
+    "causal_frozen_bundle_random_sha256": "2782b4d31b8e4d2795634e531809cb815920d2b6d6e6d1da2ccfc606e64a02fe",
+    "causal_frozen_bundle_protocol_sha256": "3bdb0bc0dcc7ed1e0311e3b02f4cc94e3f736542ab69403729c4fbc7a6f7f622",
+    "causal_frozen_bundle_provenance_sha256": "b06dfc403c40e5e9d7073ac242a6d704e615445c05d8f73368e6ecf10e8c61b7",
+    "causal_frozen_bundle_report_sha256": "5c0a4bb73a94766497b63dc5a73f81a6d982c5bc3505d1ad599e94b5295b6fc5",
+    "hostile_mechanism_review_sha256": "fa0f20de3f3ac7428c1b3a6f0f19dcf03217eca28a92ea36d40ed499db0ee6cb"
   },
   "scientific_status": "development evidence; no confirmation-grade claims yet"
 }
