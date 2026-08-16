@@ -21,6 +21,12 @@ PY=/bighome/jppatton/langea/runtime/vllm/bin/python
 ITEMS=/scratch/jppatton/langea/deploy/tae_2026/rendered_items_canonical_lf.jsonl
 ARCH=/scratch/jppatton/langea/runs/tae_2026/llama33_70b_parent/llama33_70b_20260816_rev6f6073b/activations_all_layers.npz
 ROOT=/scratch/jppatton/langea/runs/tae_2026/llama33_70b_parent_analysis/llama33_70b_20260816
+$PY /scratch/jppatton/langea/deploy/tae_2026/validate_activation_archive.py \
+  --items "$ITEMS" \
+  --activations "${ARCH%_all_layers.npz}.npz" \
+  --model meta-llama/Llama-3.3-70B-Instruct \
+  --revision 6f6073b423013f6a7d4d9f39144961bfbfbc386b \
+  --output "$ROOT/archive_validation.json"
 $PY /scratch/jppatton/langea/deploy/tae_2026/run_geometry_all.py \
   --items "$ITEMS" --activations "$ARCH" \
   --output "$ROOT/geometry/results.json" --run-id llama33_70b_geometry_20260816 \

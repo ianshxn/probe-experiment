@@ -9,6 +9,7 @@ ROOT = Path("/scratch/jppatton/langea/deploy/tae_2026")
 ITEMS = ROOT / "rendered_items_canonical_lf.jsonl"
 MODEL = "meta-llama/Llama-3.3-70B-Instruct"
 REVISION = "6f6073b423013f6a7d4d9f39144961bfbfbc386b"
+OUT = Path("/scratch/jppatton/langea/runs/tae_2026/llama33_70b_parent/llama33_70b_20260816_rev6f6073b")
 
 config = extract_activations(
     items_path=ITEMS,
