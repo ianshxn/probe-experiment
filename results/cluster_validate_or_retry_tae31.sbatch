@@ -7,7 +7,7 @@
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=400G
 #SBATCH --time=3-00:00:00
-#SBATCH --dependency=afterok:51479700
+#SBATCH --dependency=afterany:51479700
 #SBATCH --output=/scratch/jppatton/langea/logs/tae31-validate-%j.out
 #SBATCH --error=/scratch/jppatton/langea/logs/tae31-validate-%j.err
 set -euo pipefail

@@ -32,13 +32,13 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 
 ## 3.1-70B
 - status: **submitted; preflight with the current approved HF credential returns HTTP 403 / “request ... awaiting a review from the repo authors” for the exact gated revision. No local exact 3.1-70B cache exists; user-owned extraction job `51479700` has not executed, so its execution outcome remains unobserved.**
-- jobs: user-owned extraction `51479700`; parent-owned validator/recovery `51499967`; parent-owned analysis `51500106`; all remain dependency-gated. The validator rejects noncanonical input bytes and, if needed, extracts a new immutable archive from the canonical bank without modifying the user-owned run.
+- jobs: user-owned extraction `51479700`; parent-owned validator/recovery `51499967` is now explicitly `afterany:51479700`, so a failed gated-model extraction still triggers the parent-owned canonical retry; parent-owned analysis `51500106`; all remain dependency-gated. The validator rejects noncanonical input bytes and, if needed, extracts a new immutable archive from the canonical bank without modifying the user-owned run.
 - artifacts: user-owned archive target `runs/tae_2026/llama31_70b/llama31_70b_20260815_rev1605565b/`; canonical retry target `runs/tae_2026/llama31_70b_canonical/llama31_70b_20260816_rev1605565b/`; validation manifest target `runs/tae_2026/llama31_70b_validation/llama31_70b_validation_20260816/archive_manifest.json`.
 
 ## MODEL COMPARISON
 - status: partial ledger complete; 8B/3.3-70B exact revisions repaired; 3.1-70B pending user-owned extraction.
 - dependent analysis: parent-owned `51500106` consumes only the validated archive manifest; matched comparison `51500207` waits for `51500106` and exact 3.3 analysis `51493916`.
-- queue evidence (current): `51479700` and `51484306` are pending with estimated start `2026-08-17T23:30:18`; parent `51493815` is pending with estimated start `2026-08-18T12:52:23`; no output directories contain archives/results yet.
+- queue evidence (current): `51479700` and `51484306` are pending with estimated start `2026-08-17T23:30:18`; parent `51493815` is pending with estimated start `2026-08-18T12:52:23`; `51499967` is pending on `afterany:51479700`; no output directories contain archives/results yet.
 
 ## HOSTILE REVIEW
 - open critical findings: target-format exposure estimand; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; behavioral endpoint blocked after near-chance baseline; pending 3.1-70B and 3.3 parent extraction; legacy layer semantics guarded. Fixed: 8B full-depth fixed-dimensional controls and internal-mediation protocol/result boundary.
