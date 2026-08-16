@@ -2,7 +2,7 @@
   "schema_version": 1,
   "sprint": "tae_2026",
   "venue": "TAE (Trust-AI-Eval), NeurIPS 2026 workshop",
-  "current_commit": "90b978e",
+  "current_commit": "9f7b796",
   "start_state": {
     "git_commit": "4e64e93729026ce39c85e13800e1a40467e4f644",
     "git_status_short": "?? RULES.md",
