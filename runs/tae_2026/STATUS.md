@@ -1,9 +1,9 @@
 # TAE 2026 Sprint Status
 
-HEAD: `a730789` (exact archive provenance gates and queued recovery)
+HEAD: `d415a7f` (exact archive provenance gates and canonical retry resources)
 INPUT SHA: `ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022` (288 items; canonical `runs/tae_2026/input/rendered_items_canonical_lf.jsonl`)
 MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c89659`); Llama-3.3-70B exact parent extraction job `51493815` (legacy result retained only as development evidence); Llama-3.1-70B revision `1605565b47bb9346c5515c34102e054115b4f98b` pending user-owned job.
-- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; parent-owned 3.1 validation/recovery `51499182`, 3.1 analysis `51499221`, matched comparison `51499222`, 3.3 extraction/analysis `51493815`/`51493916`; parent-owned causal 3.3 selector/baseline/transport jobs `51494932`, `51495134`, `51495235`; causal 8B `51488273` failed before baseline at gated model access.
+- ACTIVE JOBS: user-owned `51479700` and `51484306` untouched; parent-owned 3.1 validation/recovery `51499967`, 3.1 analysis `51500106`, matched comparison `51500207`, 3.3 extraction/analysis `51493815`/`51493916`; parent-owned causal 3.3 selector/baseline/transport jobs `51494932`, `51495134`, `51495235`; causal 8B `51488273` failed before baseline at gated model access.
 
 ## EQUAL-N
 
@@ -26,12 +26,12 @@ MODELS: Llama-3.1-8B-Instruct (revision `0e9e39f249a16976918f6564b8830bc894c8965
 
 ## 3.1-70B
 - status: **submitted; provenance-gated validation/recovery queued after the user-owned extraction**. Exact Hub revision resolved as `1605565b47bb9346c5515c34102e054115b4f98b`; the user-owned job still has not executed.
-- jobs: user-owned extraction `51479700`; parent-owned validator/recovery `51499182`; parent-owned analysis `51499221`; all remain dependency-gated. The validator rejects noncanonical input bytes and, if needed, extracts a new immutable archive from the canonical bank without modifying the user-owned run.
+- jobs: user-owned extraction `51479700`; parent-owned validator/recovery `51499967`; parent-owned analysis `51500106`; all remain dependency-gated. The validator rejects noncanonical input bytes and, if needed, extracts a new immutable archive from the canonical bank without modifying the user-owned run.
 - artifacts: user-owned archive target `runs/tae_2026/llama31_70b/llama31_70b_20260815_rev1605565b/`; canonical retry target `runs/tae_2026/llama31_70b_canonical/llama31_70b_20260816_rev1605565b/`; validation manifest target `runs/tae_2026/llama31_70b_validation/llama31_70b_validation_20260816/archive_manifest.json`.
 
 ## MODEL COMPARISON
 - status: partial ledger complete; 8B/3.3-70B exact revisions repaired; 3.1-70B pending user-owned extraction.
-- dependent analysis: parent-owned `51499221` consumes only the validated archive manifest; matched comparison `51499222` waits for `51499221` and exact 3.3 analysis `51493916`.
+- dependent analysis: parent-owned `51500106` consumes only the validated archive manifest; matched comparison `51500207` waits for `51500106` and exact 3.3 analysis `51493916`.
 
 ## HOSTILE REVIEW
 - open critical findings: target-format exposure control; 72-versus-80 coverage provenance; conditional (not refit) family bootstrap; full-depth fixed-dimensional controls; causal endpoint baseline blocked by gated 8B access; pending 3.1-70B extraction; legacy layer semantics guarded.

@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=128G
 #SBATCH --time=1-00:00:00
-#SBATCH --dependency=afterok:51499182
+#SBATCH --dependency=afterok:51499967
 #SBATCH --output=/scratch/jppatton/langea/logs/tae31-analysis-%j.out
 #SBATCH --error=/scratch/jppatton/langea/logs/tae31-analysis-%j.err
 set -euo pipefail
