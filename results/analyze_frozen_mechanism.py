@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "runs/tae_2026/causal/causal_20260816_8b_bf16_natural_counterfactual_controls/results.json"
 PROTOCOL = ROOT / "runs/tae_2026/causal/causal_20260816_8b_bf16_natural_counterfactual_controls/protocol.json"
 EXECUTED_PROTOCOL = ROOT / "runs/tae_2026/causal/causal_20260816_internal_mediation_protocol/protocol.json"
+ITEMS = ROOT / "runs/tae_2026/input/rendered_items_canonical_lf.jsonl"
 GEOMETRY_PROTOCOL = ROOT / "runs/tae_2026/causal/causal_20260815_geometry_frozen/protocol.json"
 ACTIVATION_CONFIG = ROOT / "probe results/llama31_8b_3f9ccbe890cb7a06/config.json"
 RUNNER = ROOT / "results/run_causal_natural_counterfactual_controls.py"
